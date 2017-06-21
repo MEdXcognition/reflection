@@ -26,7 +26,7 @@ class ReflectionAssistantXBlock(XBlock):
         data = pkg_resources.resource_string(__name__, path)
         return data.decode("utf8")
 
-    # TO-DO: change this view to display your data your own way.
+    # Student View
     def student_view(self, context=None):
         """
         The primary view of the ReflectionAssistantXBlock, shown to students
@@ -38,6 +38,26 @@ class ReflectionAssistantXBlock(XBlock):
         frag.add_javascript(self.resource_string("static/js/src/reflection.js"))
         frag.initialize_js('ReflectionAssistantXBlock')
         return frag
+
+    # Editor (Studio) View
+    def studio_view(self, context=None):
+        """
+        The editor view of the ReflectionAssistantXBlock, shown to course
+        authors when editing courses in edX Studio.
+        """
+        html = self.resource_string("static/html/reflection_edit.html")
+        frag = Fragment(html.format(self=self))
+        frag.add_css(self.resource_string("static/css/reflection_edit.css"))
+        frag.add_javascript(self.resource_string("static/js/src/reflection_edit.js"))
+        frag.initialize_js('ReflectionAssistantXBlock')
+        return frag
+
+    # Required for studio_view:
+    _non_editable_metadata_fields = []
+    @property
+    def non_editable_metadata_fields(self):
+        """ List of the XBlock fields that should not be displayed in the Studio editor. """
+        return self._non_editable_metadata_fields
 
     # TO-DO: change this handler to perform your own actions.  You may need more
     # than one handler, or you may not need any handlers at all.
@@ -52,20 +72,12 @@ class ReflectionAssistantXBlock(XBlock):
         self.count += 1
         return {"count": self.count}
 
-    # TO-DO: change this to create the scenarios you'd like to see in the
-    # workbench while developing your XBlock.
+    # Scenarios you'd like to see in the workbench while developing your XBlock.
     @staticmethod
     def workbench_scenarios():
         """A canned scenario for display in the workbench."""
         return [
             ("ReflectionAssistantXBlock",
              """<reflection/>
-             """),
-            ("Multiple ReflectionAssistantXBlock",
-             """<vertical_demo>
-                <reflection/>
-                <reflection/>
-                <reflection/>
-                </vertical_demo>
              """),
         ]
