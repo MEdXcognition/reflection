@@ -1,0 +1,9 @@
+/* CSS for ReflectionAssistantXBlock */
+
+.reflection_block .count {
+    font-weight: bold;
+}
+
+.reflection_block p {
+    cursor: pointer;
+}
