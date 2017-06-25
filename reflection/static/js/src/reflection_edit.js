@@ -14,6 +14,17 @@ function ReflectionAssistantXBlock(runtime, element) {
     });
 
     $(function ($) {
-        /* Here's where you'd do things on page load. */
+        /* Executes on page load. */
+
+        /* Test if FontAwesome is already loaded by EdX LMS/Studio */
+        var span = document.createElement('span');
+        span.className = 'fa';
+        span.style.display = 'none';
+        document.body.insertBefore(span, document.body.firstChild);
+        if ((window.getComputedStyle(span, null).getPropertyValue('font-family')) !== 'FontAwesome') {
+            // ...fallback to loading FA from CDN
+            $.getScript("https://use.fontawesome.com/ce953509bb.js");
+        }
+        document.body.removeChild(span);
     });
 }
