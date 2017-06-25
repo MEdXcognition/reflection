@@ -35,6 +35,7 @@ class ReflectionAssistantXBlock(XBlock):
         html = self.resource_string("static/html/reflection.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
+        frag.add_css(self.resource_string("static/css/edx_pattern_library.css"))
         frag.add_javascript(self.resource_string("static/js/src/reflection.js"))
         frag.initialize_js('ReflectionAssistantXBlock')
         return frag
@@ -48,6 +49,7 @@ class ReflectionAssistantXBlock(XBlock):
         html = self.resource_string("static/html/reflection_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection_edit.css"))
+        frag.add_css(self.resource_string("static/css/edx_pattern_library.css"))
         frag.add_javascript(self.resource_string("static/js/src/reflection_edit.js"))
         frag.initialize_js('ReflectionAssistantXBlock')
         return frag
