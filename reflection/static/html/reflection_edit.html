@@ -1,5 +1,35 @@
 <div class="reflection_block">
-<p>ReflectionAssistantXBlock: count is now
-    <span class='count'>{self.count}</span> (click me to increment).
-</p>
+
+<h1>ReflectionAssistantXBlock:</h1>
+
+<form class="form">
+    <fieldset class="field-group">
+
+        <legend>Select prompt type:</legend>
+
+        <div class="field">
+            <label class="field-label label-inline" for="radio-prompt-pre">
+                <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-pre" name="radio-prompt">
+                <span class="field-input-label">Pre-problem</span>
+            </label>
+        </div>
+
+        <div class="field">
+            <label class="field-label label-inline" for="radio-prompt-post">
+                <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-post" name="radio-prompt">
+                <span class="field-input-label">Post-problem</span>
+            </label>
+        </div>
+
+    </fieldset>
+</form>
+
+<div class="card hidden" id="prompt-pre">
+    <h2 class="hd-2">[ Pre-Problem Prompts ]</h2>
+</div>
+
+<div class="card hidden" id="prompt-post">
+    <h2 class="hd-2">[ Post-Problem Prompts ]</h2>
+</div>
+
 </div>

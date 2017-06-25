@@ -1,19 +1,16 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
 function ReflectionAssistantXBlock(runtime, element) {
 
-    function updateCount(result) {
-        $('.count', element).text(result.count);
-    }
+    $("#radio-prompt-pre").click(function(eventObject) {
+        $("#prompt-post").hide(200);
+        $("#prompt-pre").show(400);
+        // TODO: AJAX post choice of pre-problem prompt
+    });
 
-    var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
-    $('p', element).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: JSON.stringify({"hello": "world"}),
-            success: updateCount
-        });
+    $("#radio-prompt-post").click(function(eventObject) {
+        $("#prompt-pre").hide(200);
+        $("#prompt-post").show(400);
+        // TODO: AJAX post choice of post-problem prompt
     });
 
     $(function ($) {

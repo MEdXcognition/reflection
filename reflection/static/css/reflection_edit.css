@@ -1,9 +1,5 @@
 /* CSS for ReflectionAssistantXBlock - EDIT VIEW */
 
-.reflection_block .count {
-    font-weight: bold;
-}
-
-.reflection_block p {
-    cursor: pointer;
+.hidden {
+    display: none;
 }
