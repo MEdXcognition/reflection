@@ -1,6 +1,6 @@
 <div class="reflection_block">
 
-<h1>ReflectionAssistantXBlock:</h1>
+<h2 clas="hd hd-2 problem-header">Reflection Assistant</h2>
 
 <form class="form">
     <fieldset class="field-group">
@@ -10,23 +10,22 @@
         <div class="field">
             <label class="field-label label-inline" for="radio-prompt-pre">
                 <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-pre" name="radio-prompt">
-                <span class="field-input-label">Preparation</span>
-                <span class="icon fa fa-info-circle" aria-hidden="true" title="For the preparation phase, this XBlock should go before the problem-solving activity."></span>
+                <span class="field-input-label">Preparation <span class="icon fa fa-info-circle" aria-hidden="true" title="For the preparation phase, this XBlock should go before the problem-solving activity."></span></span>
+
             </label>
         </div>
 
         <div class="field">
             <label class="field-label label-inline" for="radio-prompt-post">
                 <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-post" name="radio-prompt">
-                <span class="field-input-label">Evaluation</span>
-                <span class="icon fa fa-info-circle" aria-hidden="true" title="For the evaluation phase, this XBlock should go after the problem-solving activity."></span>
+                <span class="field-input-label">Evaluation <span class="icon fa fa-info-circle" aria-hidden="true" title="For the evaluation phase, this XBlock should go after the problem-solving activity."></span></span>
             </label>
         </div>
 
     </fieldset>
 </form>
 
-<div class="card hidden" id="prompt-pre">
+<div class="card is-hidden" id="prompt-pre">
     <h3 class="hd-3">Preparation Phase</h3>
     <form class="form">
         <div class="form">
@@ -47,7 +46,7 @@
                 </div>
                 <div class="field">
                     <label class="field-label" for="textarea-prep-q4">How much time do I have to complete the task?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-short" id="textarea-prep-q4" name="textarea-prep-q4"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q4" name="textarea-prep-q4"></textarea>
                 </div>
                 <div class="field">
                     <label class="field-label" for="likert-prep-q5">My confidence in my ability to solve this problem is:</label>
@@ -85,15 +84,14 @@
                 <button type="button" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_prep">
                     <span class="submit-label" aria-hidden="true">Submit</span>
                 </button>
-                <div class="submission-feedback" id="submission_feedback_prep">
-                </div>
+                <div class="submission-feedback" id="submission_feedback_prep"></div>
             </div>
 
         </div>
     </form>
 </div>
 
-<div class="card hidden" id="prompt-post">
+<div class="card is-hidden" id="prompt-post">
     <h3 class="hd-3">Evaluation Phase</h3>
     <form class="form">
         <div class="form">
@@ -131,8 +129,7 @@
                 <button type="button" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
                     <span class="submit-label" aria-hidden="true">Submit</span>
                 </button>
-                <div class="submission-feedback" id="submission_feedback_eval">
-                </div>
+                <div class="submission-feedback" id="submission_feedback_eval"></div>
             </div>
 
         </div>

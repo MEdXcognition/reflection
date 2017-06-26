@@ -23,8 +23,8 @@ def package_data(pkg, roots):
 setup(
     name='reflection-xblock',
     version='0.1',
-    description='reflection XBlock',   # TODO: write a better description.
-    license='UNKNOWN',          # TODO: choose a license: 'AGPL v3' and 'Apache 2.0' are popular.
+    description='Reflection Assistant XBlock',
+    license='Apache 2.0',
     packages=[
         'reflection',
     ],

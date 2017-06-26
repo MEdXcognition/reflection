@@ -1,9 +1,5 @@
 /* CSS for ReflectionAssistantXBlock - EDIT VIEW */
 
-.hidden {
-    display: none;
-}
-
 form .likert {
     list-style:none;
     width:100%;
