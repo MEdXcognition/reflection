@@ -17,16 +17,16 @@ form .likert:before {
     content: '';
     position:relative;
     top:11px;
-    left:9.5%;
+    left:16%;
     display:block;
     background-color:#efefef;
     height:4px;
-    width:78%;
+    width:64%;
 }
 
 form .likert li {
     display:inline-block;
-    width:19%;
+    width:32%;
     text-align:center;
     vertical-align: top;
 }
@@ -42,4 +42,17 @@ form .likert li input[type=radio] {
 
 form .likert li label {
     width:100%;
+}
+
+.alert-message icon {
+    padding:0px 0.5rem;
+}
+
+.alert.alert-slim,.alert.alert-slim .alert-message {
+    padding:0.5rem;
+}
+
+legend.hd-4 {
+    margin-top:1.75rem;
+    margin-bottom:1.75rem;
 }
