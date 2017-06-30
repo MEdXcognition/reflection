@@ -55,7 +55,7 @@ class ReflectionAssistantXBlock(XBlock):
         return frag
 
     # Author View
-    def studio_view(self, context=None):
+    def author_view(self, context=None):
         """
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
