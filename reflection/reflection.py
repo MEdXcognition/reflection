@@ -3,7 +3,7 @@
 import pkg_resources
 
 from xblock.core import XBlock
-from xblock.fields import Scope, Integer
+from xblock.fields import Scope, String
 from xblock.fragment import Fragment
 
 
@@ -12,14 +12,19 @@ class ReflectionAssistantXBlock(XBlock):
     TO-DO: document what your XBlock does.
     """
 
-    # Fields are defined on the class.  You can access them in your code as
-    # self.<fieldname>.
-
-    # TO-DO: delete count, and define your own fields.
-    count = Integer(
-        default=0, scope=Scope.user_state,
-        help="A simple counter, to show something happening",
+    # Fields
+    block_type = String(
+        help="What type of prompt is this XBlock instance,?",
+        default="", scope=Scope.settings
     )
+
+    def get_config(self):
+        """
+        Get the configuration data/fields the views will need.
+        """
+        return {
+            "block_type": self.block_type,
+        }
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
@@ -37,7 +42,7 @@ class ReflectionAssistantXBlock(XBlock):
         frag.add_css(self.resource_string("static/css/edx_pattern_library.css"))
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string("static/js/src/reflection.js"))
-        frag.initialize_js('ReflectionAssistantXBlock')
+        frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
         return frag
 
     # Editor (Studio) View
@@ -51,7 +56,7 @@ class ReflectionAssistantXBlock(XBlock):
         frag.add_css(self.resource_string("static/css/edx_pattern_library.css"))
         frag.add_css(self.resource_string("static/css/reflection_edit.css"))
         frag.add_javascript(self.resource_string("static/js/src/reflection_edit.js"))
-        frag.initialize_js('ReflectionAssistantXBlock')
+        frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
         return frag
 
     # Author View
@@ -65,7 +70,7 @@ class ReflectionAssistantXBlock(XBlock):
         frag.add_css(self.resource_string("static/css/edx_pattern_library.css"))
         frag.add_css(self.resource_string("static/css/reflection_author.css"))
         frag.add_javascript(self.resource_string("static/js/src/reflection_author.js"))
-        frag.initialize_js('ReflectionAssistantXBlock')
+        frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
         return frag
 
     # Required for studio_view:
@@ -75,18 +80,19 @@ class ReflectionAssistantXBlock(XBlock):
         """ List of the XBlock fields that should not be displayed in the Studio editor. """
         return self._non_editable_metadata_fields
 
-    # TO-DO: change this handler to perform your own actions.  You may need more
-    # than one handler, or you may not need any handlers at all.
+    # Handlers
     @XBlock.json_handler
-    def increment_count(self, data, suffix=''):
+    def set_block_type(self, data, suffix=''):
         """
-        An example handler, which increments the data.
+        Set the type of content in this instance: pre-problem or post-problem
         """
-        # Just to show data coming in...
-        assert data['hello'] == 'world'
+        #assert data['block_type'"'] in ('pre', 'post')
+        if data['block_type'] not in ('pre', 'post'):
+            log.error('invalid block_type posted')
+            return
 
-        self.count += 1
-        return {"count": self.count}
+        self.block_type = data["block_type"]
+        return {"block_type": self.block_type}
 
     # Scenarios you'd like to see in the workbench while developing your XBlock.
     @staticmethod

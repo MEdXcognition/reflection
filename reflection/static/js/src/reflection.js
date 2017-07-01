@@ -1,22 +1,16 @@
 /* Javascript for ReflectionAssistantXBlock. */
-function ReflectionAssistantXBlock(runtime, element) {
+function ReflectionAssistantXBlock(runtime, element, config) {
 
-    function updateCount(result) {
-        $('.count', element).text(result.count);
-    }
-
-    var handlerUrl = runtime.handlerUrl(element, 'increment_count');
-
-    $('p', element).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: JSON.stringify({"hello": "world"}),
-            success: updateCount
-        });
-    });
-
+    /* Page Load Actions */
     $(function ($) {
-        /* Here's where you'd do things on page load. */
+        switch (config.block_type) {
+            case "pre":
+                $("#prompt-pre").show();
+                break;
+            case "post":
+                $("#prompt-post").show();
+                break;
+        }
     });
+
 }

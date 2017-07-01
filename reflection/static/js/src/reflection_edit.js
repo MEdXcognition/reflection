@@ -1,17 +1,35 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
-function ReflectionAssistantXBlock(runtime, element) {
+function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Select Prompt Type */
     $("#radio-prompt-pre").click(function(eventObject) {
-        $("#prompt-post").hide(200);
-        $("#prompt-pre").show(400);
-        // TODO: AJAX post choice of pre-problem prompt
+        $.ajax({
+            type: "POST",
+            url: runtime.handlerUrl(element, 'set_block_type'),
+            data: JSON.stringify({block_type: 'pre'}),
+            success: function() {
+                $("#prompt-post").hide(200);
+                $("#prompt-pre").show(400);
+            },
+            error: function (xhr, exception) {
+                alert(xhr.status + " " + xhr.responseText);
+            }
+        });
     });
 
     $("#radio-prompt-post").click(function(eventObject) {
-        $("#prompt-pre").hide(200);
-        $("#prompt-post").show(400);
-        // TODO: AJAX post choice of post-problem prompt
+        $.ajax({
+            type: "POST",
+            url: runtime.handlerUrl(element, 'set_block_type'),
+            data: JSON.stringify({block_type: 'post'}),
+            success: function() {
+                $("#prompt-pre").hide(200);
+                $("#prompt-post").show(400);
+            },
+            error: function (xhr, exception) {
+                alert(xhr.status + " " + xhr.responseText);
+            }
+        });
     });
 
     /* Strategy Selection: enable/disable entire section */
@@ -26,7 +44,7 @@ function ReflectionAssistantXBlock(runtime, element) {
         }
     });
 
-    /* Page Load */
+    /* Page Load Actions */
     $(function ($) {
         /* Test if FontAwesome is already loaded by EdX LMS/Studio */
         var span = document.createElement('span');
@@ -38,6 +56,16 @@ function ReflectionAssistantXBlock(runtime, element) {
             $.getScript("https://use.fontawesome.com/ce953509bb.js");
         }
         document.body.removeChild(span);
+
+        /* Fetch config data and respond accordingly */
+        switch (config.block_type) {
+            case "pre":
+                $("#radio-prompt-pre").trigger("click");
+                break;
+            case "post":
+                $("#radio-prompt-post").trigger("click");
+                break;
+        };
 
         /* Strategy Selection: enable/disable strategies based on their checkboxes */
         // change event on strategy checkboxes
@@ -52,6 +80,5 @@ function ReflectionAssistantXBlock(runtime, element) {
                 }
             }
         };
-
     });
 }
