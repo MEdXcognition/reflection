@@ -14,38 +14,16 @@ function ReflectionAssistantXBlock(runtime, element) {
         // TODO: AJAX post choice of post-problem prompt
     });
 
-    /* Strategy Selection */
+    /* Strategy Selection: enable/disable entire section */
     // TODO: AJAX posting on all these inputs
     $("#checkbox-prep-strat").click(function(){
         if (this.checked) {
+            //re-enable checkboxes (triggers change event too)
             $(".strategies input[type=checkbox]").prop("disabled", false);
-            $("#textbox-strat1").prop("disabled", !$("#checkbox-strat1").is(':checked'));
-            $("#textbox-strat2").prop("disabled", !$("#checkbox-strat2").is(':checked'));
-            $("#textbox-strat3").prop("disabled", !$("#checkbox-strat3").is(':checked'));
-            $("#textbox-strat4").prop("disabled", !$("#checkbox-strat4").is(':checked'));
-            $("#textbox-strat5").prop("disabled", !$("#checkbox-strat5").is(':checked'));
-            $("#textbox-strat6").prop("disabled", !$("#checkbox-strat6").is(':checked'));
         } else {
+            //disable all the inputs in this section
             $(".strategies input").prop("disabled", true);
         }
-    });
-    $("#checkbox-strat1").click(function(){
-        $("#textbox-strat1").prop("disabled", !this.checked);
-    });
-    $("#checkbox-strat2").click(function(){
-        $("#textbox-strat2").prop("disabled", !this.checked);
-    });
-    $("#checkbox-strat3").click(function(){
-        $("#textbox-strat3").prop("disabled", !this.checked);
-    });
-    $("#checkbox-strat4").click(function(){
-        $("#textbox-strat4").prop("disabled", !this.checked);
-    });
-    $("#checkbox-strat5").click(function(){
-        $("#textbox-strat5").prop("disabled", !this.checked);
-    });
-    $("#checkbox-strat6").click(function(){
-        $("#textbox-strat6").prop("disabled", !this.checked);
     });
 
     /* Page Load */
@@ -60,5 +38,20 @@ function ReflectionAssistantXBlock(runtime, element) {
             $.getScript("https://use.fontawesome.com/ce953509bb.js");
         }
         document.body.removeChild(span);
+
+        /* Strategy Selection: enable/disable strategies based on their checkboxes */
+        // change event on strategy checkboxes
+        $("input[id^='checkbox-strat']").change(function() {
+            $(this).siblings().prop("disabled", !this.checked);
+        });
+        // trigger a 'change' event when enabled/disabled state changes
+        jQuery.propHooks.disabled = {
+            set: function (elem, val) {
+                if (elem.disabled !== val) {
+                    $(elem).trigger('change');
+                }
+            }
+        };
+
     });
 }
