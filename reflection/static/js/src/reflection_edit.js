@@ -1,6 +1,7 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
 function ReflectionAssistantXBlock(runtime, element) {
 
+    /* Select Prompt Type */
     $("#radio-prompt-pre").click(function(eventObject) {
         $("#prompt-post").hide(200);
         $("#prompt-pre").show(400);
@@ -13,9 +14,42 @@ function ReflectionAssistantXBlock(runtime, element) {
         // TODO: AJAX post choice of post-problem prompt
     });
 
-    $(function ($) {
-        /* Executes on page load. */
+    /* Strategy Selection */
+    // TODO: AJAX posting on all these inputs
+    $("#checkbox-prep-strat").click(function(){
+        if (this.checked) {
+            $(".strategies input[type=checkbox]").prop("disabled", false);
+            $("#textbox-strat1").prop("disabled", !$("#checkbox-strat1").is(':checked'));
+            $("#textbox-strat2").prop("disabled", !$("#checkbox-strat2").is(':checked'));
+            $("#textbox-strat3").prop("disabled", !$("#checkbox-strat3").is(':checked'));
+            $("#textbox-strat4").prop("disabled", !$("#checkbox-strat4").is(':checked'));
+            $("#textbox-strat5").prop("disabled", !$("#checkbox-strat5").is(':checked'));
+            $("#textbox-strat6").prop("disabled", !$("#checkbox-strat6").is(':checked'));
+        } else {
+            $(".strategies input").prop("disabled", true);
+        }
+    });
+    $("#checkbox-strat1").click(function(){
+        $("#textbox-strat1").prop("disabled", !this.checked);
+    });
+    $("#checkbox-strat2").click(function(){
+        $("#textbox-strat2").prop("disabled", !this.checked);
+    });
+    $("#checkbox-strat3").click(function(){
+        $("#textbox-strat3").prop("disabled", !this.checked);
+    });
+    $("#checkbox-strat4").click(function(){
+        $("#textbox-strat4").prop("disabled", !this.checked);
+    });
+    $("#checkbox-strat5").click(function(){
+        $("#textbox-strat5").prop("disabled", !this.checked);
+    });
+    $("#checkbox-strat6").click(function(){
+        $("#textbox-strat6").prop("disabled", !this.checked);
+    });
 
+    /* Page Load */
+    $(function ($) {
         /* Test if FontAwesome is already loaded by EdX LMS/Studio */
         var span = document.createElement('span');
         span.className = 'fa';
