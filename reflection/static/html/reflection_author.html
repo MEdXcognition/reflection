@@ -29,7 +29,7 @@
     <form class="form">
         <div class="form">
 
-            <div class="form-group">
+            <div class="form-group" id="prep-assessment-section">
                 <legend class="hd-4">Knowledge Assessment</legend>
                 <div id="field-prep-q1" class="field">
                     <label class="field-label" for="textarea-prep-q1">What prior knowledge can help me with this particular task?</label>
@@ -67,9 +67,33 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="prep-strategy-section">
                 <legend class="hd-4">Strategy Selection</legend>
-                <quote>TBD...</quote>
+                <div class="field">
+                    <label class="field-label" for="select-prep-strat">
+                        Which strategies could I use to approach this problem?
+                    </label>
+                    <div class="strategies">
+                        <div class="field">
+                            <label class="field-label" for="checkbox-strat1">
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat1" value="Monitor understanding" />
+                                Monitor understanding
+                            </label>
+                        </div>
+                        <div class="field">
+                            <label class="field-label" for="checkbox-strat2">
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat2" name="checkbox-strat2" value="Monitor progress and control errors" />
+                                Monitor progress and control errors
+                            </label>
+                        </div>
+                        <div class="field">
+                            <label class="field-label" for="checkbox-strat3">
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat3" value="Revise solution paths" />
+                                Revise solution paths
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="form-actions submit-attempt-container">

@@ -56,3 +56,15 @@ legend.hd-4 {
     margin-top:1.75rem;
     margin-bottom:1.75rem;
 }
+
+.strategies {
+    margin-left:3rem;
+}
+
+.strategies div.field {
+    margin-bottom:0.5rem;
+}
+
+/*.strategies .input-text {
+    width:30rem;
+}*/
