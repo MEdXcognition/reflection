@@ -1,5 +1,9 @@
 /* CSS for ReflectionAssistantXBlock - EDIT VIEW */
 
+.form-group {
+    margin-bottom:1rem
+}
+
 form .likert {
     list-style:none;
     width:100%;
@@ -42,6 +46,10 @@ form .likert li input[type=radio] {
 
 form .likert li label {
     width:100%;
+}
+
+form ul.likert {
+    padding-bottom:0px;
 }
 
 .alert-message icon {
