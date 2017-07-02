@@ -1,45 +1,48 @@
 <div class="reflection_block">
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
+
 <div class="card is-hidden" id="prompt-pre">
     <h3 class="hd-3">Preparation Phase</h3>
-    <form class="form">
+    <form class="form" id="form-prompt-pre">
         <div class="form">
 
             <div class="form-group" id="prep-assessment-section">
                 <legend class="hd-4">Knowledge Assessment</legend>
                 <div id="field-prep-q1" class="field">
                     <label class="field-label" for="textarea-prep-q1">What prior knowledge can help me with this particular task?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q1" name="textarea-prep-q1"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q1" name="textarea-prep-q1" required></textarea>
                 </div>
                 <div id="field-prep-q2" class="field">
                     <label class="field-label" for="textarea-prep-q2">What do I need to know before I can successfully deal with this task?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q2" name="textarea-prep-q2"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q2" name="textarea-prep-q2" required></textarea>
                 </div>
                 <div id="field-prep-q3" class="field">
                     <label class="field-label" for="textarea-prep-q3">What should I do and in which order?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q3" name="textarea-prep-q3"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q3" name="textarea-prep-q3" required></textarea>
                 </div>
                 <div id="field-prep-q4" class="field">
                     <label class="field-label" for="textarea-prep-q4">How much time do I have to complete the task?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q4" name="textarea-prep-q4"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q4" name="textarea-prep-q4" required></textarea>
                 </div>
                 <div id="field-prep-q5" class="field">
                     <label class="field-label" for="likert-prep-q5">My confidence in my ability to solve this problem is:</label>
                     <ul class='likert' id="likert-prep-q5" name="likert-prep-q5">
                         <li>
-                            <input type="radio" name="likert-prep-q5" value="strong_agree">
+                            <input type="radio" class="field-input" name="likert-prep-q5" required data-parsley-errors-container="#likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#likert-prep-q5" value="none">
                             <label>Cannot solve the problem</label>
                             </li>
                         <li>
-                            <input type="radio" name="likert-prep-q5" value="agree">
+                            <input type="radio" class="field-input" name="likert-prep-q5" data-parsley-errors-messages-disabled="" value="partly">
                             <label>Can partially solve the problem</label>
                             </li>
                         <li>
-                            <input type="radio" name="likert-prep-q5" value="neutral">
+                            <input type="radio" class="field-input" name="likert-prep-q5" data-parsley-errors-messages-disabled="" value="fully">
                             <label>Can fully solve the problem</label>
                             </li>
                         <li>
                     </ul>
+                    <div id="likert-prep-q5-error"></div>
                 </div>
             </div>
 
@@ -49,31 +52,32 @@
                     <label class="field-label" for="select-prep-strat">
                         Which strategies could I use to approach this problem?
                     </label>
-                    <div class="strategies">
+                    <div class="strategies" id="select-prep-strat">
                         <div class="field">
                             <label class="field-label" for="checkbox-strat1">
-                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat1" value="Monitor understanding" />
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat1" data-parsley-multiple="strategies" data-parsley-mincheck="1" data-parsley-required="" data-parsley-errors-container="#select-prep-strat-error" data-parsley-error-message="You must select at least one strategy." data-parsley-class-handler="#select-prep-strat" value="Monitor understanding" />
                                 Monitor understanding
                             </label>
                         </div>
                         <div class="field">
                             <label class="field-label" for="checkbox-strat2">
-                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat2" name="checkbox-strat2" value="Monitor progress and control errors" />
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat2" name="checkbox-strat2" data-parsley-multiple="strategies" value="Monitor progress and control errors" />
                                 Monitor progress and control errors
                             </label>
                         </div>
                         <div class="field">
                             <label class="field-label" for="checkbox-strat3">
-                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat3" value="Revise solution paths" />
+                                <input type="checkbox" class="field-input input-checkbox" id="checkbox-strat1" name="checkbox-strat3" data-parsley-multiple="strategies" value="Revise solution paths" />
                                 Revise solution paths
                             </label>
                         </div>
+                        <div id="select-prep-strat-error"></div>
                     </div>
                 </div>
             </div>
 
             <div class="form-actions submit-attempt-container">
-                <button type="button" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_prep">
+                <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_prep">
                     <span class="submit-label" aria-hidden="true">Submit</span>
                 </button>
                 <div class="submission-feedback" id="submission_feedback_prep"></div>
@@ -85,18 +89,18 @@
 
 <div class="card is-hidden" id="prompt-post">
     <h3 class="hd-3">Evaluation Phase</h3>
-    <form class="form">
+    <form class="form" id="form-prompt-post">
         <div class="form">
 
             <div class="form-group" id="eval-eval-section">
                 <legend class="hd-4">Evaluation</legend>
                 <div id="field-eval-q1" class="field">
                     <label class="field-label" for="textarea-eval-q1">Did my particular course of thinking produce more or less than I had expected?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q1" name="textarea-eval-q1"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q1" name="textarea-eval-q1" required></textarea>
                 </div>
                 <div id="field-eval-q2" class="field">
                     <label class="field-label" for="textarea-eval-q2">What could I have done differently?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q2" name="textarea-eval-q2"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q2" name="textarea-eval-q2" required></textarea>
                 </div>
                 <div class="field">
             </div>
@@ -105,20 +109,20 @@
                 <legend class="hd-4">Self-Assessment</legend>
                 <div id="field-eval-q3" class="field">
                     <label class="field-label" for="textarea-eval-q3">How might I apply this line of thinking to other problems?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q3" name="textarea-eval-q3"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q3" name="textarea-eval-q3" required></textarea>
                 </div>
                 <div id="field-eval-q4" class="field">
                     <label class="field-label" for="textarea-eval-q4">Was this a good strategy to solve this problem?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q4" name="textarea-eval-q4"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q4" name="textarea-eval-q4" required></textarea>
                 </div>
                 <div id="field-eval-q5" class="field">
                     <label class="field-label" for="textarea-eval-q5">Would another strategy have been better suited to this problem?</label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q5" name="textarea-eval-q5"></textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q5" name="textarea-eval-q5" required></textarea>
                 </div>
             </div>
 
             <div class="form-actions submit-attempt-container">
-                <button type="button" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
+                <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
                     <span class="submit-label" aria-hidden="true">Submit</span>
                 </button>
                 <div class="submission-feedback" id="submission_feedback_eval"></div>
