@@ -73,6 +73,39 @@ legend.hd-4 {
     margin-bottom:0.5rem;
 }
 
-.strategies .input-text {
+.strategies .input-text,.strategies .field-message {
     width:30rem;
+}
+
+.field-message.has-error {
+    visibility:hidden;
+    opacity:0;
+    padding:0;
+    transition:all .3s ease-in;
+    -o-transition:all .3s ease-in;
+    -moz-transition:all .3s ease-in;
+    -webkit-transition:all .3s ease-in;
+}
+
+.field-message.has-error.filled {
+    visibility:visible;
+    opacity:1;
+    padding:.625rem;
+}
+
+.keep-together {
+    clear:both;
+    float:none;
+    position:relative;
+}
+
+.keep-together input[type="checkbox"] {
+    left:0;
+    position:absolute;
+    top:10px;
+}
+
+.keep-together input[type="text"],.keep-together .field-message.has-error.filled {
+    display:block;
+    margin-left:30px;
 }

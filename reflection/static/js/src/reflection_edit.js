@@ -80,5 +80,19 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 }
             }
         };
+
+        /* Form Validation */
+        var parsley_options = {
+            excluded: 'input:disabled,input:hidden',
+            trigger: 'keyup',
+            errorClass: 'has-error',
+            successClass: 'has-success',
+            errorsWrapper: '<div class="field-message has-error"></div>',
+            errorTemplate: '<span class="field-message-content"></span>'
+        };
+        $('#form-prompt-pre').parsley(parsley_options).on('form:submit', function() {
+            return false;
+        });
+
     });
 }
