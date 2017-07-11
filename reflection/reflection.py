@@ -21,7 +21,7 @@ class ReflectionAssistantXBlock(XBlock):
 
     # Display Preparation or Evaluation phase
     block_type = String(
-        default=None
+        default="pre" # Should be ""
         , scope=Scope.settings
         , help="What type of prompt is this XBlock instance?"
         , values=["pre", "post"]
@@ -175,7 +175,7 @@ class ReflectionAssistantXBlock(XBlock):
     )
     # TODO: Modify for KMA/KMB computation
     pre_q5_ans = Integer(
-        default=None
+        default=1
         , scope=Scope.user_state
         , help="Student answer for Preparation Q5"
         , values=[1, 2, 3]
@@ -239,6 +239,31 @@ class ReflectionAssistantXBlock(XBlock):
         , scope=Scope.user_state
         , help="Student answer for Evaluation Q5"
     )
+
+    def get_config(self):
+        """
+        Get the configuration data/fields the views will need.
+        """
+        return {
+            "block_type": self.block_type
+            , "pre_q1_disp": self.pre_q1_disp
+            , "pre_q2_disp": self.pre_q2_disp
+            , "pre_q3_disp": self.pre_q3_disp
+            , "pre_q4_disp": self.pre_q4_disp
+            , "pre_q5_disp": self.pre_q5_disp
+            , "pre_q6_disp": self.pre_q6_disp
+            , "pre_s1_disp": self.pre_s1_disp
+            , "pre_s2_disp": self.pre_s2_disp
+            , "pre_s3_disp": self.pre_s3_disp
+            , "pre_s4_disp": self.pre_s4_disp
+            , "pre_s5_disp": self.pre_s5_disp
+            , "pre_s6_disp": self.pre_s6_disp
+            , "post_q1_disp": self.post_q1_disp
+            , "post_q2_disp": self.post_q2_disp
+            , "post_q3_disp": self.post_q3_disp
+            , "post_q4_disp": self.post_q4_disp
+            , "post_q5_disp": self.post_q5_disp
+        }
 
     def resource_string(self, path):
         """Handy helper for getting resources from our kit."""
