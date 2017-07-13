@@ -52,13 +52,13 @@ form ul.likert {
     padding-bottom:0px;
 }
 
-/*.alert-message icon {
+.alert-message icon {
     padding:0px 0.5rem;
 }
 
 .alert.alert-slim,.alert.alert-slim .alert-message {
     padding:0.5rem;
-}*/
+}
 
 legend.hd-4 {
     margin-top:1.75rem;
@@ -73,9 +73,9 @@ legend.hd-4 {
     margin-bottom:0.5rem;
 }
 
-/*.strategies .input-text,.strategies .field-message {
+.strategies .input-text,.strategies .field-message {
     width:30rem;
-}*/
+}
 
 .field-message.has-error {
     visibility:hidden;
@@ -93,7 +93,7 @@ legend.hd-4 {
     padding:.625rem;
 }
 
-/*.keep-together {
+.keep-together {
     clear:both;
     float:none;
     position:relative;
@@ -108,7 +108,7 @@ legend.hd-4 {
 .keep-together input[type="text"],.keep-together .field-message.has-error.filled {
     display:block;
     margin-left:30px;
-}*/
+}
 
 #likert-prep-q5-error {
     margin-left: 3rem;

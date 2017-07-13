@@ -60,7 +60,7 @@ class ReflectionAssistantXBlock(XBlock):
 
     # Display metacognitive strategies
     pre_s1_disp = Boolean(
-        default=True
+        default=False
         , scope=Scope.settings
         , help="Display Metacognitive Strategy 1"
     )
@@ -188,7 +188,7 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Student answer for Metacognitive Strategy 1"
     )
     pre_s2_ans = Boolean(
-        default=False
+        default=True
         , scope=Scope.user_state
         , help="Student answer for Metacognitive Strategy 2"
     )
@@ -258,6 +258,13 @@ class ReflectionAssistantXBlock(XBlock):
             , "pre_s4_disp": self.pre_s4_disp
             , "pre_s5_disp": self.pre_s5_disp
             , "pre_s6_disp": self.pre_s6_disp
+            #, "pre_q5_ans": self.pre_q5_ans
+            #, "pre_s1_ans": self.pre_s1_ans
+            #, "pre_s2_ans": self.pre_s2_ans
+            #, "pre_s3_ans": self.pre_s3_ans
+            #, "pre_s4_ans": self.pre_s4_ans
+            #, "pre_s5_ans": self.pre_s5_ans
+            #, "pre_s6_ans": self.pre_s6_ans
             , "post_q1_disp": self.post_q1_disp
             , "post_q2_disp": self.post_q2_disp
             , "post_q3_disp": self.post_q3_disp
