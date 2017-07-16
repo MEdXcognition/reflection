@@ -116,19 +116,32 @@ function ReflectionAssistantXBlock(runtime, element, config) {
     $('#form-prompt-pre,#form-prompt-post').submit(function() {
         var serializedObj = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
-                a[x.name] = x.value;
-                return a;
+                    alert(x.type);
+                    if (x.type == 'checkbox') {
+                        alert("went here");
+                        a[x.name] = x.checked;
+                    } else {
+                        a[x.name] = x.value;
+                    }
+                    return a;
                 },
                 {}
             )
         );
-        /*var checkbox_val = {};
+        var checkbox_val = {};
         $("form input:checkbox").each(function(){
             checkbox_val[this.name] = this.checked;
         });
-        var submit_data = union(serializedObj, checkbox_val)
-        //alert(submit_data);
-        $.ajax({
+        //var submit_data = serializedObj.concat(checkbox_val)
+        /*$("form input:checkbox").each(function(){
+            serializedObj[this.name] = this.checked;
+        });*/
+        //submit_data = submit_data.filter(function(elem, index) {
+        //        return submit_data.indexOf(elem) == index;
+        //    )};
+        //var submit_data = union(serializedObj, checkbox_val)
+        alert(serializedObj);
+        /*$.ajax({
             type: "POST",
             url: handlerUrl,
             data: submit_data
