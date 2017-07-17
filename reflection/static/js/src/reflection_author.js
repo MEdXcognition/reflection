@@ -32,35 +32,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         });
     });
 
-    /* Guage Display Functions */
-    function setGauge(gauge) {
-        var percentage = $(gauge).data('percentage') / 100;
-        var colorSet = $(gauge).data('colorset');
-
-        var degrees = 180 * percentage;
-        var pointerDegrees = degrees - 90;
-        var spinner = $(gauge).find('.spinner');
-        var pointer = $(gauge).find('.pointer');
-
-        // set
-        $(spinner).attr({
-            style: 'transform: rotate(' + degrees + 'deg);'
-        });
-        $(pointer).attr({
-            style: 'transform: rotate(' + pointerDegrees + 'deg)'
-        });
-    };
-    function resetGauge(gauge) {
-        var spinner = $(gauge).find('.spinner');
-        var pointer = $(gauge).find('.pointer');
-        $(spinner).attr({
-            style: 'transform: rotate(0deg)'
-        });
-        $(pointer).attr({
-            style: 'transform: rotate(-90deg)'
-        });
-    }
-
     /* Page Load Actions */
     $(function ($) {
         /* Test if FontAwesome is already loaded by EdX LMS/Studio */
@@ -83,15 +54,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 $("#radio-prompt-post").trigger("click");
                 break;
         };
-
-        /* Guage Displays */
-        setGauge($("#kma"));
-        setGauge($("#kmb"));
-        // clicking guages re-animates them
-        $('.gauge-cont').click(function(){
-            resetGauge(this);
-            setTimeout(setGauge, 800, this);
-        });
 
     });
 }
