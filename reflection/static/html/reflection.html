@@ -1,412 +1,208 @@
-<div
-    class="reflection_block">
-
-    <script
-        type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js">
-    </script>
-
-    <div
-        class="card is-hidden"
-        id="prompt-pre">
-        <h3
-            class="hd-3">
+<div class="reflection_block">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
+    <div class="card is-hidden" id="prompt-pre">
+        <h3 class="hd-3">
             Preparation Phase
         </h3>
-        <form
-            class="form"
-            id="form-prompt-pre">
-            <div
-                class="form">
-                <div
-                    class="form-group"
-                    id="prep-assessment-section">
-                    <legend 
-                        class="hd-4">
+        <form class="form" id="form-prompt-pre">
+            <div class="form">
+                <div class="form-group" id="prep-assessment-section">
+                    <legend class="hd-4">
                         Knowledge Assessment
                     </legend>
-                    <div
-                    id="field-prep-q1"
-                    class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-prep-q1">
+                    <div class="field" id="field-prep-q1" title="pre_q1_disp">
+                        <label class="field-label" for="textarea-prep-q1">
                             What prior knowledge can help me with this particular task?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-prep-q1"
-                            name="pre_q1_ans"
-                            required>{self.pre_q1_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q1" name="pre_q1_ans" required>{self.pre_q1_ans}</textarea>
                     </div>
-                    <div
-                        id="field-prep-q2"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-prep-q2">
+                    <div class="field" id="field-prep-q2" title="pre_q2_disp">
+                        <label class="field-label" for="textarea-prep-q2">
                             What do I need to know before I can successfully deal with this task?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-prep-q2"
-                            name="pre_q2_ans"
-                            required>{self.pre_q2_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q2" name="pre_q2_ans" required>{self.pre_q2_ans}</textarea>
                     </div>
-                    <div
-                        id="field-prep-q3"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-prep-q3">
+                    <div class="field" id="field-prep-q3" title="pre_q3_disp">
+                        <label class="field-label" for="textarea-prep-q3">
                             What should I do and in which order?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-prep-q3"
-                            name="pre_q3_ans"
-                            required>{self.pre_q3_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q3" name="pre_q3_ans" required>{self.pre_q3_ans}</textarea>
                     </div>
-                    <div
-                        id="field-prep-q4"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-prep-q4">
+                    <div class="field" id="field-prep-q4" title="pre_q4_disp">
+                        <label class="field-label" for="textarea-prep-q4">
                             How much time do I have to complete the task?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-prep-q4"
-                            name="pre_q4_ans"
-                            required>{self.pre_q4_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q4" name="pre_q4_ans" required>{self.pre_q4_ans}</textarea>
                     </div>
-                    <div
-                        id="field-prep-q5"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="likert-prep-q5">
+                    <div class="field" id="field-prep-q5" title="pre_q5_disp">
+                        <label class="field-label" for="likert-prep-q5">
                             My confidence in my ability to solve this problem is:
                         </label>
-                        <ul
-                            class='likert'
-                            id="likert-prep-q5"
-                            name="pre_q5_ans">
+                        <ul class='likert' id="likert-prep-q5" name="pre_q5_ans">
                             <li>
-                                <input
-                                    type="radio"
-                                    class="field-input"
-                                    name="pre_q5_ans"
-                                    required
-                                    data-parsley-errors-container="#likert-prep-q5-error"
-                                    data-parsley-error-message="You must select a choice."
-                                    data-parsley-class-handler="#likert-prep-q5"
-                                    value="1">
+                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#likert-prep-q5" value="1" required>
                                 <label>
                                     Cannot solve the problem
                                 </label>
                             </li>
                             <li>
-                                <input
-                                    type="radio"
-                                    class="field-input"
-                                    name="pre_q5_ans"
-                                    data-parsley-errors-messages-disabled=""
-                                    value="2">
+                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-messages-disabled="" value="2">
                                 <label>
                                     Can partially solve the problem
                                 </label>
                             </li>
                             <li>
-                                <input
-                                    type="radio"
-                                    class="field-input"
-                                    name="pre_q5_ans"
-                                    data-parsley-errors-messages-disabled=""
-                                    value="3">
+                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-messages-disabled="" value="3">
                                 <label>
                                     Can fully solve the problem
                                 </label>
                             </li>
                         </ul>
-                        <div
-                            id="likert-prep-q5-error">
-                        </div>
+                        <div id="likert-prep-q5-error"></div>
                     </div>
                 </div>
-
-                <div
-                    class="form-group"
-                    id="prep-strategy-section">
-                    <legend
-                        class="hd-4">
+                <div class="form-group" id="prep-strategy-section">
+                    <legend class="hd-4">
                         Strategy Selection
                     </legend>
-                    <div
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="select-prep-strat">
+                    <div class="field">
+                        <label class="field-label" for="select-prep-strat">
                             Which strategies could I use to approach this problem?
                         </label>
-                        <div
-                            class="strategies"
-                            id="select-prep-strat">
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat1-label"
-                                    for="checkbox-strat1">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat1"
-                                        name="pre_s1_ans"
-                                        data-parsley-multiple="strategies"
-                                        data-parsley-mincheck="1"
-                                        data-parsley-required=""
-                                        data-parsley-errors-container="#select-prep-strat-error"
-                                        data-parsley-error-message="You must select at least one strategy."
-                                        data-parsley-class-handler="#select-prep-strat"
-                                        value="pre_s1_ans" />
-                                     {self.pre_s1_text}
+                        <div class="strategies" id="select-prep-strat">
+                            <div class="field">
+                                <label class="field-label" id="checkbox-strat1-label" for="checkbox-strat1">
+                                    <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat1" name="pre_s1_ans" data-parsley-multiple="strategies" data-parsley-mincheck="1" data-parsley-required="" data-parsley-errors-container="#select-prep-strat-error" data-parsley-error-message="You must select at least one strategy." data-parsley-class-handler="#select-prep-strat" value="pre_s1_disp" />
+                                    {self.pre_s1_text}
                                 </label>
                             </div>
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat2-label"
-                                    for="checkbox-strat2">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat2"
-                                        name="pre_s2_ans"
-                                        data-parsley-multiple="strategies"
-                                        data-unchecked-value="false"
-                                        value="pre_s2_ans" />
+                            <div class="field">
+                                <label class="field-label" id="checkbox-strat2-label" for="checkbox-strat2">
+                                    <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat2" name="pre_s2_ans" data-parsley-multiple="strategies" data-unchecked-value="false" value="pre_s2_disp" />
                                     {self.pre_s2_text}
                                 </label>
                             </div>
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat3-label"
-                                    for="checkbox-strat3">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat3"
-                                        name="pre_s3_ans"
-                                        data-parsley-multiple="strategies"
-                                        value="pre_s3_ans" />
-                                    {self.pre_s3_text}
+                            <div class="field">
+                                <label class="field-label" id="checkbox-strat3-label" for="checkbox-strat3">
+                                    <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat3" name="pre_s3_ans" data-parsley-multiple="strategies" value="pre_s3_disp" /> {self.pre_s3_text}
                                 </label>
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat4-label"
-                                    for="checkbox-strat4">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat4"
-                                        name="pre_s4_ans"
-                                        data-parsley-multiple="strategies"
-                                        value="pre_s4_ans" />
-                                    {self.pre_s4_text}
-                                </label>
+                                <div class="field">
+                                    <label class="field-label" id="checkbox-strat4-label" for="checkbox-strat4">
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat4" name="pre_s4_ans" data-parsley-multiple="strategies" value="pre_s4_disp" /> {self.pre_s4_text}
+                                    </label>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" id="checkbox-strat5-label" for="checkbox-strat5">
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat5" name="pre_s5_ans" data-parsley-multiple="strategies" value="pre_s5_disp" /> {self.pre_s5_text}
+                                    </label>
+                                </div>
+                                <div class="field">
+                                    <label class="field-label" id="checkbox-strat6-label" for="checkbox-strat6">
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat6" name="pre_s6_ans" data-parsley-multiple="strategies" value="pre_s6_disp" /> {self.pre_s6_text}
+                                    </label>
+                                </div>
+                                <div id="select-prep-strat-error"></div>
                             </div>
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat5-label"
-                                    for="checkbox-strat5">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat5"
-                                        name="pre_s5_ans"
-                                        data-parsley-multiple="strategies"
-                                        value="pre_s5_ans" />
-                                    {self.pre_s5_text}
-                                </label>
-                            </div>
-                            <div
-                                class="field">
-                                <label
-                                    class="field-label"
-                                    id="checkbox-strat6-label"
-                                    for="checkbox-strat6">
-                                    <input
-                                        type="checkbox"
-                                        class="field-input input-checkbox"
-                                        id="checkbox-strat6"
-                                        name="pre_s6_ans"
-                                        data-parsley-multiple="strategies"
-                                        value="pre_s6_ans" />
-                                    {self.pre_s6_text}
-                                </label>
-                            </div>
-                            <div id="select-prep-strat-error"></div>
                         </div>
                     </div>
-                </div>
-
-                <div
-                    class="form-actions submit-attempt-container">
-                    <button
-                        type="submit"
-                        class="submit btn-brand btn-base"
-                        data-submitting="Submitting"
-                        data-value="Submit"
-                        data-should-enable-submit-button="True"
-                        aria-describedby="submission_feedback_prep">
-                        <span
-                            class="submit-label"
-                            aria-hidden="true">
-                            Submit
-                        </span>
-                    </button>
-                    <div
-                        class="submission-feedback"
-                        id="submission_feedback_prep">
+                    <div class="form-actions submit-attempt-container">
+                        <button class="submit btn-brand btn-base" type="submit" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_prep">
+                            <span class="submit-label" aria-hidden="true">
+                                Submit
+                            </span>
+                        </button>
+                        <div class="submission-feedback" id="submission_feedback_prep"></div>
                     </div>
                 </div>
             </div>
         </form>
     </div>
-
-    <div
-        class="card is-hidden"
-        id="prompt-post">
-        <h3
-            class="hd-3">
+    <div class="card is-hidden" id="prompt-post">
+        <h3 class="hd-3">
             Evaluation Phase
         </h3>
-        <form
-            class="form"
-            id="form-prompt-post">
-            <div
-                class="form">
-
-                <div
-                    class="form-group"
-                    id="eval-eval-section">
-                    <legend
-                        class="hd-4">
+        <div class="learner-profile" title="learner_profile_disp">
+            <legend class="hd-4">Learner Profile</legend>
+            <figure class="gauge-cont" id="kma" data-percentage={self.kma}>
+                <div class="gauge">
+                    <div class="inner paleyellow"></div>
+                    <div class="bg left-threeeighths palered"></div>
+                    <div class="bg right-quarter palegreen"></div>
+                    <div class="spinner kma"></div>
+                </div>
+                <div class="pointer"></div>
+                <div class="pointer-knob"></div>
+                <span class="label-left">0%</span>
+                <span class="label-right">100%</span>
+                <figcaption>Accuracy</figcaption>
+            </figure>
+            <figure class="gauge-cont" id="kmb" data-percentage={self.kmb}>
+                <div class="gauge">
+                    <div class="inner palegreen"></div>
+                    <div class="bg left-third palered"></div>
+                    <div class="bg right-third palered"></div>
+                    <div class="spinner kmb"></div>
+                </div>
+                <div class="pointer"></div>
+                <div class="pointer-knob"></div>
+                <span class="label-left">Pessimistic</span>
+                <span class="label-right">Optimistic</span>
+                <figcaption>Bias</figcaption>
+            </figure>
+        </div>
+        <form class="form" id="form-prompt-post">
+            <div class="form">
+                <div class="form-group" id="eval-eval-section">
+                    <legend class="hd-4">
                         Evaluation
                     </legend>
-                    <div
-                        id="field-eval-q1"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-eval-q1">
+                    <div class="field" id="field-eval-q1" title="post_q1_disp">
+                        <label class="field-label" for="textarea-eval-q1">
                             Did my particular course of thinking produce more or less than I had expected?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-eval-q1"
-                            name="post_q1_ans"
-                            required>{self.post_q1_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q1" name="post_q1_ans" required>{self.post_q1_ans}</textarea>
                     </div>
-                    <div
-                        id="field-eval-q2"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-eval-q2">
+                    <div class="field" id="field-eval-q2" title="post_q2_disp">
+                        <label class="field-label" for="textarea-eval-q2">
                             What could I have done differently?
                         </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-eval-q2"
-                            name="post_q2_ans"
-                            required>{self.post_q2_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q2" name="post_q2_ans" required>{self.post_q2_ans}</textarea>
                     </div>
-                    <div
-                        class="field">
-                </div>
-
-                <div
-                    class="form-group"
-                    id="eval-assessment-section">
-                    <legend
-                        class="hd-4">
-                        Self-Assessment
-                    </legend>
-                    <div
-                        id="field-eval-q3"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-eval-q3">
-                            How might I apply this line of thinking to other problems?
-                        </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-eval-q3"
-                            name="post_q3_ans"
-                            required>{self.post_q3_ans}</textarea>
+                    <div class="field">
                     </div>
-                    <div
-                        id="field-eval-q4"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-eval-q4">
-                            Was this a good strategy to solve this problem?
-                        </label>
-                        <textarea
-                            class="field-textarea input-textarea textarea-medium textarea-block"
-                            id="textarea-eval-q4"
-                            name="post_q4_ans"
-                            required>{self.post_q4_ans}</textarea>
+                    <div class="form-group" id="eval-assessment-section">
+                        <legend class="hd-4">
+                            Self-Assessment
+                        </legend>
+                        <div class="field" id="field-eval-q3" title="post_q3_disp">
+                            <label class="field-label" for="textarea-eval-q3">
+                                How might I apply this line of thinking to other problems?
+                            </label>
+                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q3" name="post_q3_ans" required>{self.post_q3_ans}</textarea>
+                        </div>
+                        <div class="field" id="field-eval-q4" title="post_q4_disp">
+                            <label class="field-label" for="textarea-eval-q4">
+                                Was this a good strategy to solve this problem?
+                            </label>
+                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q4" name="post_q4_ans" required>{self.post_q4_ans}</textarea>
+                        </div>
+                        <div class="field" id="field-eval-q5" title="post_q5_disp">
+                            <label class="field-label" for="textarea-eval-q5">
+                                Would another strategy have been better suited to this problem?
+                            </label>
+                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q5" name="post_q5_ans" required>{self.post_q5_ans}</textarea>
+                        </div>
                     </div>
-                    <div
-                        id="field-eval-q5"
-                        class="field">
-                        <label
-                            class="field-label"
-                            for="textarea-eval-q5">
-                            Would another strategy have been better suited to this problem?
-                        </label>
-                        <textarea
-                        class="field-textarea input-textarea textarea-medium textarea-block"
-                        id="textarea-eval-q5"
-                        name="post_q5_ans"
-                        required>{self.post_q5_ans}</textarea>
+                    <div class="form-actions submit-attempt-container">
+                        <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
+                            <span class="submit-label" aria-hidden="true">
+                                Submit
+                            </span>
+                        </button>
+                        <div class="submission-feedback" id="submission_feedback_eval">
+                        </div>
                     </div>
                 </div>
-
-                <div
-                    class="form-actions submit-attempt-container">
-                    <button
-                        type="submit"
-                        class="submit btn-brand btn-base"
-                        data-submitting="Submitting"
-                        data-value="Submit"
-                        data-should-enable-submit-button="True"
-                        aria-describedby="submission_feedback_eval">
-                        <span
-                            class="submit-label"
-                            aria-hidden="true">
-                            Submit
-                        </span>
-                    </button>
-                    <div
-                        class="submission-feedback"
-                        id="submission_feedback_eval">
-                    </div>
-                </div>
-
             </div>
         </form>
     </div>

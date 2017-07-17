@@ -3,7 +3,7 @@
 import pkg_resources
 
 from xblock.core import XBlock
-from xblock.fields import Boolean, Integer, Scope, String
+from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
 
 
@@ -21,7 +21,7 @@ class ReflectionAssistantXBlock(XBlock):
 
     # Display Preparation or Evaluation phase
     block_type = String(
-        default="pre" # Should be ""
+        default=""
         , scope=Scope.settings
         , help="What type of prompt is this XBlock instance?"
         , values=["pre", "post"]
@@ -53,14 +53,14 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Display Preparation Q5"
     )
     pre_q6_disp = Boolean(
-        default=True
+        default=False
         , scope=Scope.settings
         , help="Display Preparation Q6"
     )
 
     # Display metacognitive strategies
     pre_s1_disp = Boolean(
-        default=False
+        default=True
         , scope=Scope.settings
         , help="Display Metacognitive Strategy 1"
     )
@@ -188,7 +188,7 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Student answer for Metacognitive Strategy 1"
     )
     pre_s2_ans = Boolean(
-        default=True
+        default=False
         , scope=Scope.user_state
         , help="Student answer for Metacognitive Strategy 2"
     )
@@ -240,12 +240,133 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Student answer for Evaluation Q5"
     )
 
+    ###########################################################################
+    # Learner Profile
+    #problem_id = String(
+    #    default=""
+    #    , scope=Scope.user_state
+    #    , help="Problem ID"
+    #)
+    learner_profile_disp = Boolean(
+        default=True
+        , scope=Scope.settings
+        , help="Display Learner Profile"
+    )
+    problem_score = Integer(
+        default=None
+        , scope=Scope.user_state
+        , help="How completely the student has answered the problem"
+        , values=[1, 2, 3]
+    )
+    kma = Float(
+        default=55.0 # For display
+        , scope=Scope.preferences
+        , help="KMA score"
+    )
+    kmb = Float(
+        default=85.0 # For display
+        , scope=Scope.preferences
+        , help="KMB score"
+    )
+    no_bias_count = Integer(
+        scope=Scope.preferences
+        , help="No Bias count"
+    )
+    partial_optimistic_bias_count = Integer(
+        scope=Scope.preferences
+        , help="Partial Optimistic Bias count"
+    )
+    partial_pessimistic_bias_count = Integer(
+        scope=Scope.preferences
+        , help="Partial Pessimistic Bias count"
+    )
+    full_optimistic_bias_count = Integer(
+        scope=Scope.preferences
+        , help="Full Optimistic Bias count"
+    )
+    full_pessimistic_bias_count = Integer(
+        scope=Scope.preferences
+        , help="Full Pessimistic Bias count"
+    )
+
+    #def get_id(self):
+    #    return getattr(self.runtime, 'course_id', 'all')
+
+    def set_bias(self):
+        """
+        Set bias values from inputs
+        """
+        if self.problem_score == 1:
+            if self.pre_q5_ans == 1:
+                self.no_bias_count += 1
+            elif self.pre_q5_ans == 2:
+                self.partial_optimistic_bias_count += 1
+            else:
+                self.full_optimistic_bias_count += 1
+        elif self.problem_score == 2:
+            if self.pre_q5_ans == 1:
+                self.partial_pessimistic_bias_count += 1
+            elif self.pre_q5_ans == 2:
+                self.no_bias_count += 1
+            else:
+                self.partial_optimistic_bias_count += 1
+        elif self.problem_score == 3:
+            if self.pre_q5_ans == 3:
+                self.full_pessimistic_bias_count += 1
+            elif self.pre_q5_ans == 2:
+                self.partial_pessimistic_bias_count += 1
+            else:
+                self.no_bias_count += 1
+        else:
+            log.error('Problem score not specified')
+
+    def compute_KMA(self):
+        """
+        Compute for KMA
+        """
+        self.kma = (
+            (
+                self.no_bias_count
+                - 0.5 * (self.partial_pessimistic_bias_count
+                    + self.partial_optimistic_bias_count)
+                - (self.full_pessimistic_bias_count
+                    + self.full_optimistic_bias_count)
+            ) / (
+                self.no_bias_count
+                + self.partial_pessimistic_bias_count
+                + self.partial_optimistic_bias_count
+                + self.full_pessimistic_bias_count
+                + self.full_optimistic_bias_count
+            )
+        )
+
+    def compute_KMB(self):
+        """
+        Compute for KMB
+        """
+        self.kmb = (
+            (
+                self.full_optimistic_bias_count
+                - 0.5 * self.partial_pessimistic_bias_count
+                + 0.5 * self.partial_optimistic_bias_count
+                - self.full_pessimistic_bias_count
+            ) / (
+                self.partial_pessimistic_bias_count
+                + self.partial_optimistic_bias_count
+                + self.full_pessimistic_bias_count
+                + self.full_optimistic_bias_count
+            )
+        )
+
+    ###########################################################################
+
     def get_config(self):
         """
         Get the configuration data/fields the views will need.
         """
         return {
             "block_type": self.block_type
+            #, "problem_id": self.get_id()
             , "pre_q1_disp": self.pre_q1_disp
             , "pre_q2_disp": self.pre_q2_disp
             , "pre_q3_disp": self.pre_q3_disp
@@ -258,13 +379,20 @@ class ReflectionAssistantXBlock(XBlock):
             , "pre_s4_disp": self.pre_s4_disp
             , "pre_s5_disp": self.pre_s5_disp
             , "pre_s6_disp": self.pre_s6_disp
-            #, "pre_q5_ans": self.pre_q5_ans
-            #, "pre_s1_ans": self.pre_s1_ans
-            #, "pre_s2_ans": self.pre_s2_ans
-            #, "pre_s3_ans": self.pre_s3_ans
-            #, "pre_s4_ans": self.pre_s4_ans
-            #, "pre_s5_ans": self.pre_s5_ans
-            #, "pre_s6_ans": self.pre_s6_ans
+            , "pre_q5_ans": self.pre_q5_ans
+            , "pre_s1_text": self.pre_s1_text
+            , "pre_s2_text": self.pre_s2_text
+            , "pre_s3_text": self.pre_s3_text
+            , "pre_s4_text": self.pre_s4_text
+            , "pre_s5_text": self.pre_s5_text
+            , "pre_s6_text": self.pre_s6_text
+            , "pre_s1_ans": self.pre_s1_ans
+            , "pre_s2_ans": self.pre_s2_ans
+            , "pre_s3_ans": self.pre_s3_ans
+            , "pre_s4_ans": self.pre_s4_ans
+            , "pre_s5_ans": self.pre_s5_ans
+            , "pre_s6_ans": self.pre_s6_ans
+            , "learner_profile_disp": self.learner_profile_disp
             , "post_q1_disp": self.post_q1_disp
             , "post_q2_disp": self.post_q2_disp
             , "post_q3_disp": self.post_q3_disp
@@ -285,8 +413,6 @@ class ReflectionAssistantXBlock(XBlock):
         """
         html = self.resource_string("static/html/reflection.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string(
-            "static/css/edx_pattern_library.css"))
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection.js"))
@@ -301,9 +427,7 @@ class ReflectionAssistantXBlock(XBlock):
         """
         html = self.resource_string("static/html/reflection_edit.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string(
-            "static/css/edx_pattern_library.css"))
-        frag.add_css(self.resource_string("static/css/reflection_edit.css"))
+        frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection_edit.js"))
         frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
@@ -317,9 +441,7 @@ class ReflectionAssistantXBlock(XBlock):
         """
         html = self.resource_string("static/html/reflection_author.html")
         frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string(
-            "static/css/edx_pattern_library.css"))
-        frag.add_css(self.resource_string("static/css/reflection_author.css"))
+        frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection_author.js"))
         frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
@@ -356,6 +478,7 @@ class ReflectionAssistantXBlock(XBlock):
         Set the fields to be displayed on the student view
         """
         if self.block_type == 'pre':
+            #self.problem_id = data["problem_id"]
             self.pre_q1_disp = data["pre_q1_disp"]
             self.pre_q2_disp = data["pre_q2_disp"]
             self.pre_q3_disp = data["pre_q3_disp"]
@@ -408,12 +531,16 @@ class ReflectionAssistantXBlock(XBlock):
                     self.pre_s3_ans = data["pre_s3_ans"]
                 if self.pre_s4_disp:
                     self.pre_s4_ans = data["pre_s4_ans"]
-                # TODO: Modify for KMA/KMB computation
                 if self.pre_s5_disp:
                     self.pre_s5_ans = data["pre_s5_ans"]
                 if self.pre_s6_disp:
                     self.pre_s6_ans = data["pre_s6_ans"]
         if self.block_type == 'post':
+            #if self.learner_profile_disp:
+            #    self.problem_score = data["problem_score"]
+            #    self.set_bias()
+            #    self.compute_KMA()
+            #    self.compute_KMB()
             if self.post_q1_disp:
                 self.post_q1_ans = data["post_q1_ans"]
             if self.post_q2_disp:

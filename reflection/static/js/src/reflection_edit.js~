@@ -111,13 +111,10 @@ function ReflectionAssistantXBlock(runtime, element, config) {
     /* Submit settings */
     var handlerUrl = runtime.handlerUrl(element, 'set_student_view');
     $('#form-prompt-pre').submit(function() {
-        /* Set strategy text to default values so there would be values for
-        disabled fields */
         var strat_text_val = {};
         $("input[id^='textbox-strat']").each(function() {
             strat_text_val[this.name] = config[this.name];
         });
-        /* Get values from form */
         var serializedObj = $(this).serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
@@ -125,12 +122,10 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 },
                 {}
             );
-        /* Get checkbox states */
         var checkbox_val = {};
         $("form input:checkbox").each(function(){
             checkbox_val[this.name] = this.checked;
         });
-        /* Get union of strat_text_val, serializedObj and checkbox_val */
         var submit_pre_data = JSON.stringify(
             jQuery.extend(true,
                 strat_text_val,
@@ -138,7 +133,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 checkbox_val
             )
         );
-        /* AJAX to Python backend */
         $.ajax({
             type: "POST",
             url: handlerUrl,
