@@ -15,6 +15,8 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 alert(xhr.status + " " + xhr.responseText);
             }
         });
+        // correct enabled/disabled states on Strategies
+        $(".strategies input[type=checkbox]").trigger("change");
     });
 
     $("#radio-prompt-post").click(function(eventObject) {
