@@ -503,6 +503,7 @@ class ReflectionAssistantXBlock(XBlock):
             self.post_q3_disp = data["post_q3_disp"]
             self.post_q4_disp = data["post_q4_disp"]
             self.post_q5_disp = data["post_q5_disp"]
+            self.learner_profile_disp = data["learner_profile_disp"]
         else:
             log.error('invalid block_type posted')
 
