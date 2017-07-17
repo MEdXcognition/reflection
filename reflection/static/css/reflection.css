@@ -1,115 +1,320 @@
-/* CSS for ReflectionAssistantXBlock */
-
-.form-group {
-    margin-bottom:1rem
+/* CSS from edX Pattern Library at http://ux.edx.org */
+.reflection_block * {
+    box-sizing: border-box;
+}
+.reflection_block p {
+    margin: 0px 0px 1.25rem;
+}
+.reflection_block fieldset {
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+}
+.reflection_block textarea {
+    resize: vertical;
+}
+.reflection_block .alert {
+    background-color: #fff;
+    border: 0.0625rem solid #a0a0a0;
+    padding: 1.25rem;
+    box-shadow: #d9d9d9 0px 0px 0px 0.25rem inset;
+    overflow: auto;
+}
+.reflection_block .alert.alert-slim {
+    padding: 0.625rem;
+}
+.reflection_block .alert.alert-slim .alert-message {
+    padding: .25rem;
+    font-size: 0.875rem;
+}
+.reflection_block .alert.alert-slim .alert-message .copy {
+    margin-bottom: 0px;
+}
+.reflection_block .alert.alert-slim .alert-message .copy .icon {
+    display: inline-block;
+    margin-right: 20px;
+}
+.reflection_block .alert-message:last-child {
+    margin-bottom: 0px;
+}
+.reflection_block .alert-information {
+    border: 0.0625rem solid #0086ce;
+    box-shadow: #ddf3ff 0px 0px 0px 0.25rem inset;
+}
+.reflection_block .alert-information .alert-icon {
+    color: #fff;
+    background-color: #0086ce;
+}
+.reflection_block .card {
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 2px 1px;
+    padding: 1.25rem;
+}
+.reflection_block .btn-brand {
+    -webkit-transition:color .125s ease-in-out 0s,border-color .125s ease-in-out 0s,background .125s ease-in-out 0s,box-shadow .125s ease-in-out 0s;
+    transition: color 0.125s ease-in-out 0s, border-color 0.125s ease-in-out 0s, background 0.125s ease-in-out 0s, box-shadow 0.125s ease-in-out 0s;
+    display: inline-block;
+    border-style: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.reflection_block .btn-brand:active, .reflection_block .btn-brand:focus, .reflection_block .btn-brand:hover {
+    text-decoration: none;
+}
+.reflection_block .btn-brand {
+    border-color:#0075b4;
+    background:#0075b4;
+    color:#f2f8fb
+}
+.reflection_block .btn-brand:focus, .reflection_block .btn-brand:hover {
+    border-color:#065683;
+    background:#065683;
+    color:#f2f8fb
+}
+.reflection_block .btn-brand:active {
+    border-color:#0075b4;
+    background:#0075b4;
+    color:#cce3f0
+}
+.reflection_block .btn-brand:disabled {
+    pointer-events: none;
+    outline: none;
+    cursor: not-allowed;
+    border-color:#d9d9d9;
+    background:#f5f5f5;
+    color:#a0a0a0
+}
+.reflection_block .form-group {
+    margin-bottom: 1rem;
+}
+.reflection_block .form-group::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+.reflection_block .form-group .field {
+    margin-bottom: 2.5rem;
+}
+.reflection_block .form-group .field:last-child {
+    margin-bottom: 0px;
+}
+.reflection_block .field-group .field {
+    margin-bottom: 0.625rem;
+}
+.reflection_block .field-group .field:last-child {
+    margin-bottom: 0px;
+}
+.reflection_block .field-label {
+    display: block;
+    width: auto;
+    margin-bottom: 0.625rem;
+    font-size: 1rem;
+    line-height: 100%;
+    color:#414141;
+}
+.reflection_block .field-label .field-input:checked + .field-input-label, .reflection_block .field-label .field-radio:checked + .field-input-label {
+    transition: all 0.125s ease-in-out 0s;
+    color: #0075b4;
+}
+.reflection_block .field-message {
+    font-size: 0.875rem;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.reflection_block .field-message, .reflection_block .input-progress, .reflection_block .input-select, .reflection_block .input-slider, .reflection_block .input-text, .reflection_block .input-textarea {
+    width: 18.75rem;
+}
+.reflection_block .field-input, .reflection_block .field-select, .reflection_block .field-textarea {
+    transition: all 0.125s ease-in-out 0s;
+    display: inline-block;
+    padding: 0.625rem;
+    border:1px solid #d9d9d9;
+    background:#fff;
+    font-size:1rem;
+    color:#111
+}
+.reflection_block .field-input::-webkit-input-placeholder, .reflection_block .field-textarea::-webkit-input-placeholder {
+    color: color:#a0a0a0;
+}
+.reflection_block .field-input:-moz-placeholder, .reflection_block .field-textarea:-moz-placeholder {
+    color: color:#a0a0a0;
+}
+.reflection_block .field-input:-ms-input-placeholder, .reflection_block .field-textarea:-ms-input-placeholder {
+    color: color:#a0a0a0;
+}
+.reflection_block .field-input:focus, .reflection_block .field-select:focus, .reflection_block .field-textarea:focus {
+    border-color:#414141;
+    color:#111
+}
+.reflection_block .field-input:disabled, .reflection_block .field-select:disabled, .reflection_block .field-textarea:disabled {
+    border-color:#d9d9d9;
+    background:#f5f5f5;
+    cursor:not-allowed
+}
+.reflection_block .field-input.has-error, .reflection_block .field-select.has-error, .reflection_block .field-textarea.has-error {
+    border-color:#b20610
+}
+.reflection_block .field-input.has-error .icon, .reflection_block .field-select.has-error .icon, .reflection_block .field-textarea.has-error .icon {
+    fill: fill:#b20610;
+}
+.reflection_block .field-input.has-success, .reflection_block .field-select.has-success, .reflection_block .field-textarea.has-success {
+    border-color: #008100;
+}
+.reflection_block .field-input.has-success .icon, .reflection_block .field-select.has-success .icon, .reflection_block .field-textarea.has-success .icon {
+    fill: #008100;
+}
+.reflection_block .hd-2, .reflection_block .hd-3, .reflection_block .hd-4, .reflection_block .hd-5, .reflection_block .hd-6 {
+    margin: 0px 0px 1.25rem;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.reflection_block .hd-3 {
+    margin-bottom: 0.625rem;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+.reflection_block .hd-4 {
+    margin-bottom: 0.625rem;
+    font-size: 1.3125rem;
+    line-height: 1.6;
+}
+.reflection_block .input-text.input-alt:focus {
+    border-color:#414141;
+    background:#fff
+}
+.reflection_block .input-text.input-alt.has-error {
+    border-width: 1px 1px 2px;
+    border-color: #b20610;
+}
+.reflection_block .input-select + .field-message {
+    margin-top: -0.3125rem;
+}
+.reflection_block .input-checkbox, .input-radio {
+    margin-right: 0.625rem;
+}
+.reflection_block .input-checkbox:disabled, .reflection_block .input-radio:disabled {
+    cursor: not-allowed;
+}
+.reflection_block .input-checkbox:disabled + .field-input-label, .reflection_block .input-radio:disabled + .field-input-label {
+    color: #414141;
+}
+.reflection_block .input-checkbox:disabled.replace-checkbox + .field-input-label, .input-radio:disabled.replace-checkbox + .field-input-label {
+    color: #a0a0a0;
+}
+.reflection_block .input-checkbox:disabled.replace-checkbox + .field-input-label::before, .input-radio:disabled.replace-checkbox + .field-input-label::before {
+    border:1px solid #d9d9d9;
+    background:#fff;
+    box-shadow:inset 0 0 0 3px #f5f5f5;
+    cursor:not-allowed
+}
+.reflection_block .input-checkbox:disabled.replace-radio + .field-input-label, .reflection_block .input-radio:disabled.replace-radio + .field-input-label {
+    color: #a0a0a0;
+}
+.reflection_block .input-checkbox:disabled.replace-radio + .field-input-label::before, .reflection_block .input-radio:disabled.replace-radio + .field-input-label::before {
+    border:1px solid #d9d9d9;
+    border-radius:50%;
+    background:#fff;
+    box-shadow:inset 0 0 0 3px #f5f5f5;
+    cursor:not-allowed
+}
+.reflection_block .input-textarea {
+    height: 10rem;
+}
+.reflection_block .input-textarea.textarea-short {
+    height: 5rem;
+}
+.reflection_block .input-textarea + .field-message {
+    margin-top: -0.3125rem;
+}
+.reflection_block .input-textarea.textarea-block {
+    width: 100%;
+}
+.reflection_block .is-hidden {
+    display: none;
 }
 
-form .likert {
-    list-style:none;
-    width:100%;
-    margin:0;
-    padding:0 0 35px;
-    display:block;
-    border-bottom:2px solid #efefef;
+/* CSS customized for Reflection XBlock */
+.reflection_block .likert {
+    list-style: none;
+    width: 100%;
+    margin: 0px;
+    padding: 0px 0px 35px;
+    display: block;
+    border-bottom: 2px solid #efefef;
 }
-
-form .likert:last-of-type {
-    border-bottom:0;
+.reflection_block .likert:last-of-type {
+    border-bottom: 0px;
 }
-
-form .likert:before {
-    content: '';
-    position:relative;
-    top:11px;
-    left:16%;
-    display:block;
-    background-color:#efefef;
-    height:4px;
-    width:64%;
+.reflection_block .likert::before {
+    content: "";
+    position: relative;
+    top: 11px;
+    left: 16%;
+    display: block;
+    background-color: #efefef;
+    height: 4px;
+    width: 65%;
 }
-
-form .likert li {
-    display:inline-block;
-    width:32%;
-    text-align:center;
+.reflection_block .likert li {
+    display: inline-block;
+    width: 32%;
+    text-align: center;
     vertical-align: top;
 }
-
-form .likert li input[type=radio] {
-    display:block;
-    position:relative;
-    top:0;
-    left:50%;
-    margin-left:-6px;
-
+.reflection_block .likert li input[type="radio"] {
+    display: block;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    margin-left: -6px;
 }
-
-form .likert li label {
-    width:100%;
+.reflection_block .likert li label {
+    width: 100%;
 }
-
-form ul.likert {
-    padding-bottom:0px;
+.reflection_block ul.likert {
+    padding-bottom: 0px;
 }
-
-.alert-message icon {
-    padding:0px 0.5rem;
-}
-
-.alert.alert-slim,.alert.alert-slim .alert-message {
-    padding:0.5rem;
-}
-
-legend.hd-4 {
-    margin-top:1.75rem;
-    margin-bottom:1.75rem;
-}
-
-.strategies {
-    margin-left:3rem;
-}
-
-.strategies div.field {
-    margin-bottom:0.5rem;
-}
-
-.strategies .input-text,.strategies .field-message {
-    width:30rem;
-}
-
-.field-message.has-error {
-    visibility:hidden;
-    opacity:0;
-    padding:0;
-    transition:all .3s ease-in;
-    -o-transition:all .3s ease-in;
-    -moz-transition:all .3s ease-in;
-    -webkit-transition:all .3s ease-in;
-}
-
-.field-message.has-error.filled {
-    visibility:visible;
-    opacity:1;
-    padding:.625rem;
-}
-
-.keep-together {
-    clear:both;
-    float:none;
-    position:relative;
-}
-
-.keep-together input[type="checkbox"] {
-    left:0;
-    position:absolute;
-    top:10px;
-}
-
-.keep-together input[type="text"],.keep-together .field-message.has-error.filled {
-    display:block;
-    margin-left:30px;
-}
-
-#likert-prep-q5-error {
+.reflection_block ul.likert + div .field-message.has-error.filled {
     margin-left: 3rem;
+}
+.reflection_block legend.hd-4 {
+    margin-top: 1.75rem;
+    margin-bottom: 1.75rem;
+}
+.reflection_block .strategies {
+    margin-left: 3rem;
+}
+.reflection_block .strategies div.field {
+    margin-bottom: 0.5rem;
+}
+.reflection_block .field-message.has-error {
+    visibility: hidden;
+    opacity: 0;
+    padding: 0px;
+    transition: all 0.3s ease-in;
+    background: #b2060e;
+    color: #fff;
+}
+.reflection_block .field-message.has-error.filled {
+    visibility: visible;
+    opacity: 1;
+    padding: 0.625rem;
+}
+.reflection_block .keep-together {
+    clear: both;
+    float: none;
+    position: relative;
+}
+.reflection_block .keep-together input[type="checkbox"] {
+    left: 0px;
+    position: absolute;
+    top: 10px;
+}
+.reflection_block .keep-together input[type="text"], .reflection_block .keep-together .field-message.has-error.filled {
+    display: block;
+    margin-left: 30px;
 }
