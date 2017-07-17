@@ -43,6 +43,18 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                         $(this).hide();
                     }
                 });
+
+                /* Hide Section Titles */
+                var keep = false;
+                for (i=1; i<6; i++) {
+                    var item = 'pre_q' + i + '_disp';
+                    if(config[item]) {
+                        keep = true;
+                        break;
+                    }
+                }
+                if (!keep) $("#prep-assessment-section").hide();
+
                 /* Set Likert selection */
                 if (config.pre_q5_disp) {
                     $('input:radio[name=pre_q5_ans][value='+ config.pre_q5_ans +']')
@@ -73,6 +85,21 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                         $(this).hide();
                     }
                 });
+
+                /* Hide Section Titles */
+                if (!config["post_q1_disp"] && !config["post_q2_disp"]) {
+                    $("#eval-eval-section").hide();
+                };
+                var keep = false;
+                for (i=3; i<6; i++) {
+                    var item = 'post_q' + i + '_disp';
+                    if(config[item]) {
+                        keep = true;
+                        break;
+                    }
+                }
+                if (!keep) $("#eval-assessment-section").hide();
+
                 break;
         };
 
