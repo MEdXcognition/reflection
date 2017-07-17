@@ -318,3 +318,151 @@
     display: block;
     margin-left: 30px;
 }
+
+/* Gauges */
+.reflection_block .gauge-cont {
+    display: inline-block;
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin-left: 30px;
+}
+.reflection_block .gauge-cont:first-child {
+    margin: 0;
+}
+.reflection_block .gauge-cont figcaption {
+    text-align:center;
+    margin-top:1.5rem;
+}
+.reflection_block .gauge-cont span[class^="label-"] {
+    position: absolute;
+    bottom: -1.5rem;
+    font-size:0.8rem;
+    color: #414141;
+}
+.reflection_block .gauge-cont .label-left {
+    left: 0;
+}
+.reflection_block .gauge-cont .label-right {
+    right: 0;
+}
+.reflection_block .gauge-cont .gauge {
+    width: 200px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+.reflection_block .gauge-cont .inner {
+    width: 200px;
+    height: 100px;
+    display: block;
+    background-color: whitesmoke;
+    border-radius: 200px 200px 0 0;
+    box-shadow: inset 0 3px 12px 0 rgba(0, 0, 12, 0.2);
+    z-index: 10;
+}
+.reflection_block .gauge-cont .inner:after {
+    content: '';
+    width: 120px;
+    height: 60px;
+    top: 40px;
+    left: 40px;
+    background-color: white;
+    border-radius: 200px 200px 0 0;
+    position: absolute;
+    z-index: 30;
+}
+.reflection_block .gauge-cont .spinner {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    z-index: 20;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: -webkit-transform 800ms ease;
+    transition: -webkit-transform 800ms ease;
+    transition: transform 800ms ease;
+    transition: transform 800ms ease, -webkit-transform 800ms ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    border-radius: 0 0 200px 200px;
+}
+.reflection_block .gauge-cont .bg {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    z-index: 15;
+    -webkit-transform-origin: top center;
+    transform-origin: top center;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: -webkit-transform 800ms ease;
+    transition: -webkit-transform 800ms ease;
+    transition: transform 800ms ease;
+    transition: transform 800ms ease, -webkit-transform 800ms ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    border-radius: 0 0 200px 200px;
+    box-shadow: inset 0 3px 12px 0 rgba(0, 0, 12, 0.2);
+}
+.reflection_block .gauge-cont .bg.left-quarter {
+    transform: rotate(45deg);
+}
+.reflection_block .gauge-cont .bg.right-quarter {
+    transform: rotate(-45deg);
+}
+.reflection_block .gauge-cont .bg.left-third {
+    transform: rotate(60deg);
+}
+.reflection_block .gauge-cont .bg.right-third {
+    transform: rotate(-60deg);
+}
+.reflection_block .gauge-cont .bg.left-threeeighths {
+    transform: rotate(67.5deg);
+}
+.reflection_block .gauge-cont .bg.left-half {
+    transform: rotate(90deg);
+}
+.reflection_block .gauge-cont .bg.right-half {
+    transform: rotate(-90deg);
+}
+.reflection_block .gauge-cont .gauge .palered {
+    background-color: #fbbbbe;
+}
+.reflection_block .gauge-cont .gauge .paleyellow {
+    background-color: #ffeab8;
+}
+.reflection_block .gauge-cont .gauge .palegreen {
+    background-color: #c3efc3;
+}
+.reflection_block .gauge-cont .pointer {
+    display: block;
+    width: 6px;
+    height: 105px;
+    background-color: #0075b4;
+    border-radius: 4px 4px 0 0;
+    position: absolute;
+    z-index: 40;
+    bottom: 0px;
+    left: 97px;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transform-origin: center bottom;
+    transform-origin: center bottom;
+    -webkit-transition: -webkit-transform 800ms ease;
+    transition: -webkit-transform 800ms ease;
+    transition: transform 800ms ease;
+    transition: transform 800ms ease, -webkit-transform 800ms ease;
+}
+.reflection_block .gauge-cont .pointer-knob {
+    width: 20px;
+    height: 20px;
+    background-color: #0075b4;
+    position: absolute;
+    left: 90px;
+    bottom: -10px;
+    z-index: 50;
+    border-radius: 20px;
+}
