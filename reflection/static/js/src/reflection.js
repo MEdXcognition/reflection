@@ -1,5 +1,23 @@
 /* Javascript for ReflectionAssistantXBlock. */
+
 function ReflectionAssistantXBlock(runtime, element, config) {
+
+    function id(idname) {
+        // first escape special characters in the unique id for JQuery
+        //var uniq = config.uniq.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
+        // return a JQuery-friendly id selector
+        //return String("#" + uniq + "-" + idname);
+        return String("#" + config.uniq + "-" + idname);
+    };
+
+    function id_begins_with(idstart) {
+        // ### TODO ### JQuery doesn't like this selector ###
+        // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-q']"
+        // first escape special characters in the unique id for JQuery
+        //var uniq = config.uniq.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
+        //return String("div[id^='" + uniq + "-" + idstart + "']");
+        return String("div[id^='" + config.uniq + "-" + idstart + "']");
+    };
 
     /* Guage Display Functions */
     function setGauge(gauge) {
@@ -35,10 +53,10 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         /* Display chosen block type */
         switch (config.block_type) {
             case "pre":
-                $("#prompt-pre").show();
+                $(id("prompt-pre")).show();
                 //$("#problem_id").value = config.problem_id;
                 /* Hide fields set to be not displayed from Studio View */
-                $("div[id^='field-prep-q']").each(function() {
+                $(id_begins_with("field-prep-q")).each(function() {
                     if (!config[this.title]) {
                         $(this).hide();
                     }
@@ -53,7 +71,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                         break;
                     }
                 }
-                if (!keep) $("#prep-assessment-section").hide();
+                if (!keep) $(id("prep-assessment-section")).hide();
 
                 /* Set Likert selection */
                 if (config.pre_q5_disp) {
@@ -62,9 +80,10 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 }
                 /* Display strategy section */
                 if (!config.pre_q6_disp) {
-                    $("#prep-strategy-section").hide();
+                    $(id("prep-strategy-section")).hide();
                 } else {
-                    $("input[id^='checkbox-strat']").each(function() {
+                    // TODO: this one depends on id not title or other attr :(
+                    $(id_begins_with("checkbox-strat")).each(function() {
                         if (!config[this.value]) {
                             $(this).hide();
                             $("label[for=" + this.id + "]").hide();
@@ -76,11 +95,11 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 break;
 
             case "post":
-                $("#prompt-post").show();
+                $(id("prompt-post")).show();
                 if (!config.learner_profile_disp) {
-                    $("#learner-profile").hide();
+                    $(id("learner-profile")).hide();
                 }
-                $("div[id^='field-eval-q']").each(function() {
+                $(id_begins_with("field-eval-q")).each(function() {
                     if (!config[this.title]) {
                         $(this).hide();
                     }
@@ -88,7 +107,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
                 /* Hide Section Titles */
                 if (!config["post_q1_disp"] && !config["post_q2_disp"]) {
-                    $("#eval-eval-section").hide();
+                    $(id("eval-eval-section")).hide();
                 };
                 var keep = false;
                 for (i=3; i<6; i++) {
@@ -98,14 +117,14 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                         break;
                     }
                 }
-                if (!keep) $("#eval-assessment-section").hide();
+                if (!keep) $(id("eval-assessment-section")).hide();
 
                 break;
         };
 
         /* Gauge Displays */
-        setGauge($("#kma"));
-        setGauge($("#kmb"));
+        setGauge($(id("kma")));
+        setGauge($(id("kmb")));
         // clicking guages re-animates them
         $('.gauge-cont').click(function(){
             resetGauge(this);
@@ -121,17 +140,18 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             errorsWrapper: '<div class="field-message has-error"></div>',
             errorTemplate: '<span class="field-message-content"></span>'
         };
-        $('#form-prompt-pre').parsley(parsley_options).on('form:submit', function() {
+
+        $(id("form-prompt-pre")).parsley(parsley_options).on('form:submit', function() {
             return false;
         });
-        $('#form-prompt-post').parsley(parsley_options).on('form:submit', function() {
+        $(id("form-prompt-post")).parsley(parsley_options).on('form:submit', function() {
             return false;
         });
     });
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, 'save_student_answer');
-    $('#form-prompt-pre').submit(function() {
+    $(id("form-prompt-pre")).submit(function() {
         var serializedObj = $(this).serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
@@ -151,7 +171,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             data: submit_pre_data
         });
     });
-    $('#form-prompt-post').submit(function() {
+    $(id("form-prompt-post")).submit(function() {
         var submit_post_data = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
                 a[x.name] = x.value;

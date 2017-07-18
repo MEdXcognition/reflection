@@ -1,5 +1,6 @@
 """Reflection Assistant XBlock"""
 
+import hashlib
 import pkg_resources
 
 from xblock.core import XBlock
@@ -18,6 +19,13 @@ class ReflectionAssistantXBlock(XBlock):
 
     ###########################################################################
     # Display Settings
+
+    # Unique Instance ID
+    uniq = String(
+       default=""
+       , scope=Scope.user_state
+       , help="Unique Instance ID"
+    )
 
     # Display Preparation or Evaluation phase
     block_type = String(
@@ -365,7 +373,8 @@ class ReflectionAssistantXBlock(XBlock):
         Get the configuration data/fields the views will need.
         """
         return {
-            "block_type": self.block_type
+            "uniq" : self.uniq
+            , "block_type": self.block_type
             #, "problem_id": self.get_id()
             , "pre_q1_disp": self.pre_q1_disp
             , "pre_q2_disp": self.pre_q2_disp
@@ -411,6 +420,11 @@ class ReflectionAssistantXBlock(XBlock):
         The primary view of the ReflectionAssistantXBlock, shown to students
         when viewing courses.
         """
+
+        # set the unique instance id
+        self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
+
+        # build the view fragment
         html = self.resource_string("static/html/reflection.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
@@ -425,6 +439,11 @@ class ReflectionAssistantXBlock(XBlock):
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
         """
+
+        # set the unique instance id
+        self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
+
+        # build the view fragment
         html = self.resource_string("static/html/reflection_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
@@ -439,6 +458,11 @@ class ReflectionAssistantXBlock(XBlock):
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
         """
+
+        # set the unique instance id
+        self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
+
+        # build the view fragment
         html = self.resource_string("static/html/reflection_author.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
