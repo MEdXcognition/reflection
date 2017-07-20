@@ -2,21 +2,14 @@
 
 function ReflectionAssistantXBlock(runtime, element, config) {
 
+    /* Helper functions for instance-unique IDs */
     function id(idname) {
-        // first escape special characters in the unique id for JQuery
-        //var uniq = config.uniq.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
         // return a JQuery-friendly id selector
-        //return String("#" + uniq + "-" + idname);
         return String("#" + config.uniq + "-" + idname);
     };
-
-    function id_begins_with(idstart) {
-        // ### TODO ### JQuery doesn't like this selector ###
-        // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-q']"
-        // first escape special characters in the unique id for JQuery
-        //var uniq = config.uniq.replace( /(:|\.|\[|\]|,|=|@)/g, "\\$1" );
-        //return String("div[id^='" + uniq + "-" + idstart + "']");
-        return String("div[id^='" + config.uniq + "-" + idstart + "']");
+    function id_begins_with(element, idstart) {
+        // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-']"
+        return String(element + "[id^='" + config.uniq + "-" + idstart + "']");
     };
 
     /* Guage Display Functions */
@@ -54,15 +47,15 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         switch (config.block_type) {
             case "pre":
                 $(id("prompt-pre")).show();
-                //$("#problem_id").value = config.problem_id;
-                /* Hide fields set to be not displayed from Studio View */
-                $(id_begins_with("field-prep-q")).each(function() {
-                    if (!config[this.title]) {
+
+                /* Hide unused fields */
+                $(id_begins_with("div", "field-prep-")).each(function() {
+                    if (!config[this.dataset.disp]) {
                         $(this).hide();
                     }
                 });
 
-                /* Hide Section Titles */
+                /* Hide section titles */
                 var keep = false;
                 for (i=1; i<6; i++) {
                     var item = 'pre_q' + i + '_disp';
@@ -75,16 +68,16 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
                 /* Set Likert selection */
                 if (config.pre_q5_disp) {
-                    $('input:radio[name=pre_q5_ans][value='+ config.pre_q5_ans +']')
+                    $("input:radio[name=pre_q5_ans][value="+ config.pre_q5_ans +"]")
                         .prop("checked", true);
                 }
+
                 /* Display strategy section */
                 if (!config.pre_q6_disp) {
                     $(id("prep-strategy-section")).hide();
                 } else {
-                    // TODO: this one depends on id not title or other attr :(
-                    $(id_begins_with("checkbox-strat")).each(function() {
-                        if (!config[this.value]) {
+                    $("input[data-disp]").each(function() {
+                        if (!config[this.dataset.disp]) {
                             $(this).hide();
                             $("label[for=" + this.id + "]").hide();
                         } else {
@@ -96,16 +89,15 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
             case "post":
                 $(id("prompt-post")).show();
-                if (!config.learner_profile_disp) {
-                    $(id("learner-profile")).hide();
-                }
-                $(id_begins_with("field-eval-q")).each(function() {
-                    if (!config[this.title]) {
+
+                /* Hide unused fields */
+                $(id_begins_with("div", "field-eval-")).each(function() {
+                    if (!config[this.dataset.disp]) {
                         $(this).hide();
                     }
                 });
 
-                /* Hide Section Titles */
+                /* Hide section titles */
                 if (!config["post_q1_disp"] && !config["post_q2_disp"]) {
                     $(id("eval-eval-section")).hide();
                 };
@@ -174,8 +166,8 @@ function ReflectionAssistantXBlock(runtime, element, config) {
     $(id("form-prompt-post")).submit(function() {
         var submit_post_data = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
-                a[x.name] = x.value;
-                return a;
+                    a[x.name] = x.value;
+                    return a;
                 },
                 {}
             )
