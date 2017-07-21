@@ -1,7 +1,29 @@
 Reflection Assistant XBlock
 ===========================
 
-	...details coming soon...
+# Install XBlock on an OpenEdX Instance
+
+For installation instructions, please consult the latest OpenEdX documentation. These can be found [here](edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock). These instructions are summarized below.
+
+## Install XBlock in virtualenv out of which the platform runs
+
+1. Retrieve the XBlock code:
+'''git clone https://github.com/MEdXcognition/reflection.git'''
+2. Install the XBlock:
+'''sudo -u edxapp /edx/bin/pip.edxapp install /path/to/cloned/block'''
+3. Add the block to the advanced settings of the desired course in Studio:
+* 'sudo su edxapp'
+* 'paver devstack lms'
+* 'paver devstack studio'
+* In the studio instance, open the desired course
+* Settings -> Advanced Settings
+* Change the value for the key "advanced_modules" to ["reflection"]
+4. Add the block into the desired course
+* Edit a unit
+* Select desired assessment
+
+## Deploy XBlock
+1. Add to the list of 'ADVANCED_COMPONENT_TYPES' in 'edx-platform/cms/djangoapps/contentstore/views/component.py'.
 
 ---
 
