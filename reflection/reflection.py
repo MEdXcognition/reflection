@@ -23,7 +23,7 @@ class ReflectionAssistantXBlock(XBlock):
     # Unique Instance ID
     uniq = String(
        default=""
-       , scope=Scope.user_state
+       , scope=Scope.settings
        , help="Unique Instance ID"
     )
 
