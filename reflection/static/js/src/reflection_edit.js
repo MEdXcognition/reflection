@@ -15,6 +15,8 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 alert(xhr.status + " " + xhr.responseText);
             }
         });
+        // correct enabled/disabled states on Strategies
+        $(".strategies input[type=checkbox]").trigger("change");
     });
 
     $("#radio-prompt-post").click(function(eventObject) {
@@ -33,7 +35,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
     });
 
     /* Strategy Selection: enable/disable entire section */
-    // TODO: AJAX posting on all these inputs
     $("#checkbox-prep-strat").click(function(){
         if (this.checked) {
             //re-enable checkboxes (triggers change event too)
@@ -51,19 +52,33 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         span.className = 'fa';
         span.style.display = 'none';
         document.body.insertBefore(span, document.body.firstChild);
-        if ((window.getComputedStyle(span, null).getPropertyValue('font-family')) !== 'FontAwesome') {
-            // ...fallback to loading FA from CDN
-            $.getScript("https://use.fontawesome.com/ce953509bb.js");
-        }
+        if ((window.getComputedStyle(span, null)
+            .getPropertyValue('font-family')) !== 'FontAwesome') {
+                // ...fallback to loading FA from CDN
+                $.getScript("https://use.fontawesome.com/ce953509bb.js");
+            }
         document.body.removeChild(span);
 
         /* Fetch config data and respond accordingly */
         switch (config.block_type) {
             case "pre":
                 $("#radio-prompt-pre").trigger("click");
+                $("input[id^='checkbox-prep-q']").each(function() {
+                    $(this).prop("checked", config[this.name]);
+                });
+                $("#checkbox-prep-strat").prop("checked", config.pre_q6_disp);
+                $("input[id^='checkbox-strat']").each(function() {
+                    $(this).prop("checked", config[this.name]);
+                    $(this).siblings().prop("disabled", !this.checked);
+                });
                 break;
             case "post":
                 $("#radio-prompt-post").trigger("click");
+                $("input[id^='checkbox-eval-q']").each(function() {
+                    $(this).prop("checked", config[this.name]);
+                });
+                $("#checkbox-eval-lp").
+                    prop("checked", config["learner_profile_disp"]);
                 break;
         };
 
@@ -93,6 +108,56 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         $('#form-prompt-pre').parsley(parsley_options).on('form:submit', function() {
             return false;
         });
-
     });
+
+    /* Submit settings */
+    var handlerUrl = runtime.handlerUrl(element, 'set_student_view');
+    $('#form-prompt-pre').submit(function() {
+        /* Set strategy text to default values so there would be values for
+        disabled fields */
+        var strat_text_val = {};
+        $("input[id^='textbox-strat']").each(function() {
+            strat_text_val[this.name] = config[this.name];
+        });
+        /* Get values from form */
+        var serializedObj = $(this).serializeArray()
+                .reduce(function(a, x) {
+                    a[x.name] = x.value;
+                    return a;
+                },
+                {}
+            );
+        /* Get checkbox states */
+        var checkbox_val = {};
+        $("form input:checkbox").each(function(){
+            checkbox_val[this.name] = this.checked;
+        });
+        /* Get union of strat_text_val, serializedObj and checkbox_val */
+        var submit_pre_data = JSON.stringify(
+            jQuery.extend(true,
+                strat_text_val,
+                serializedObj,
+                checkbox_val
+            )
+        );
+        /* AJAX to Python backend */
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: submit_pre_data
+        });
+    });
+    $('#form-prompt-post').submit(function() {
+        var submit_post_data = {};
+        $("form input:checkbox").each(function(){
+            submit_post_data[this.name] = this.checked;
+        });
+        submit_post_data = JSON.stringify(submit_post_data);
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: submit_post_data
+        });
+    });
+
 }
