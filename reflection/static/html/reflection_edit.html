@@ -9,8 +9,8 @@
                 Select prompt type:
             </legend>
             <div class="field">
-                <label class="field-label label-inline" for="radio-prompt-pre">
-                    <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-pre" name="radio-prompt">
+                <label class="field-label label-inline" for="{self.uniq}-radio-prompt-pre">
+                    <input type="radio" class="field-input input-radio replace-radio" id="{self.uniq}-radio-prompt-pre" name="radio-prompt">
                     <span class="field-input-label">
                         Preparation
                         <span class="icon fa fa-info-circle" title="For the preparation phase, this XBlock should go before the problem-solving activity." aria-hidden="true"></span>
@@ -18,8 +18,8 @@
                 </label>
             </div>
             <div class="field">
-                <label class="field-label label-inline" for="radio-prompt-post">
-                    <input type="radio" class="field-input input-radio replace-radio" id="radio-prompt-post" name="radio-prompt">
+                <label class="field-label label-inline" for="{self.uniq}-radio-prompt-post">
+                    <input type="radio" class="field-input input-radio replace-radio" id="{self.uniq}-radio-prompt-post" name="radio-prompt">
                     <span class="field-input-label">
                         Evaluation
                         <span class="icon fa fa-info-circle" title="For the evaluation phase, this XBlock should go after the problem-solving activity." aria-hidden="true"></span>
@@ -28,7 +28,7 @@
             </div>
         </fieldset>
     </form>
-    <div class="card is-hidden" id="prompt-pre">
+    <div class="card is-hidden" id="{self.uniq}-prompt-pre">
         <h3 class="hd-3">
             Preparation Phase
         </h3>
@@ -40,60 +40,60 @@
                 </p>
             </div>
         </div>
-        <form class="form" id="form-prompt-pre">
+        <form class="form" id="{self.uniq}-form-prompt-pre">
             <div class="form">
-                <div class="form-group" id="prep-assessment-section">
+                <div class="form-group" id="{self.uniq}-prep-assessment-section">
                     <legend class="hd-4">
                         Knowledge Assessment
                     </legend>
                     <div class="field">
-                        <label class="field-label" for="checkbox-prep-q1">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-prep-q1" name="pre_q1_disp" />
+                        <label class="field-label" for="{self.uniq}-checkbox-prep-q1">
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q1" name="pre_q1_disp" />
                             What prior knowledge can help me with this particular task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-prep-q1" name="textarea-prep-q1" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q1" name="{self.uniq}-textarea-prep-q1" disabled=""></textarea>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="checkbox-prep-q2">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-prep-q2" name="pre_q2_disp" />
+                        <label class="field-label" for="{self.uniq}-checkbox-prep-q2">
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q2" name="pre_q2_disp" />
                             What do I need to know before I can successfully deal with this task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-prep-q2" name="textarea-prep-q2" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q2" name="{self.uniq}-textarea-prep-q2" disabled=""></textarea>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="checkbox-prep-q3">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-prep-q3" name="pre_q3_disp" />
+                        <label class="field-label" for="{self.uniq}-checkbox-prep-q3">
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q3" name="pre_q3_disp" />
                             What should I do and in which order?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-prep-q3" name="textarea-prep-q3" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q3" name="{self.uniq}-textarea-prep-q3" disabled=""></textarea>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="checkbox-prep-q4">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-prep-q4" name="pre_q4_disp" />
+                        <label class="field-label" for="{self.uniq}-checkbox-prep-q4">
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q4" name="pre_q4_disp" />
                             How much time do I have to complete the task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-prep-q4" name="textarea-prep-q4" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q4" name="{self.uniq}-textarea-prep-q4" disabled=""></textarea>
                     </div>
                     <div class="field">
-                        <label class="field-label" for="checkbox-prep-q5">
-                            <input type="checkbox" class="field-input input-checkbox" id="checkbox-prep-q5" name="pre_q5_disp" checked="" />
+                        <label class="field-label" for="{self.uniq}-checkbox-prep-q5">
+                            <input type="checkbox" class="field-input input-checkbox" id="{self.uniq}-checkbox-prep-q5" name="pre_q5_disp" />
                             My confidence in my ability to solve this problem is:
                         </label>
-                        <ul class='likert' id="likert-prep-q5" name="likert-prep-q5">
+                        <ul class="likert" id="{self.uniq}-{self.uniq}-likert-prep-q5" name="{self.uniq}-likert-prep-q5">
                             <li>
-                                <input type="radio" name="likert-prep-q5" value="strong_agree" disabled="" />
+                                <input type="radio" name="likert-prep-q5" value="1" disabled="" />
                                 <label>
                                     Cannot solve the problem
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" name="likert-prep-q5" value="agree" disabled="" />
+                                <input type="radio" name="likert-prep-q5" value="2" disabled="" />
                                 <label>
                                     Can partially solve the problem
                                 </label>
                             </li>
                             <li>
-                                <input type="radio" name="likert-prep-q5" value="neutral" disabled="" />
+                                <input type="radio" name="likert-prep-q5" value="3" disabled="" />
                                 <label>
                                     Can fully solve the problem
                                 </label>
@@ -102,39 +102,39 @@
                         </ul>
                     </div>
                 </div>
-                <div class="form-group" id="prep-strategy-section">
+                <div class="form-group" id="{self.uniq}-prep-strategy-section">
                     <legend class="hd-4">
                         Strategy Selection
                     </legend>
                     <div class="field">
                         <label class="field-label" for="checkbox-prep-strat">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-prep-strat" name="pre_q6_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-strat" name="pre_q6_disp" />
                             Which strategies could I use to approach this problem?
                         </label>
                         <div class="strategies">
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat1" name="pre_s1_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat1" name="pre_s1_text" value="{self.pre_s1_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat1" name="pre_s1_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat1" name="pre_s1_text" value="{self.pre_s1_text}" required />
                             </div>
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat2" name="pre_s2_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat2" name="pre_s2_text" value="{self.pre_s2_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat2" name="pre_s2_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat2" name="pre_s2_text" value="{self.pre_s2_text}" required />
                             </div>
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat3" name="pre_s3_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat3" name="pre_s3_text" value="{self.pre_s3_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat3" name="pre_s3_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat3" name="pre_s3_text" value="{self.pre_s3_text}" required />
                             </div>
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat4" name="pre_s4_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat4" name="pre_s4_text" value="{self.pre_s4_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat4" name="pre_s4_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat4" name="pre_s4_text" value="{self.pre_s4_text}" required />
                             </div>
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat5" name="pre_s5_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat5" name="pre_s5_text" value="{self.pre_s5_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat5" name="pre_s5_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat5" name="pre_s5_text" value="{self.pre_s5_text}" required />
                             </div>
                             <div class="field keep-together">
-                                <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat6" name="pre_s6_disp" />
-                                <input class="field-input input-text" type="text" id="textbox-strat6" name="pre_s6_text" value="{self.pre_s6_text}" required />
+                                <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-strat6" name="pre_s6_disp" />
+                                <input class="field-input input-text" type="text" id="{self.uniq}-textbox-strat6" name="pre_s6_text" value="{self.pre_s6_text}" required />
                             </div>
                         </div>
                     </div>
@@ -149,7 +149,7 @@
             </div>
         </form>
     </div>
-    <div class="card is-hidden" id="prompt-post">
+    <div class="card is-hidden" id="{self.uniq}-prompt-post">
         <h3 class="hd-3">
             Evaluation Phase
         </h3>
@@ -161,14 +161,14 @@
                 </p>
             </div>
         </div>
-        <form class="form" id="form-prompt-post">
+        <form class="form" id="{self.uniq}-form-prompt-post">
             <div class="form">
-                <div id="learner-profile">
+                <div id="{self.uniq}-learner-profile">
                     <legend class="hd-4">
-                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-lp" name="learner_profile_disp" />
+                        <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-lp" name="learner_profile_disp" />
                         Learner Profile
                     </legend>
-                    <figure class="gauge-cont" id="kma" data-percentage="0">
+                    <figure class="gauge-cont" id="{self.uniq}-kma" data-percentage="0">
                         <div class="gauge">
                             <div class="inner paleyellow"></div>
                             <div class="bg left-threeeighths palered"></div>
@@ -181,7 +181,7 @@
                         <span class="label-right">100%</span>
                         <figcaption>Accuracy</figcaption>
                     </figure>
-                    <figure class="gauge-cont" id="kmb" data-percentage="0">
+                    <figure class="gauge-cont" id="{self.uniq}-kmb" data-percentage="0">
                         <div class="gauge">
                             <div class="inner palegreen"></div>
                             <div class="bg left-third palered"></div>
@@ -195,53 +195,53 @@
                         <figcaption>Bias</figcaption>
                     </figure>
                 </div>
-                <div class="form-group" id="eval-eval-section">
+                <div class="form-group" id="{self.uniq}-eval-eval-section">
                     <legend class="hd-4">
                         Evaluation
                     </legend>
                     <div class="field">
                         <label class="field-label" for="checkbox-eval-q1">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-q1" name="post_q1_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-q1" name="post_q1_disp" />
                             Did my particular course of thinking produce more or less than I had expected?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-eval-q1" name="textarea-eval-q1" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-eval-q1" name="textarea-eval-q1" disabled=""></textarea>
                     </div>
                     <div class="field">
                         <label class="field-label" for="checkbox-eval-q2">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-q2" name="post_q2_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-q2" name="post_q2_disp" />
                             What could I have done differently?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-eval-q2" name="textarea-eval-q2" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-eval-q2" name="textarea-eval-q2" disabled=""></textarea>
                     </div>
                 </div>
-                <div class="form-group" id="eval-assessment-section">
+                <div class="form-group" id="{self.uniq}-eval-assessment-section">
                     <legend class="hd-4">
                         Self-Assessment
                     </legend>
                     <div class="field">
                         <label class="field-label" for="checkbox-eval-q3">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-q3" name="post_q3_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-q3" name="post_q3_disp" />
                             How might I apply this line of thinking to other problems?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-eval-q3" name="textarea-eval-q3" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-eval-q3" name="textarea-eval-q3" disabled=""></textarea>
                     </div>
                     <div class="field">
                         <label class="field-label" for="checkbox-eval-q4">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-q4" name="post_q4_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-q4" name="post_q4_disp" />
                             Was this a good strategy to solve this problem?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-eval-q4" name="textarea-eval-q4" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-eval-q4" name="textarea-eval-q4" disabled=""></textarea>
                     </div>
                     <div class="field">
                         <label class="field-label" for="checkbox-eval-q5">
-                            <input class="field-input input-checkbox" type="checkbox" id="checkbox-eval-q5" name="post_q5_disp" />
+                            <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-eval-q5" name="post_q5_disp" />
                             Would another strategy have been better suited to this problem?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="textarea-eval-q5" name="textarea-eval-q5" disabled=""></textarea>
+                        <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-eval-q5" name="textarea-eval-q5" disabled=""></textarea>
                     </div>
                 </div>
                 <div class="form-actions submit-attempt-container">
-                    <button type="submit" class="submit btn-brand btn-base">
+                    <button class="submit btn-brand btn-base" type="submit">
                         <span class="submit-label" aria-hidden="true">
                             Submit
                         </span>

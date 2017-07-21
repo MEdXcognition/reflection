@@ -1,15 +1,25 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
 function ReflectionAssistantXBlock(runtime, element, config) {
 
+    /* Helper functions for instance-unique IDs */
+    function id(idname) {
+        // return a JQuery-friendly id selector
+        return String("#" + config.uniq + "-" + idname);
+    };
+    function id_begins_with(element, idstart) {
+        // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-']"
+        return String(element + "[id^='" + config.uniq + "-" + idstart + "']");
+    };
+
     /* Select Prompt Type */
-    $("#radio-prompt-pre").click(function(eventObject) {
+    $(id("radio-prompt-pre")).click(function(eventObject) {
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, 'set_block_type'),
             data: JSON.stringify({block_type: 'pre'}),
             success: function() {
-                $("#prompt-post").hide(200);
-                $("#prompt-pre").show(400);
+                $(id("prompt-post")).hide(200);
+                $(id("prompt-pre")).show(400);
             },
             error: function (xhr, exception) {
                 alert(xhr.status + " " + xhr.responseText);
@@ -19,14 +29,14 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         $(".strategies input[type=checkbox]").trigger("change");
     });
 
-    $("#radio-prompt-post").click(function(eventObject) {
+    $(id("radio-prompt-post")).click(function(eventObject) {
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, 'set_block_type'),
             data: JSON.stringify({block_type: 'post'}),
             success: function() {
-                $("#prompt-pre").hide(200);
-                $("#prompt-post").show(400);
+                $(id("prompt-pre")).hide(200);
+                $(id("prompt-post")).show(400);
             },
             error: function (xhr, exception) {
                 alert(xhr.status + " " + xhr.responseText);
@@ -35,13 +45,13 @@ function ReflectionAssistantXBlock(runtime, element, config) {
     });
 
     /* Strategy Selection: enable/disable entire section */
-    $("#checkbox-prep-strat").click(function(){
+    $(id("checkbox-prep-strat")).click(function(){
         if (this.checked) {
             //re-enable checkboxes (triggers change event too)
-            $(".strategies input[type=checkbox]").prop("disabled", false);
+            $(String(id("checkbox-prep-strat") + " .strategies input[type=checkbox]")).prop("disabled", false);
         } else {
             //disable all the inputs in this section
-            $(".strategies input").prop("disabled", true);
+            $(String(id("checkbox-prep-strat") + " .strategies input")).prop("disabled", true);
         }
     });
 
@@ -59,32 +69,30 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             }
         document.body.removeChild(span);
 
-        /* Fetch config data and respond accordingly */
+        /* Set form values from config data */
         switch (config.block_type) {
             case "pre":
-                $("#radio-prompt-pre").trigger("click");
-                $("input[id^='checkbox-prep-q']").each(function() {
+                $(id("radio-prompt-pre")).trigger("click");
+                $(id_begins_with("input", "checkbox-prep-")).each(function() {
                     $(this).prop("checked", config[this.name]);
                 });
-                $("#checkbox-prep-strat").prop("checked", config.pre_q6_disp);
-                $("input[id^='checkbox-strat']").each(function() {
+                $(id("checkbox-prep-strat")).prop("checked", config.pre_q6_disp);
+                $(id_begins_with("input", "checkbox-strat")).each(function() {
                     $(this).prop("checked", config[this.name]);
                     $(this).siblings().prop("disabled", !this.checked);
                 });
                 break;
             case "post":
-                $("#radio-prompt-post").trigger("click");
-                $("input[id^='checkbox-eval-q']").each(function() {
+                $(id("radio-prompt-post")).trigger("click");
+                $(id_begins_with("input", "checkbox-eval-")).each(function() {
                     $(this).prop("checked", config[this.name]);
                 });
-                $("#checkbox-eval-lp").
-                    prop("checked", config["learner_profile_disp"]);
                 break;
         };
 
         /* Strategy Selection: enable/disable strategies based on their checkboxes */
         // change event on strategy checkboxes
-        $("input[id^='checkbox-strat']").change(function() {
+        $(id_begins_with("input", "checkbox-strat")).change(function() {
             $(this).siblings().prop("disabled", !this.checked);
         });
         // trigger a 'change' event when enabled/disabled state changes
@@ -105,18 +113,18 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             errorsWrapper: '<div class="field-message has-error"></div>',
             errorTemplate: '<span class="field-message-content"></span>'
         };
-        $('#form-prompt-pre').parsley(parsley_options).on('form:submit', function() {
+        $(id('form-prompt-pre')).parsley(parsley_options).on('form:submit', function() {
             return false;
         });
     });
 
     /* Submit settings */
     var handlerUrl = runtime.handlerUrl(element, 'set_student_view');
-    $('#form-prompt-pre').submit(function() {
+    $(id("form-prompt-pre")).submit(function() {
         /* Set strategy text to default values so there would be values for
         disabled fields */
         var strat_text_val = {};
-        $("input[id^='textbox-strat']").each(function() {
+        $(id_begins_with("input", "textbox-strat")).each(function() {
             strat_text_val[this.name] = config[this.name];
         });
         /* Get values from form */
@@ -129,7 +137,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             );
         /* Get checkbox states */
         var checkbox_val = {};
-        $("form input:checkbox").each(function(){
+        $(String(id("form-prompt-pre") + " input:checkbox")).each(function(){
             checkbox_val[this.name] = this.checked;
         });
         /* Get union of strat_text_val, serializedObj and checkbox_val */
@@ -147,9 +155,9 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             data: submit_pre_data
         });
     });
-    $('#form-prompt-post').submit(function() {
+    $(id("form-prompt-post")).submit(function() {
         var submit_post_data = {};
-        $("form input:checkbox").each(function(){
+        $(String(id("form-prompt-post") + " input:checkbox")).each(function(){
             submit_post_data[this.name] = this.checked;
         });
         submit_post_data = JSON.stringify(submit_post_data);

@@ -42,7 +42,8 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Display Preparation Q1"
     )
     pre_q2_disp = Boolean(
-        default=True, scope=Scope.settings
+        default=True
+        , scope=Scope.settings
         , help="Display Preparation Q2"
     )
     pre_q3_disp = Boolean(
@@ -61,7 +62,7 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Display Preparation Q5"
     )
     pre_q6_disp = Boolean(
-        default=False
+        default=True
         , scope=Scope.settings
         , help="Display Preparation Q6"
     )
