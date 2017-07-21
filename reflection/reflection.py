@@ -1,5 +1,6 @@
 """Reflection Assistant XBlock"""
 
+import uuid
 import pkg_resources
 
 from xblock.core import XBlock
@@ -19,6 +20,13 @@ class ReflectionAssistantXBlock(XBlock):
     ###########################################################################
     # Display Settings
 
+    # Unique Instance ID
+    uniq = String(
+       default=uuid.uuid4().hex
+       , scope=Scope.settings
+       , help="Unique Instance ID"
+    )
+
     # Display Preparation or Evaluation phase
     block_type = String(
         default=""
@@ -34,7 +42,8 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Display Preparation Q1"
     )
     pre_q2_disp = Boolean(
-        default=True, scope=Scope.settings
+        default=True
+        , scope=Scope.settings
         , help="Display Preparation Q2"
     )
     pre_q3_disp = Boolean(
@@ -53,7 +62,7 @@ class ReflectionAssistantXBlock(XBlock):
         , help="Display Preparation Q5"
     )
     pre_q6_disp = Boolean(
-        default=False
+        default=True
         , scope=Scope.settings
         , help="Display Preparation Q6"
     )
@@ -242,11 +251,6 @@ class ReflectionAssistantXBlock(XBlock):
 
     ###########################################################################
     # Learner Profile
-    #problem_id = String(
-    #    default=""
-    #    , scope=Scope.user_state
-    #    , help="Problem ID"
-    #)
     learner_profile_disp = Boolean(
         default=True
         , scope=Scope.settings
@@ -288,9 +292,6 @@ class ReflectionAssistantXBlock(XBlock):
         scope=Scope.preferences
         , help="Full Pessimistic Bias count"
     )
-
-    #def get_id(self):
-    #    return getattr(self.runtime, 'course_id', 'all')
 
     def set_bias(self):
         """
@@ -365,8 +366,8 @@ class ReflectionAssistantXBlock(XBlock):
         Get the configuration data/fields the views will need.
         """
         return {
-            "block_type": self.block_type
-            #, "problem_id": self.get_id()
+            "uniq" : self.uniq
+            , "block_type": self.block_type
             , "pre_q1_disp": self.pre_q1_disp
             , "pre_q2_disp": self.pre_q2_disp
             , "pre_q3_disp": self.pre_q3_disp
@@ -478,7 +479,6 @@ class ReflectionAssistantXBlock(XBlock):
         Set the fields to be displayed on the student view
         """
         if self.block_type == 'pre':
-            #self.problem_id = data["problem_id"]
             self.pre_q1_disp = data["pre_q1_disp"]
             self.pre_q2_disp = data["pre_q2_disp"]
             self.pre_q3_disp = data["pre_q3_disp"]
@@ -503,6 +503,7 @@ class ReflectionAssistantXBlock(XBlock):
             self.post_q3_disp = data["post_q3_disp"]
             self.post_q4_disp = data["post_q4_disp"]
             self.post_q5_disp = data["post_q5_disp"]
+            self.learner_profile_disp = data["learner_profile_disp"]
         else:
             log.error('invalid block_type posted')
 

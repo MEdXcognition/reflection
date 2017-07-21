@@ -1,5 +1,16 @@
 /* Javascript for ReflectionAssistantXBlock. */
+
 function ReflectionAssistantXBlock(runtime, element, config) {
+
+    /* Helper functions for instance-unique IDs */
+    function id(idname) {
+        // return a JQuery-friendly id selector
+        return String("#" + config.uniq + "-" + idname);
+    };
+    function id_begins_with(element, idstart) {
+        // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-']"
+        return String(element + "[id^='" + config.uniq + "-" + idstart + "']");
+    };
 
     /* Guage Display Functions */
     function setGauge(gauge) {
@@ -35,25 +46,38 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         /* Display chosen block type */
         switch (config.block_type) {
             case "pre":
-                $("#prompt-pre").show();
-                //$("#problem_id").value = config.problem_id;
-                /* Hide fields set to be not displayed from Studio View */
-                $("div[id^='field-prep-q']").each(function() {
-                    if (!config[this.title]) {
+                $(id("prompt-pre")).show();
+
+                /* Hide unused fields */
+                $(id_begins_with("div", "field-prep-")).each(function() {
+                    if (!config[this.dataset.disp]) {
                         $(this).hide();
                     }
                 });
+
+                /* Hide section titles */
+                var keep = false;
+                for (i=1; i<6; i++) {
+                    var item = 'pre_q' + i + '_disp';
+                    if(config[item]) {
+                        keep = true;
+                        break;
+                    }
+                }
+                if (!keep) $(id("prep-assessment-section")).hide();
+
                 /* Set Likert selection */
                 if (config.pre_q5_disp) {
-                    $('input:radio[name=pre_q5_ans][value='+ config.pre_q5_ans +']')
+                    $("input:radio[name=pre_q5_ans][value="+ config.pre_q5_ans +"]")
                         .prop("checked", true);
                 }
+
                 /* Display strategy section */
                 if (!config.pre_q6_disp) {
-                    $("#prep-strategy-section").hide();
+                    $(id("prep-strategy-section")).hide();
                 } else {
-                    $("input[id^='checkbox-strat']").each(function() {
-                        if (!config[this.value]) {
+                    $("input[data-disp]").each(function() {
+                        if (!config[this.dataset.disp]) {
                             $(this).hide();
                             $("label[for=" + this.id + "]").hide();
                         } else {
@@ -64,21 +88,35 @@ function ReflectionAssistantXBlock(runtime, element, config) {
                 break;
 
             case "post":
-                $("#prompt-post").show();
-                if (!config.learner_profile_disp) {
-                    $("#learner-profile").hide();
-                }
-                $("div[id^='field-eval-q']").each(function() {
-                    if (!config[this.title]) {
+                $(id("prompt-post")).show();
+
+                /* Hide unused fields */
+                $(id_begins_with("div", "field-eval-")).each(function() {
+                    if (!config[this.dataset.disp]) {
                         $(this).hide();
                     }
                 });
+
+                /* Hide section titles */
+                if (!config["post_q1_disp"] && !config["post_q2_disp"]) {
+                    $(id("eval-eval-section")).hide();
+                };
+                var keep = false;
+                for (i=3; i<6; i++) {
+                    var item = 'post_q' + i + '_disp';
+                    if(config[item]) {
+                        keep = true;
+                        break;
+                    }
+                }
+                if (!keep) $(id("eval-assessment-section")).hide();
+
                 break;
         };
 
         /* Gauge Displays */
-        setGauge($("#kma"));
-        setGauge($("#kmb"));
+        setGauge($(id("kma")));
+        setGauge($(id("kmb")));
         // clicking guages re-animates them
         $('.gauge-cont').click(function(){
             resetGauge(this);
@@ -94,17 +132,18 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             errorsWrapper: '<div class="field-message has-error"></div>',
             errorTemplate: '<span class="field-message-content"></span>'
         };
-        $('#form-prompt-pre').parsley(parsley_options).on('form:submit', function() {
+
+        $(id("form-prompt-pre")).parsley(parsley_options).on('form:submit', function() {
             return false;
         });
-        $('#form-prompt-post').parsley(parsley_options).on('form:submit', function() {
+        $(id("form-prompt-post")).parsley(parsley_options).on('form:submit', function() {
             return false;
         });
     });
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, 'save_student_answer');
-    $('#form-prompt-pre').submit(function() {
+    $(id("form-prompt-pre")).submit(function() {
         var serializedObj = $(this).serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
@@ -124,11 +163,11 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             data: submit_pre_data
         });
     });
-    $('#form-prompt-post').submit(function() {
+    $(id("form-prompt-post")).submit(function() {
         var submit_post_data = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
-                a[x.name] = x.value;
-                return a;
+                    a[x.name] = x.value;
+                    return a;
                 },
                 {}
             )
