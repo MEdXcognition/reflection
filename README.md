@@ -1,6 +1,8 @@
 Reflection Assistant XBlock
 ===========================
 
+Instruction of metacognitive practices and guidance in students' use of their metacognitive skills has been proven to facilitate learning. This addition to the Open EdX implements a documented tool to evaluate and develop metacognitive skill in a way that can be utilized in the instruction of any subject. Through intentional reflection before and after problem solving activities, the student both exercises and sees the progress of his or her metacognitive skills.
+
 # Install XBlock on an OpenEdX Instance
 
 For installation instructions, please consult the latest OpenEdX documentation. These can be found [here](edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock). These instructions are summarized below.
