@@ -1,6 +1,6 @@
 """Reflection Assistant XBlock"""
 
-import uuid
+import hashlib
 import pkg_resources
 
 from xblock.core import XBlock
@@ -22,7 +22,7 @@ class ReflectionAssistantXBlock(XBlock):
 
     # Unique Instance ID
     uniq = String(
-       default=uuid.uuid4().hex
+       default=""
        , scope=Scope.settings
        , help="Unique Instance ID"
     )
@@ -426,6 +426,10 @@ class ReflectionAssistantXBlock(XBlock):
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
         """
+
+        # store the unique instance id
+        self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
+
         html = self.resource_string("static/html/reflection_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
@@ -560,5 +564,11 @@ class ReflectionAssistantXBlock(XBlock):
         return [
             ("ReflectionAssistantXBlock",
              """<reflection/>
+             """),
+            ("Multiple ReflectionAssistantXBlocks",
+             """<vertical_demo>
+                <reflection/>
+                <reflection/>
+                </vertical_demo>
              """),
         ]
