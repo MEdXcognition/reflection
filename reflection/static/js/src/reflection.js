@@ -137,7 +137,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
         /* Form Validation */
         var parsley_options = {
-            excluded: 'input:disabled,input:hidden',
+            excluded: 'input:disabled,input:hidden,textarea:disabled,textarea:hidden',
             trigger: 'keyup',
             errorClass: 'has-error',
             successClass: 'has-success',
@@ -145,63 +145,64 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             errorTemplate: '<span class="field-message-content"></span>'
         };
 
-        $(id("form-prompt-pre")).parsley(parsley_options).on('form:submit', function() {
-            return false;
-        });
-        $(id("form-prompt-post")).parsley(parsley_options).on('form:submit', function() {
-            return false;
-        });
+        $(id("form-prompt-pre")).parsley(parsley_options);
+        $(id("form-prompt-post")).parsley(parsley_options);
     });
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, 'save_student_answer');
     $(id("form-prompt-pre")).submit(function(e) {
         e.preventDefault();
-        var serializedObj = $(this).serializeArray()
-                .reduce(function(a, x) {
-                    a[x.name] = x.value;
-                    return a;
-                },
-                {}
-            );
-        var checkbox_val = {};
-        $("form input:checkbox").each(function(){
-            checkbox_val[this.name] = this.checked;
-        });
-        var submit_pre_data = JSON.stringify(jQuery.extend(serializedObj,
-            checkbox_val));
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: submit_pre_data
-        })
-        .done(function() {
-            $(id("pre-submit-success")).fadeIn().delay(5000).fadeOut();
-        })
-        .fail(function() {
-            $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
-        });
+        if ( $(this).parsley().isValid() ) {
+            var serializedObj = $(this).serializeArray()
+                    .reduce(function(a, x) {
+                        a[x.name] = x.value;
+                        return a;
+                    },
+                    {}
+                );
+            var checkbox_val = {};
+            $("form input:checkbox").each(function(){
+                checkbox_val[this.name] = this.checked;
+            });
+            var submit_pre_data = JSON.stringify(jQuery.extend(serializedObj,
+                checkbox_val));
+            $.ajax({
+                type: "POST",
+                url: handlerUrl,
+                data: submit_pre_data
+            })
+            .done(function() {
+                $(id("pre-submit-success")).fadeIn().delay(5000).fadeOut();
+            })
+            .fail(function() {
+                $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
+            });
+        };
     });
     $(id("form-prompt-post")).submit(function(e) {
         e.preventDefault();
-        var submit_post_data = JSON.stringify($(this).serializeArray()
-                .reduce(function(a, x) {
-                    a[x.name] = x.value;
-                    return a;
-                },
-                {}
-            )
-        );
-        $.ajax({
-            type: "POST",
-            url: handlerUrl,
-            data: submit_post_data
-        })
-        .done(function() {
-            $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
-        })
-        .fail(function() {
-            $(id("post-submit-error")).fadeIn().delay(5000).fadeOut();
-        });
+        if ( $(this).parsley().isValid() ) {
+
+            var submit_post_data = JSON.stringify($(this).serializeArray()
+                    .reduce(function(a, x) {
+                        a[x.name] = x.value;
+                        return a;
+                    },
+                    {}
+                )
+            );
+            $.ajax({
+                type: "POST",
+                url: handlerUrl,
+                data: submit_post_data
+            })
+            .done(function() {
+                $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
+            })
+            .fail(function() {
+                $(id("post-submit-error")).fadeIn().delay(5000).fadeOut();
+            });
+        };
     });
 }
