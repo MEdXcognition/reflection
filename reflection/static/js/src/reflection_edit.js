@@ -21,12 +21,20 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         .done(function() {
             $(id("prompt-post")).hide(200);
             $(id("prompt-pre")).show(400);
+            $(id_begins_with("input", "checkbox-prep-")).each(function() {
+                $(this).prop("checked", config[this.name]);
+            });
+            $(id("checkbox-prep-strat")).prop("checked", config.pre_q6_disp);
+            $(id_begins_with("input", "checkbox-strat")).each(function() {
+                $(this).prop("checked", config[this.name]);
+                $(this).siblings().prop("disabled", !this.checked);
+            });
+            // correct enabled/disabled states on Strategies
+            $(".strategies input[type=checkbox]").trigger("change");
         })
         .fail(function(xhr, exception) {
             alert(xhr.status + " " + xhr.responseText);
         });
-        // correct enabled/disabled states on Strategies
-        $(".strategies input[type=checkbox]").trigger("change");
     });
 
     $(id("radio-prompt-post")).click(function(eventObject) {
@@ -37,7 +45,11 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         })
         .done(function() {
             $(id("prompt-pre")).hide(200);
-            $(id("prompt-post")).show(400);        })
+            $(id("prompt-post")).show(400);
+            $(id_begins_with("input", "checkbox-eval-")).each(function() {
+                $(this).prop("checked", config[this.name]);
+            });
+        })
         .fail(function(xhr, exception) {
             alert(xhr.status + " " + xhr.responseText);
         });
@@ -56,7 +68,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Page Load Actions */
     $(function ($) {
-        /* Test if FontAwesome is already loaded by EdX LMS/Studio */
+        /* Test if FontAwesome is already loaded by edX LMS/Studio */
         var span = document.createElement('span');
         span.className = 'fa';
         span.style.display = 'none';
@@ -72,20 +84,9 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         switch (config.block_type) {
             case "pre":
                 $(id("radio-prompt-pre")).trigger("click");
-                $(id_begins_with("input", "checkbox-prep-")).each(function() {
-                    $(this).prop("checked", config[this.name]);
-                });
-                $(id("checkbox-prep-strat")).prop("checked", config.pre_q6_disp);
-                $(id_begins_with("input", "checkbox-strat")).each(function() {
-                    $(this).prop("checked", config[this.name]);
-                    $(this).siblings().prop("disabled", !this.checked);
-                });
                 break;
             case "post":
                 $(id("radio-prompt-post")).trigger("click");
-                $(id_begins_with("input", "checkbox-eval-")).each(function() {
-                    $(this).prop("checked", config[this.name]);
-                });
                 break;
         };
 

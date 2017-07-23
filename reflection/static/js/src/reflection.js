@@ -43,7 +43,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Page Load Actions */
     $(function ($) {
-        /* Test if FontAwesome is already loaded by EdX LMS/Studio */
+        /* Test if FontAwesome is already loaded by edX LMS/Studio */
         var span = document.createElement('span');
         span.className = 'fa';
         span.style.display = 'none';
