@@ -438,20 +438,6 @@ class ReflectionAssistantXBlock(XBlock):
         frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
         return frag
 
-    # Author View
-    def author_view(self, context=None):
-        """
-        The editor view of the ReflectionAssistantXBlock, shown to course
-        authors when editing courses in edX Studio.
-        """
-        html = self.resource_string("static/html/reflection_author.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/reflection.css"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/reflection_author.js"))
-        frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
-        return frag
-
     # Required for studio_view:
     _non_editable_metadata_fields = []
 
