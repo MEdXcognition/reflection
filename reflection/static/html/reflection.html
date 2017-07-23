@@ -14,25 +14,25 @@
                         <label class="field-label" for="{self.uniq}-textarea-prep-q1">
                             What prior knowledge can help me with this particular task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q1" name="pre_q1_ans" required>{self.pre_q1_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q1" name="pre_q1_ans" data-parsley-required="true">{self.pre_q1_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-prep-q2" data-disp="pre_q2_disp">
                         <label class="field-label" for="{self.uniq}-textarea-prep-q2">
                             What do I need to know before I can successfully deal with this task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q2" name="pre_q2_ans" required>{self.pre_q2_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q2" name="pre_q2_ans" data-parsley-required="true">{self.pre_q2_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-prep-q3" data-disp="pre_q3_disp">
                         <label class="field-label" for="{self.uniq}-textarea-prep-q3">
                             What should I do and in which order?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q3" name="pre_q3_ans" required>{self.pre_q3_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q3" name="pre_q3_ans" data-parsley-required="true">{self.pre_q3_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-prep-q4" data-disp="pre_q4_disp">
                         <label class="field-label" for="{self.uniq}-textarea-prep-q4">
                             How much time do I have to complete the task?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q4" name="pre_q4_ans" required>{self.pre_q4_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q4" name="pre_q4_ans" data-parsley-required="true">{self.pre_q4_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-prep-q5" data-disp="pre_q5_disp">
                         <label class="field-label" for="{self.uniq}-likert-prep-q5">
@@ -40,7 +40,7 @@
                         </label>
                         <ul class='likert' id="{self.uniq}-likert-prep-q5" name="pre_q5_ans">
                             <li>
-                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#{self.uniq}-likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#{self.uniq}-likert-prep-q5" value="1" required>
+                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#{self.uniq}-likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#{self.uniq}-likert-prep-q5" value="1" data-parsley-required="true">
                                 <label>
                                     Cannot solve the problem
                                 </label>
@@ -177,13 +177,13 @@
                         <label class="field-label" for="{self.uniq}-textarea-eval-q1">
                             Did my particular course of thinking produce more or less than I had expected?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q1" name="post_q1_ans" required>{self.post_q1_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q1" name="post_q1_ans" data-parsley-required="true">{self.post_q1_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-eval-q2" data-disp="post_q2_disp">
                         <label class="field-label" for="{self.uniq}-textarea-eval-q2">
                             What could I have done differently?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q2" name="post_q2_ans" required>{self.post_q2_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q2" name="post_q2_ans" data-parsley-required="true">{self.post_q2_ans}</textarea>
                     </div>
                 </div>
                 <div class="form-group" id="{self.uniq}-eval-assessment-section">
@@ -194,19 +194,19 @@
                         <label class="field-label" for="{self.uniq}-textarea-eval-q3">
                             How might I apply this line of thinking to other problems?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q3" name="post_q3_ans" required>{self.post_q3_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q3" name="post_q3_ans" data-parsley-required="true">{self.post_q3_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-eval-q4" data-disp="post_q4_disp">
                         <label class="field-label" for="{self.uniq}-textarea-eval-q4">
                             Was this a good strategy to solve this problem?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q4" name="post_q4_ans" required>{self.post_q4_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q4" name="post_q4_ans" data-parsley-required="true">{self.post_q4_ans}</textarea>
                     </div>
                     <div class="field" id="{self.uniq}-field-eval-q5" data-disp="post_q5_disp">
                         <label class="field-label" for="{self.uniq}-textarea-eval-q5">
                             Would another strategy have been better suited to this problem?
                         </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q5" name="post_q5_ans" required>{self.post_q5_ans}</textarea>
+                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q5" name="post_q5_ans" data-parsley-required="true">{self.post_q5_ans}</textarea>
                     </div>
                 </div>
                 <div class="form-actions submit-attempt-container">

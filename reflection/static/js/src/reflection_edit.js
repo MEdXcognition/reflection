@@ -105,7 +105,7 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         };
 
         /* Form Validation */
-        var parsley_options = {
+        const parsley_options = {
             excluded: 'input:disabled,input:hidden,textarea:disabled,textarea:hidden',
             trigger: 'keyup',
             errorClass: 'has-error',
