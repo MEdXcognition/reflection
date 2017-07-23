@@ -40,7 +40,7 @@
                         </label>
                         <ul class='likert' id="{self.uniq}-likert-prep-q5" name="pre_q5_ans">
                             <li>
-                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#likert-prep-q5" value="1" required>
+                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#{self.uniq}-likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#{self.uniq}-likert-prep-q5" value="1" required>
                                 <label>
                                     Cannot solve the problem
                                 </label>
@@ -113,7 +113,22 @@
                                 Submit
                             </span>
                         </button>
-                        <div class="submission-feedback" id="{self.uniq}-submission_feedback_prep"></div>
+                        <div class="is-hidden alert alert-success alert-slim" id="{self.uniq}-pre-submit-success" role="alert" aria-labelledby="{self.uniq}-pre-alert-message-success" tabindex="-1">
+                            <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
+                            <div class="alert-message">
+                                <p class="copy" id="{self.uniq}-pre-alert-message-success">
+                                    Your changes have been saved.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="is-hidden alert alert-error alert-slim" id="{self.uniq}-pre-submit-error" role="alert" aria-labelledby="{self.uniq}-pre-alert-message-error" tabindex="-1">
+                            <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
+                            <div class="alert-message">
+                                <p class="copy" id="{self.uniq}-pre-alert-message-error">
+                                    Error: unable to submit form.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -200,7 +215,21 @@
                             Submit
                         </span>
                     </button>
-                    <div class="submission-feedback" id="{self.uniq}-submission_feedback_eval">
+                    <div class="is-hidden alert alert-success alert-slim" id="{self.uniq}-post-submit-success" role="alert" aria-labelledby="{self.uniq}-post-alert-message-success" tabindex="-1">
+                        <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
+                        <div class="alert-message">
+                            <p class="copy" id="{self.uniq}-post-alert-message-success">
+                                Your changes have been saved.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="is-hidden alert alert-error alert-slim" id="{self.uniq}-post-submit-error" role="alert" aria-labelledby="{self.uniq}-post-alert-message-error" tabindex="-1">
+                        <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
+                        <div class="alert-message">
+                            <p class="copy" id="{self.uniq}-post-alert-message-error">
+                                Error: unable to submit form.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

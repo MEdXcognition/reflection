@@ -16,14 +16,14 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, 'set_block_type'),
-            data: JSON.stringify({block_type: 'pre'}),
-            success: function() {
-                $(id("prompt-post")).hide(200);
-                $(id("prompt-pre")).show(400);
-            },
-            error: function (xhr, exception) {
-                alert(xhr.status + " " + xhr.responseText);
-            }
+            data: JSON.stringify({block_type: 'pre'})
+        })
+        .done(function() {
+            $(id("prompt-post")).hide(200);
+            $(id("prompt-pre")).show(400);
+        })
+        .fail(function(xhr, exception) {
+            alert(xhr.status + " " + xhr.responseText);
         });
         // correct enabled/disabled states on Strategies
         $(".strategies input[type=checkbox]").trigger("change");
@@ -33,14 +33,13 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         $.ajax({
             type: "POST",
             url: runtime.handlerUrl(element, 'set_block_type'),
-            data: JSON.stringify({block_type: 'post'}),
-            success: function() {
-                $(id("prompt-pre")).hide(200);
-                $(id("prompt-post")).show(400);
-            },
-            error: function (xhr, exception) {
-                alert(xhr.status + " " + xhr.responseText);
-            }
+            data: JSON.stringify({block_type: 'post'})
+        })
+        .done(function() {
+            $(id("prompt-pre")).hide(200);
+            $(id("prompt-post")).show(400);        })
+        .fail(function(xhr, exception) {
+            alert(xhr.status + " " + xhr.responseText);
         });
     });
 
@@ -120,7 +119,8 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Submit settings */
     var handlerUrl = runtime.handlerUrl(element, 'set_student_view');
-    $(id("form-prompt-pre")).submit(function() {
+    $(id("form-prompt-pre")).submit(function(e) {
+        e.preventDefault();
         /* Set strategy text to default values so there would be values for
         disabled fields */
         var strat_text_val = {};
@@ -153,9 +153,16 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             type: "POST",
             url: handlerUrl,
             data: submit_pre_data
+        })
+        .done(function() {
+            $(id("pre-submit-success")).fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
         });
     });
-    $(id("form-prompt-post")).submit(function() {
+    $(id("form-prompt-post")).submit(function(e) {
+        e.preventDefault();
         var submit_post_data = {};
         $(String(id("form-prompt-post") + " input:checkbox")).each(function(){
             submit_post_data[this.name] = this.checked;
@@ -165,6 +172,12 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             type: "POST",
             url: handlerUrl,
             data: submit_post_data
+        })
+        .done(function() {
+            $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
         });
     });
 

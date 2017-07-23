@@ -43,6 +43,18 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Page Load Actions */
     $(function ($) {
+        /* Test if FontAwesome is already loaded by EdX LMS/Studio */
+        var span = document.createElement('span');
+        span.className = 'fa';
+        span.style.display = 'none';
+        document.body.insertBefore(span, document.body.firstChild);
+        if ((window.getComputedStyle(span, null)
+            .getPropertyValue('font-family')) !== 'FontAwesome') {
+                // ...fallback to loading FA from CDN
+                $.getScript("https://use.fontawesome.com/ce953509bb.js");
+            }
+        document.body.removeChild(span);
+
         /* Display chosen block type */
         switch (config.block_type) {
             case "pre":
@@ -143,7 +155,8 @@ function ReflectionAssistantXBlock(runtime, element, config) {
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, 'save_student_answer');
-    $(id("form-prompt-pre")).submit(function() {
+    $(id("form-prompt-pre")).submit(function(e) {
+        e.preventDefault();
         var serializedObj = $(this).serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
@@ -161,9 +174,16 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             type: "POST",
             url: handlerUrl,
             data: submit_pre_data
+        })
+        .done(function() {
+            $(id("pre-submit-success")).fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
         });
     });
-    $(id("form-prompt-post")).submit(function() {
+    $(id("form-prompt-post")).submit(function(e) {
+        e.preventDefault();
         var submit_post_data = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
@@ -176,6 +196,12 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             type: "POST",
             url: handlerUrl,
             data: submit_post_data
+        })
+        .done(function() {
+            $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $(id("post-submit-error")).fadeIn().delay(5000).fadeOut();
         });
     });
 }
