@@ -1,5 +1,5 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
-function ReflectionAssistantXBlock(runtime, element, config) {
+function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Helper functions for instance-unique IDs */
     function id(idname) {
@@ -10,50 +10,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-']"
         return String(element + "[id^='" + config.uniq + "-" + idstart + "']");
     };
-
-    /* Select Prompt Type */
-    $(id("radio-prompt-pre")).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: runtime.handlerUrl(element, 'set_block_type'),
-            data: JSON.stringify({block_type: 'pre'})
-        })
-        .done(function() {
-            $(id("prompt-post")).hide(200);
-            $(id("prompt-pre")).show(400);
-            $(id_begins_with("input", "checkbox-prep-")).each(function() {
-                $(this).prop("checked", config[this.name]);
-            });
-            $(id("checkbox-prep-strat")).prop("checked", config.pre_q6_disp);
-            $(id_begins_with("input", "checkbox-strat")).each(function() {
-                $(this).prop("checked", config[this.name]);
-                $(this).siblings().prop("disabled", !this.checked);
-            });
-            // correct enabled/disabled states on Strategies
-            $(".strategies input[type=checkbox]").trigger("change");
-        })
-        .fail(function(xhr, exception) {
-            alert(xhr.status + " " + xhr.responseText);
-        });
-    });
-
-    $(id("radio-prompt-post")).click(function(eventObject) {
-        $.ajax({
-            type: "POST",
-            url: runtime.handlerUrl(element, 'set_block_type'),
-            data: JSON.stringify({block_type: 'post'})
-        })
-        .done(function() {
-            $(id("prompt-pre")).hide(200);
-            $(id("prompt-post")).show(400);
-            $(id_begins_with("input", "checkbox-eval-")).each(function() {
-                $(this).prop("checked", config[this.name]);
-            });
-        })
-        .fail(function(xhr, exception) {
-            alert(xhr.status + " " + xhr.responseText);
-        });
-    });
 
     /* Strategy Selection: enable/disable entire section */
     $(id("checkbox-prep-strat")).click(function(){
@@ -81,14 +37,16 @@ function ReflectionAssistantXBlock(runtime, element, config) {
         document.body.removeChild(span);
 
         /* Set form values from config data */
-        switch (config.block_type) {
-            case "pre":
-                $(id("radio-prompt-pre")).trigger("click");
-                break;
-            case "post":
-                $(id("radio-prompt-post")).trigger("click");
-                break;
-        };
+        $(id_begins_with("input", "checkbox-prep-")).each(function() {
+            $(this).prop("checked", config[this.name]);
+        });
+        $(id("checkbox-prep-strat")).prop("checked", config.pre_q6_disp);
+        $(id_begins_with("input", "checkbox-strat")).each(function() {
+            $(this).prop("checked", config[this.name]);
+            $(this).siblings().prop("disabled", !this.checked);
+        });
+        // correct enabled/disabled states on Strategies
+        $(".strategies input[type=checkbox]").trigger("change");
 
         /* Strategy Selection: enable/disable strategies based on their checkboxes */
         // change event on strategy checkboxes
@@ -114,7 +72,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             errorTemplate: '<span class="field-message-content"></span>'
         };
         $(id('form-prompt-pre')).parsley(parsley_options);
-        $(id('form-prompt-post')).parsley(parsley_options);
     });
 
     /* Submit settings */
@@ -163,30 +120,6 @@ function ReflectionAssistantXBlock(runtime, element, config) {
             })
             .fail(function() {
                 $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
-            });
-        };
-    });
-    $(id("form-prompt-post")).submit(function(e) {
-        e.preventDefault();
-
-        /* Confirm form validation */
-        if ( $(this).parsley().isValid() ) {
-
-            var submit_post_data = {};
-            $(String(id("form-prompt-post") + " input:checkbox")).each(function(){
-                submit_post_data[this.name] = this.checked;
-            });
-            submit_post_data = JSON.stringify(submit_post_data);
-            $.ajax({
-                type: "POST",
-                url: handlerUrl,
-                data: submit_post_data
-            })
-            .done(function() {
-                $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
-            })
-            .fail(function() {
-                $(id("post-submit-success")).fadeIn().delay(5000).fadeOut();
             });
         };
     });

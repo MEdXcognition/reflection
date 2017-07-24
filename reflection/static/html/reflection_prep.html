@@ -1,15 +1,15 @@
 <div class="reflection_block">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
-    <div class="card is-hidden" id="{self.uniq}-prompt-pre">
+    <div class="card" id="{self.uniq}-prompt-pre">
         <h3 class="hd-3">
             Preparation Phase
         </h3>
         <form class="form" id="{self.uniq}-form-prompt-pre">
             <div class="form">
                 <div class="form-group" id="{self.uniq}-prep-assessment-section">
-                    <legend class="hd-4">
+                    <h4 class="hd-4">
                         Knowledge Assessment
-                    </legend>
+                    </h4>
                     <div class="field" id="{self.uniq}-field-prep-q1" data-disp="pre_q1_disp">
                         <label class="field-label" for="{self.uniq}-textarea-prep-q1">
                             What prior knowledge can help me with this particular task?
@@ -62,9 +62,9 @@
                     </div>
                 </div>
                 <div class="form-group" id="{self.uniq}-prep-strategy-section">
-                    <legend class="hd-4">
+                    <h4 class="hd-4">
                         Strategy Selection
-                    </legend>
+                    </h4>
                     <div class="field">
                         <label class="field-label" for="{self.uniq}-select-prep-strat">
                             Which strategies could I use to approach this problem?
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="form-actions submit-attempt-container">
-                        <button class="submit btn-brand btn-base" type="submit" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_prep">
+                        <button class="submit btn-brand btn-base" type="submit" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True">
                             <span class="submit-label" aria-hidden="true">
                                 Submit
                             </span>
@@ -128,107 +128,6 @@
                                     Error: unable to submit form.
                                 </p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="card is-hidden" id="{self.uniq}-prompt-post">
-        <h3 class="hd-3">
-            Evaluation Phase
-        </h3>
-        <div id="{self.uniq}-field-eval-profile" data-disp="learner_profile_disp">
-            <legend class="hd-4">Learner Profile</legend>
-            <figure class="gauge-cont" id="{self.uniq}-kma" data-percentage={self.kma}>
-                <div class="gauge">
-                    <div class="inner paleyellow"></div>
-                    <div class="bg left-threeeighths palered"></div>
-                    <div class="bg right-quarter palegreen"></div>
-                    <div class="spinner kma"></div>
-                </div>
-                <div class="pointer"></div>
-                <div class="pointer-knob"></div>
-                <span class="label-left">0%</span>
-                <span class="label-right">100%</span>
-                <figcaption>Accuracy</figcaption>
-            </figure>
-            <figure class="gauge-cont" id="{self.uniq}-kmb" data-percentage={self.kmb}>
-                <div class="gauge">
-                    <div class="inner palegreen"></div>
-                    <div class="bg left-third palered"></div>
-                    <div class="bg right-third palered"></div>
-                    <div class="spinner kmb"></div>
-                </div>
-                <div class="pointer"></div>
-                <div class="pointer-knob"></div>
-                <span class="label-left">Pessimistic</span>
-                <span class="label-right">Optimistic</span>
-                <figcaption>Bias</figcaption>
-            </figure>
-        </div>
-        <form class="form" id="{self.uniq}-form-prompt-post">
-            <div class="form">
-                <div class="form-group" id="{self.uniq}-eval-eval-section">
-                    <legend class="hd-4">
-                        Evaluation
-                    </legend>
-                    <div class="field" id="{self.uniq}-field-eval-q1" data-disp="post_q1_disp">
-                        <label class="field-label" for="{self.uniq}-textarea-eval-q1">
-                            Did my particular course of thinking produce more or less than I had expected?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q1" name="post_q1_ans" data-parsley-required="true">{self.post_q1_ans}</textarea>
-                    </div>
-                    <div class="field" id="{self.uniq}-field-eval-q2" data-disp="post_q2_disp">
-                        <label class="field-label" for="{self.uniq}-textarea-eval-q2">
-                            What could I have done differently?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q2" name="post_q2_ans" data-parsley-required="true">{self.post_q2_ans}</textarea>
-                    </div>
-                </div>
-                <div class="form-group" id="{self.uniq}-eval-assessment-section">
-                    <legend class="hd-4">
-                        Self-Assessment
-                    </legend>
-                    <div class="field" id="{self.uniq}-field-eval-q3" data-disp="post_q3_disp">
-                        <label class="field-label" for="{self.uniq}-textarea-eval-q3">
-                            How might I apply this line of thinking to other problems?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q3" name="post_q3_ans" data-parsley-required="true">{self.post_q3_ans}</textarea>
-                    </div>
-                    <div class="field" id="{self.uniq}-field-eval-q4" data-disp="post_q4_disp">
-                        <label class="field-label" for="{self.uniq}-textarea-eval-q4">
-                            Was this a good strategy to solve this problem?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q4" name="post_q4_ans" data-parsley-required="true">{self.post_q4_ans}</textarea>
-                    </div>
-                    <div class="field" id="{self.uniq}-field-eval-q5" data-disp="post_q5_disp">
-                        <label class="field-label" for="{self.uniq}-textarea-eval-q5">
-                            Would another strategy have been better suited to this problem?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-eval-q5" name="post_q5_ans" data-parsley-required="true">{self.post_q5_ans}</textarea>
-                    </div>
-                </div>
-                <div class="form-actions submit-attempt-container">
-                    <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
-                        <span class="submit-label" aria-hidden="true">
-                            Submit
-                        </span>
-                    </button>
-                    <div class="is-hidden alert alert-success alert-slim" id="{self.uniq}-post-submit-success" role="alert" aria-labelledby="{self.uniq}-post-alert-message-success" tabindex="-1">
-                        <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
-                        <div class="alert-message">
-                            <p class="copy" id="{self.uniq}-post-alert-message-success">
-                                Your changes have been saved.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="is-hidden alert alert-error alert-slim" id="{self.uniq}-post-submit-error" role="alert" aria-labelledby="{self.uniq}-post-alert-message-error" tabindex="-1">
-                        <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
-                        <div class="alert-message">
-                            <p class="copy" id="{self.uniq}-post-alert-message-error">
-                                Error: unable to submit form.
-                            </p>
                         </div>
                     </div>
                 </div>
