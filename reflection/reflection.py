@@ -1,6 +1,6 @@
 """Reflection Assistant XBlock"""
 
-import uuid
+#import hashlib
 import pkg_resources
 
 from xblock.core import XBlock
@@ -21,10 +21,18 @@ class ReflectionAssistantXBlock(XBlock):
     # Display Settings
 
     # Unique Instance ID
-    uniq = String(
-       default=uuid.uuid4().hex
-       , scope=Scope.settings
-       , help="Unique Instance ID"
+    #uniq = String(
+    #   default=""
+    #   , scope=Scope.settings
+    #   , help="Unique Instance ID"
+    #)
+
+
+    # Display name
+    display_name = String(
+        default="Reflection Assistant"
+        , scope=Scope.settings
+        , help="Display name"
     )
 
     # Display Preparation or Evaluation phase
@@ -366,8 +374,8 @@ class ReflectionAssistantXBlock(XBlock):
         Get the configuration data/fields the views will need.
         """
         return {
-            "uniq" : self.uniq
-            , "block_type": self.block_type
+            #"uniq" : self.uniq,
+            "block_type": self.block_type
             , "pre_q1_disp": self.pre_q1_disp
             , "pre_q2_disp": self.pre_q2_disp
             , "pre_q3_disp": self.pre_q3_disp
@@ -426,25 +434,15 @@ class ReflectionAssistantXBlock(XBlock):
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
         """
+
+        # store the unique instance id
+        #self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
+
         html = self.resource_string("static/html/reflection_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection_edit.js"))
-        frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
-        return frag
-
-    # Author View
-    def author_view(self, context=None):
-        """
-        The editor view of the ReflectionAssistantXBlock, shown to course
-        authors when editing courses in edX Studio.
-        """
-        html = self.resource_string("static/html/reflection_author.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/reflection.css"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/reflection_author.js"))
         frag.initialize_js('ReflectionAssistantXBlock', self.get_config())
         return frag
 
@@ -560,5 +558,11 @@ class ReflectionAssistantXBlock(XBlock):
         return [
             ("ReflectionAssistantXBlock",
              """<reflection/>
+             """),
+            ("Multiple ReflectionAssistantXBlocks",
+             """<vertical_demo>
+                <reflection/>
+                <reflection/>
+                </vertical_demo>
              """),
         ]
