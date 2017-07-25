@@ -1,26 +1,11 @@
 <div class="reflection_block">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-    <div class="card is-hidden" id="prompt-pre">
-=======
     <div class="card" id="{self.uniq}-prompt-pre">
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
         <h3 class="hd-3">
             Preparation Phase
         </h3>
         <form class="form" id="form-prompt-pre">
             <div class="form">
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                <div class="form-group" id="prep-assessment-section">
-                    <legend class="hd-4">
-                        Knowledge Assessment
-                    </legend>
-                    <div class="field" id="field-prep-q1" data-disp="pre_q1_disp">
-                        <label class="field-label" for="textarea-prep-q1">
-                            What prior knowledge can help me with this particular task?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q1" name="pre_q1_ans" data-parsley-required="true">{self.pre_q1_ans}</textarea>
-=======
                 <div class="form-group" id="{self.uniq}-prep-assessment-section">
                     <h4 class="hd-4">
                         Knowledge Assessment
@@ -30,51 +15,32 @@
                             What prior knowledge can help me with this particular task?
                         </label>
                         <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q1" name="pre_q1_ans" data-parsley-required="true">{self.pre_q1_ans}</textarea>
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                     </div>
                     <div class="field" id="field-prep-q2" data-disp="pre_q2_disp">
                         <label class="field-label" for="textarea-prep-q2">
                             What do I need to know before I can successfully deal with this task?
                         </label>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q2" name="pre_q2_ans" data-parsley-required="true">{self.pre_q2_ans}</textarea>
-=======
                         <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q2" name="pre_q2_ans" data-parsley-required="true">{self.pre_q2_ans}</textarea>
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                     </div>
                     <div class="field" id="field-prep-q3" data-disp="pre_q3_disp">
                         <label class="field-label" for="textarea-prep-q3">
                             What should I do and in which order?
                         </label>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q3" name="pre_q3_ans" data-parsley-required="true">{self.pre_q3_ans}</textarea>
-=======
                         <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q3" name="pre_q3_ans" data-parsley-required="true">{self.pre_q3_ans}</textarea>
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                     </div>
                     <div class="field" id="field-prep-q4" data-disp="pre_q4_disp">
                         <label class="field-label" for="textarea-prep-q4">
                             How much time do I have to complete the task?
                         </label>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-prep-q4" name="pre_q4_ans" data-parsley-required="true">{self.pre_q4_ans}</textarea>
-=======
                         <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="{self.uniq}-textarea-prep-q4" name="pre_q4_ans" data-parsley-required="true">{self.pre_q4_ans}</textarea>
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                     </div>
                     <div class="field" id="field-prep-q5" data-disp="pre_q5_disp">
                         <label class="field-label" for="likert-prep-q5">
                             My confidence in my ability to solve this problem is:
                         </label>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <ul class="likert" id="likert-prep-q5" name="pre_q5_ans">
-                          <li>
-                                <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#likert-prep-q5" value="1" data-parsley-required="true">
-=======
                         <ul class='likert' id="{self.uniq}-likert-prep-q5" name="pre_q5_ans">
                             <li>
                                 <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#{self.uniq}-likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#{self.uniq}-likert-prep-q5" value="1" data-parsley-required="true">
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                                 <label>
                                     Cannot solve the problem
                                 </label>
@@ -95,13 +61,8 @@
                         <div id="likert-prep-q5-error"></div>
                     </div>
                 </div>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                <div class="form-group" id="prep-strategy-section">
-                    <legend class="hd-4">
-=======
                 <div class="form-group" id="{self.uniq}-prep-strategy-section">
                     <h4 class="hd-4">
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                         Strategy Selection
                     </h4>
                     <div class="field">
@@ -123,25 +84,25 @@
                             </div>
                             <div class="field">
                                 <label class="field-label" for="checkbox-strat3">
-                                    <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat3" name="pre_s3_ans" data-parsley-multiple="strategies" data-disp="pre_s3_disp" /> 
+                                    <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat3" name="pre_s3_ans" data-parsley-multiple="strategies" data-disp="pre_s3_disp" />
                                     {self.pre_s3_text}
                                 </label>
                             </div>
                                 <div class="field">
                                     <label class="field-label" for="checkbox-strat4">
-                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat4" name="pre_s4_ans" data-parsley-multiple="strategies" data-disp="pre_s4_disp" /> 
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat4" name="pre_s4_ans" data-parsley-multiple="strategies" data-disp="pre_s4_disp" />
                                     {self.pre_s4_text}
                                     </label>
                                 </div>
                                 <div class="field">
                                     <label class="field-label" for="checkbox-strat5">
-                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat5" name="pre_s5_ans" data-parsley-multiple="strategies" data-disp="pre_s5_disp" /> 
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat5" name="pre_s5_ans" data-parsley-multiple="strategies" data-disp="pre_s5_disp" />
                                             {self.pre_s5_text}
                                     </label>
                                 </div>
                                 <div class="field">
                                     <label class="field-label" for="checkbox-strat6">
-                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat6" name="pre_s6_ans" data-parsley-multiple="strategies" data-disp="pre_s6_disp" /> 
+                                        <input class="field-input input-checkbox" type="checkbox" id="checkbox-strat6" name="pre_s6_ans" data-parsley-multiple="strategies" data-disp="pre_s6_disp" />
                                             {self.pre_s6_text}
                                     </label>
                             </div>
@@ -154,140 +115,22 @@
                                 Submit
                             </span>
                         </button>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <div class="is-hidden alert alert-success alert-slim" id="pre-submit-success" role="alert" aria-labelledby="pre-alert-message-success" tabindex="-1">
-                            <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
-                            <div class="alert-message">
-                                <p class="copy" id="pre-alert-message-success">
-=======
                         <div class="is-hidden alert alert-success alert-slim" id="{self.uniq}-pre-submit-success" role="alert" aria-labelledby="{self.uniq}-pre-alert-message-success" tabindex="-1">
                             <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
                             <div class="alert-message">
                                 <p class="copy" id="{self.uniq}-pre-alert-message-success">
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                                     Your changes have been saved.
                                 </p>
                             </div>
                         </div>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                        <div class="is-hidden alert alert-error alert-slim" id="pre-submit-error" role="alert" aria-labelledby="pre-alert-message-error" tabindex="-1">
-                            <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
-                            <div class="alert-message">
-                                <p class="copy" id="pre-alert-message-error">
-=======
                         <div class="is-hidden alert alert-error alert-slim" id="{self.uniq}-pre-submit-error" role="alert" aria-labelledby="{self.uniq}-pre-alert-message-error" tabindex="-1">
                             <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
                             <div class="alert-message">
                                 <p class="copy" id="{self.uniq}-pre-alert-message-error">
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                                     Error: unable to submit form.
                                 </p>
                             </div>
                         </div>
-<<<<<<< HEAD:reflection/static/html/reflection.html
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="card is-hidden" id="prompt-post">
-        <h3 class="hd-3">
-            Evaluation Phase
-        </h3>
-        <div id="field-eval-profile" data-disp="learner_profile_disp">
-            <legend class="hd-4">Learner Profile</legend>
-            <figure class="gauge-cont" id="kma" data-percentage={self.kma}>
-                <div class="gauge">
-                    <div class="inner paleyellow"></div>
-                    <div class="bg left-threeeighths palered"></div>
-                    <div class="bg right-quarter palegreen"></div>
-                    <div class="spinner kma"></div>
-                </div>
-                <div class="pointer"></div>
-                <div class="pointer-knob"></div>
-                <span class="label-left">0%</span>
-                <span class="label-right">100%</span>
-                <figcaption>Accuracy</figcaption>
-            </figure>
-            <figure class="gauge-cont" id="kmb" data-percentage={self.kmb}>
-                <div class="gauge">
-                    <div class="inner palegreen"></div>
-                    <div class="bg left-third palered"></div>
-                    <div class="bg right-third palered"></div>
-                    <div class="spinner kmb"></div>
-                </div>
-                <div class="pointer"></div>
-                <div class="pointer-knob"></div>
-                <span class="label-left">Pessimistic</span>
-                <span class="label-right">Optimistic</span>
-                <figcaption>Bias</figcaption>
-            </figure>
-        </div>
-        <form class="form" id="form-prompt-post">
-            <div class="form">
-                <div class="form-group" id="eval-eval-section">
-                    <legend class="hd-4">
-                        Evaluation
-                    </legend>
-                    <div class="field" id="field-eval-q1" data-disp="post_q1_disp">
-                        <label class="field-label" for="textarea-eval-q1">
-                            Did my particular course of thinking produce more or less than I had expected?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q1" name="post_q1_ans" data-parsley-required="true">{self.post_q1_ans}</textarea>
-                    </div>
-                    <div class="field" id="field-eval-q2" data-disp="post_q2_disp">
-                        <label class="field-label" for="textarea-eval-q2">
-                            What could I have done differently?
-                        </label>
-                        <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q2" name="post_q2_ans" data-parsley-required="true">{self.post_q2_ans}</textarea>
-                    </div>
-                    </div>
-                    <div class="form-group" id="eval-assessment-section">
-                        <legend class="hd-4">
-                            Self-Assessment
-                        </legend>
-                        <div class="field" id="field-eval-q3" data-disp="post_q3_disp">
-                            <label class="field-label" for="textarea-eval-q3">
-                                How might I apply this line of thinking to other problems?
-                            </label>
-                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q3" name="post_q3_ans" data-parsley-required="true">{self.post_q3_ans}</textarea>
-                        </div>
-                        <div class="field" id="field-eval-q4" data-disp="post_q4_disp">
-                            <label class="field-label" for="textarea-eval-q4">
-                                Was this a good strategy to solve this problem?
-                            </label>
-                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q4" name="post_q4_ans" data-parsley-required="true">{self.post_q4_ans}</textarea>
-                        </div>
-                        <div class="field" id="field-eval-q5" data-disp="post_q5_disp">
-                            <label class="field-label" for="textarea-eval-q5">
-                                Would another strategy have been better suited to this problem?
-                            </label>
-                            <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="textarea-eval-q5" name="post_q5_ans" data-parsley-required="true">{self.post_q5_ans}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-actions submit-attempt-container">
-                        <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True" aria-describedby="submission_feedback_eval">
-                            <span class="submit-label" aria-hidden="true">
-                                Submit
-                            </span>
-                        </button>
-                    <div class="is-hidden alert alert-success alert-slim" id="post-submit-success" role="alert" aria-labelledby="post-alert-message-success" tabindex="-1">
-                        <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
-                        <div class="alert-message">
-                            <p class="copy" id="post-alert-message-success">
-                                Your changes have been saved.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="is-hidden alert alert-error alert-slim" id="post-submit-error" role="alert" aria-labelledby="post-alert-message-error" tabindex="-1">
-                        <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
-                        <div class="alert-message">
-                            <p class="copy" id="post-alert-message-error">
-                                Error: unable to submit form.
-                            </p>
-                        </div>
-=======
->>>>>>> origin/split:reflection/static/html/reflection_prep.html
                     </div>
                 </div>
             </div>
