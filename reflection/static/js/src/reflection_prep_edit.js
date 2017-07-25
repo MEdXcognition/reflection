@@ -1,15 +1,25 @@
 /* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
 function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
+    /* Form Validation Options */
+    var parsley_options = {
+        excluded: "input:disabled,input:hidden,textarea:disabled,textarea:hidden",
+        trigger: "keyup",
+        errorClass: "has-error",
+        successClass: "has-success",
+        errorsWrapper: "<div class='field-message has-error'></div>",
+        errorTemplate: "<span class='field-message-content'></span>"
+    };
+
     /* Helper functions for instance-unique IDs */
     function id(idname) {
         // return a JQuery-friendly id selector
         return String("#" + config.uniq + "-" + idname);
-    };
+    }
     function id_begins_with(element, idstart) {
         // return a JQuery-friend id-starts-with selector like "div[id^='field-prep-']"
         return String(element + "[id^='" + config.uniq + "-" + idstart + "']");
-    };
+    }
 
     /* Strategy Selection: enable/disable entire section */
     $(id("checkbox-prep-strat")).click(function(){
@@ -22,19 +32,8 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
         }
     });
 
-    /* Page Load Actions */
+    /* Page Load Actions -- TODO: edX Studio mysteriously fails to run this */
     $(function ($) {
-        /* Test if FontAwesome is already loaded by edX LMS/Studio */
-        var span = document.createElement('span');
-        span.className = 'fa';
-        span.style.display = 'none';
-        document.body.insertBefore(span, document.body.firstChild);
-        if ((window.getComputedStyle(span, null)
-            .getPropertyValue('font-family')) !== 'FontAwesome') {
-                // ...fallback to loading FA from CDN
-                $.getScript("https://use.fontawesome.com/ce953509bb.js");
-            }
-        document.body.removeChild(span);
 
         /* Set form values from config data */
         $(id_begins_with("input", "checkbox-prep-")).each(function() {
@@ -57,29 +56,19 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
         jQuery.propHooks.disabled = {
             set: function (elem, val) {
                 if (elem.disabled !== val) {
-                    $(elem).trigger('change');
+                    $(elem).trigger("change");
                 }
             }
         };
-
-        /* Form Validation */
-        const parsley_options = {
-            excluded: 'input:disabled,input:hidden,textarea:disabled,textarea:hidden',
-            trigger: 'keyup',
-            errorClass: 'has-error',
-            successClass: 'has-success',
-            errorsWrapper: '<div class="field-message has-error"></div>',
-            errorTemplate: '<span class="field-message-content"></span>'
-        };
-        $(id('form-prompt-pre')).parsley(parsley_options);
     });
 
     /* Submit settings */
-    var handlerUrl = runtime.handlerUrl(element, 'set_student_view');
+    var handlerUrl = runtime.handlerUrl(element, "set_student_view");
     $(id("form-prompt-pre")).submit(function(e) {
         e.preventDefault();
 
         /* Confirm form validation */
+        $(id("form-prompt-pre")).parsley(parsley_options).validate();
         if ( $(this).parsley().isValid() ) {
 
             /* Set strategy text to default values so there would be values for
@@ -90,11 +79,11 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             });
             /* Get values from form */
             var serializedObj = $(this).serializeArray()
-                    .reduce(function(a, x) {
-                        a[x.name] = x.value;
-                        return a;
-                    },
-                    {}
+                .reduce(function(a, x) {
+                    a[x.name] = x.value;
+                    return a;
+                },
+                {}
                 );
             /* Get checkbox states */
             var checkbox_val = {};
@@ -121,6 +110,6 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             .fail(function() {
                 $(id("pre-submit-error")).fadeIn().delay(5000).fadeOut();
             });
-        };
+        }
     });
 }

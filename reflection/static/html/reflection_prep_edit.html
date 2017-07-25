@@ -1,5 +1,19 @@
 <div class="reflection_block">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"></script>
+    <script type="text/javascript">
+        /* Test if FontAwesome is already loaded by edX LMS/Studio */
+        var span = document.createElement("span");
+        span.className = "fa";
+        span.style.display = "none";
+        document.body.insertBefore(span, document.body.firstChild);
+        if ((window.getComputedStyle(span, null)
+            .getPropertyValue("font-family")) !== "FontAwesome") {{
+                // ...fallback to loading FA from CDN
+                $.getScript("https://use.fontawesome.com/ce953509bb.js");
+            }}
+        document.body.removeChild(span);
+    </script>
+
     <h2 class="hd hd-2 problem-header">
         Reflection Assistant
     </h2>
