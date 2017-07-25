@@ -244,6 +244,8 @@ class ReflectionAssistantPrepXBlock(XBlock):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
+            "static/js/src/parsley-2.7.2-min.js"))
+        frag.add_javascript(self.resource_string(
             "static/js/src/reflection_prep.js"))
         frag.initialize_js('ReflectionAssistantPrepXBlock', self.get_config())
         return frag
@@ -261,6 +263,8 @@ class ReflectionAssistantPrepXBlock(XBlock):
         html = self.resource_string("static/html/reflection_prep_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
+        frag.add_javascript(self.resource_string(
+            "static/js/src/parsley-2.7.2-min.js"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection_prep_edit.js"))
         frag.initialize_js('ReflectionAssistantPrepXBlock', self.get_config())

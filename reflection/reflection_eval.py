@@ -233,6 +233,8 @@ class ReflectionAssistantEvalXBlock(XBlock):
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
+            "static/js/src/parsley-2.7.2-min.js"))
+        frag.add_javascript(self.resource_string(
             "static/js/src/reflection_eval.js"))
         frag.initialize_js('ReflectionAssistantEvalXBlock', self.get_config())
         return frag
@@ -250,6 +252,8 @@ class ReflectionAssistantEvalXBlock(XBlock):
         html = self.resource_string("static/html/reflection_eval_edit.html")
         frag = Fragment(html.format(self=self))
         frag.add_css(self.resource_string("static/css/reflection.css"))
+        # frag.add_javascript(self.resource_string(
+        #     "static/js/src/parsley-2.7.2-min.js"))
         frag.add_javascript(self.resource_string(
             "static/js/src/reflection_eval_edit.js"))
         frag.initialize_js('ReflectionAssistantEvalXBlock', self.get_config())
