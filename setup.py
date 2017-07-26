@@ -37,5 +37,5 @@ setup(
             'reflection_eval = reflection:ReflectionAssistantEvalXBlock',
         ]
     },
-    package_data=package_data("reflection", ["static", "public"]),
+    package_data=package_data("reflection", ["static", "templates"]),
 )

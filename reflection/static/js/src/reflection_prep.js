@@ -55,7 +55,6 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             })
             .done(function() {
                 $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
-
             })
             .fail(function() {
                 $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
