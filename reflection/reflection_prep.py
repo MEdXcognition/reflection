@@ -7,6 +7,7 @@ from xblock.core import XBlock
 from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
 
+from .utils import render_template
 
 class ReflectionAssistantPrepXBlock(XBlock):
     """
@@ -240,8 +241,14 @@ class ReflectionAssistantPrepXBlock(XBlock):
         The primary view of the ReflectionAssistantXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/reflection_prep.html")
-        frag = Fragment(html.format(self=self))
+        #html = self.resource_string("static/html/reflection_prep.html")
+        #frag = Fragment(html.format(self=self))
+
+        frag = Fragment()
+        frag.add_content(
+            render_template("/templates/html/reflection_prep.html", {"self": self,})
+        )
+
         frag.add_css(self.resource_string("static/css/reflection.css"))
         frag.add_javascript(self.resource_string(
             "static/js/src/parsley-2.7.2-min.js"))
