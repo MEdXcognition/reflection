@@ -1,0 +1,117 @@
+<div class="reflection_block">
+    <h3 class="hd-3">
+        Evaluation Phase
+    </h3>
+    <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
+        <div class="alert-message">
+            <p class="copy">
+                <span class="icon fa fa-info" aria-hidden="true"></span>
+                Check which prompt questions you'd like the students to answer.
+            </p>
+        </div>
+    </div>
+    <form class="form form-prompt-post">
+        <div class="form">
+            <div class="learner-profile">
+                <h4 class="hd-4">
+                    <input class="field-input input-checkbox" type="checkbox" id="learner_profile_disp" name="learner_profile_disp" {% if self.learner_profile_disp %} checked="" {% endif %} />
+                    Learner Profile
+                </h4>
+                <figure class="gauge-cont kma" data-percentage="0">
+                    <div class="gauge">
+                        <div class="inner paleyellow"></div>
+                        <div class="bg left-threeeighths palered"></div>
+                        <div class="bg right-quarter palegreen"></div>
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="pointer"></div>
+                    <div class="pointer-knob"></div>
+                    <span class="label-left">0%</span>
+                    <span class="label-right">100%</span>
+                    <figcaption>Accuracy</figcaption>
+                </figure>
+                <figure class="gauge-cont kmb" data-percentage="0">
+                    <div class="gauge">
+                        <div class="inner palegreen"></div>
+                        <div class="bg left-third palered"></div>
+                        <div class="bg right-third palered"></div>
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="pointer"></div>
+                    <div class="pointer-knob"></div>
+                    <span class="label-left">Pessimistic</span>
+                    <span class="label-right">Optimistic</span>
+                    <figcaption>Bias</figcaption>
+                </figure>
+            </div>
+            <div class="form-group">
+                <h4 class="hd-4">
+                    Evaluation
+                </h4>
+                <div class="field">
+                    <label class="field-label" for="post_q1_disp">
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q1_disp" name="post_q1_disp" {% if self.post_q1_disp %} checked="" {% endif %} />
+                        Did my particular course of thinking produce more or less than I had expected?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="post_q2_disp">
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q2_disp" name="post_q2_disp" {% if self.post_q2_disp %} checked="" {% endif %} />
+                        What could I have done differently?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                </div>
+            </div>
+            <div class="form-group" id="{self.uniq}-eval-assessment-section">
+                <h4 class="hd-4">
+                    Self-Assessment
+                </h4>
+                <div class="field">
+                    <label class="field-label" for="post_q3_disp">
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q3_disp" name="post_q3_disp" {% if self.post_q3_disp %} checked="" {% endif %} />
+                        How might I apply this line of thinking to other problems?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="post_q4_disp">
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q4_disp" name="post_q4_disp" {% if self.post_q4_disp %} checked="" {% endif %} />
+                        Was this a good strategy to solve this problem?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="post_q5_disp">
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q5_disp" name="post_q5_disp" {% if self.post_q5_disp %} checked="" {% endif %} />
+                        Would another strategy have been better suited to this problem?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
+                </div>
+            </div>
+            <div class="form-actions submit-attempt-container">
+                <button class="submit btn-brand btn-base" type="submit">
+                    <span class="submit-label" aria-hidden="true">
+                        Submit
+                    </span>
+                </button>
+                <div class="is-hidden alert alert-success alert-slim submit-success" role="alert" aria-labelledby="alert-message-success" tabindex="-1">
+                    <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
+                    <div class="alert-message">
+                        <p class="copy" id="alert-message-success">
+                            Your changes have been saved.
+                        </p>
+                    </div>
+                </div>
+                <div class="is-hidden alert alert-error alert-slim submit-error" role="alert" aria-labelledby="alert-message-error" tabindex="-1">
+                    <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
+                    <div class="alert-message">
+                        <p class="copy" id="alert-message-error">
+                            Error: unable to submit form.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

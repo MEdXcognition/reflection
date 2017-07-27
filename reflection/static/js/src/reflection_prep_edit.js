@@ -1,4 +1,5 @@
-/* Javascript for ReflectionAssistantXBlock - EDIT VIEW */
+/* Javascript for Reflection Assistant: Preparation XBlock - Studio View */
+
 function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Form Validation Options */
