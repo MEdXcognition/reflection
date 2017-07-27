@@ -7,6 +7,8 @@ from xblock.core import XBlock
 from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
 
+from .utils import render_template
+
 
 class ReflectionAssistantEvalXBlock(XBlock):
     """
@@ -229,13 +231,19 @@ class ReflectionAssistantEvalXBlock(XBlock):
         The primary view of the ReflectionAssistantXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/reflection_eval.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/reflection.css"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/parsley-2.7.2-min.js"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/reflection_eval.js"))
+        frag = Fragment()
+        frag.add_content(
+            render_template("/templates/html/reflection_eval.html", {"self": self,})
+        )
+        frag.add_css(
+            self.resource_string("static/css/reflection.css")
+        )
+        frag.add_javascript(
+            self.resource_string("static/js/src/parsley-2.7.2-min.js")
+        )
+        frag.add_javascript(
+            self.resource_string("static/js/src/reflection_eval.js")
+        )
         frag.initialize_js('ReflectionAssistantEvalXBlock', self.get_config())
         return frag
 
