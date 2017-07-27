@@ -240,9 +240,6 @@ class ReflectionAssistantPrepXBlock(XBlock):
             self.resource_string("static/css/reflection.css")
         )
         frag.add_javascript(
-            self.resource_string("static/js/src/parsley-2.7.2-min.js")
-        )
-        frag.add_javascript(
             self.resource_string("static/js/src/reflection_prep.js")
         )
         frag.initialize_js('ReflectionAssistantPrepXBlock', self.get_config())
