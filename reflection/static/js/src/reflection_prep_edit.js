@@ -99,8 +99,8 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
         });
     });
 
-    /* Form Validation: require at least one Stragegy checkbox */
-    var $cbx_group = $form_pre.find("input:checkbox[name^='pre_s1']");
+    /* Form Validation: require at least one Strategy checkbox */
+    var $cbx_group = $form_pre.find("input:checkbox[name^='pre_s']");
     $cbx_group.on("click", function() {
         if ($cbx_group.is(":checked")) {
             // checkboxes become unrequired as long as one is checked
