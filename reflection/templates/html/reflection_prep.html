@@ -1,0 +1,164 @@
+<div class="reflection_block">
+    <h3 class="hd-3">
+        Preparation Phase
+    </h3>
+    <form class="form form-prompt-pre">
+        <div class="form">
+            {% if self.pre_q1_disp or self.pre_q2_disp or self.pre_q3_disp or self.pre_q4_disp or self.pre_q5_disp %}
+            <div class="form-group">
+                <h4 class="hd-4">
+                    Knowledge Assessment
+                </h4>
+                {% if self.pre_q1_disp %}
+                <div class="field" data-disp="pre_q1_disp">
+                    <label class="field-label" for="pre_q1_ans">
+                        What prior knowledge can help me with this particular task?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q1_ans" name="pre_q1_ans" required>{{self.pre_q1_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.pre_q2_disp %}
+                <div class="field" data-disp="pre_q2_disp">
+                    <label class="field-label" for="pre_q2_ans">
+                        What do I need to know before I can successfully deal with this task?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q2_ans" name="pre_q2_ans" required>{{self.pre_q2_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.pre_q3_disp %}
+                <div class="field" data-disp="pre_q3_disp">
+                    <label class="field-label" for="pre_q3_ans">
+                        What should I do and in which order?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q3_ans" name="pre_q3_ans" required>{{self.pre_q3_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.pre_q4_disp %}
+                <div class="field" data-disp="pre_q4_disp">
+                    <label class="field-label" for="pre_q4_ans">
+                        How much time do I have to complete the task?
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q4_ans" name="pre_q4_ans" required>{{self.pre_q4_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.pre_q5_disp %}
+                <div class="field" data-disp="pre_q5_disp">
+                    <label class="field-label" for="pre_q5_ans">
+                        My confidence in my ability to solve this problem is:
+                    </label>
+                    <ul class="likert" id="pre_q5_ans" name="pre_q5_ans">
+                        <li>
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="1" required {% if self.pre_q5_ans == 1 %} checked="" {% endif %} >
+                            <label>
+                                Cannot solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="2" {% if self.pre_q5_ans == 2 %} checked="" {% endif %} >
+                            <label>
+                                Can partially solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="3" {% if self.pre_q5_ans == 3 %} checked="" {% endif %} >
+                            <label>
+                                Can fully solve the problem
+                            </label>
+                        </li>
+                    </ul>
+                    <div id="likert-prep-q5-error"></div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if self.pre_q6_disp %}
+            <div class="form-group">
+                <h4 class="hd-4">
+                    Strategy Selection
+                </h4>
+                <div class="field">
+                    <label class="field-label" for="select-prep-strat">
+                        Which strategies could I use to approach this problem?
+                    </label>
+                    <div class="strategies" id="select-prep-strat">
+                        {% if self.pre_s1_disp %}
+                        <div class="field">
+                            <label class="field-label" for="pre_s1_ans">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s1_ans" name="pre_s1_ans" data-disp="pre_s1_disp" {% if self.pre_s1_ans %} checked="" {% endif %} />
+                                {{self.pre_s1_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if self.pre_s2_disp %}
+                        <div class="field">
+                            <label class="field-label" for="pre_s2_ans">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s2_ans" name="pre_s2_ans" data-disp="pre_s2_disp" {% if self.pre_s2_ans %} checked="" {% endif %} />
+                                {{self.pre_s2_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if self.pre_s3_disp %}
+                        <div class="field">
+                            <label class="field-label" for="pre_s3_ans">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s3_ans" name="pre_s3_ans" data-disp="pre_s3_disp" {% if self.pre_s3_ans %} checked="" {% endif %} />
+                                {{self.pre_s3_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if self.pre_s4_disp %}
+                        <div class="field">
+                            <label class="field-label" for="pre_s4_ans">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s4_ans" name="pre_s4_ans" data-disp="pre_s4_disp" {% if self.pre_s4_ans %} checked="" {% endif %} />
+                                {{self.pre_s4_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if self.pre_s5_disp %}
+                        <div class="field">
+                            <label class="field-label" id="{{self.uniq}}-checkbox-strat5-label" for="pre_s5_ans">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s5_ans" name="pre_s5_ans" data-disp="pre_s5_disp" {% if self.pre_s5_ans %} checked="" {% endif %} />
+                                {{self.pre_s5_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        {% if self.pre_s6_disp %}
+                        <div class="field">
+                            <label class="field-label" id="pre_s6_ans" for="{{self.uniq}}-checkbox-strat6">
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s6_ans" name="pre_s6_ans" data-disp="pre_s6_disp" {% if self.pre_s6_ans %} checked="" {% endif %} />
+                                {{self.pre_s6_text}}
+                            </label>
+                        </div>
+                        {% endif %}
+                        <div id="select-prep-strat-error"></div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="form-group">
+                <div class="form-actions submit-attempt-container">
+                    <button class="submit btn-brand btn-base" type="submit" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True">
+                        <span class="submit-label" aria-hidden="true">
+                            Submit
+                        </span>
+                    </button>
+                    <div class="is-hidden alert alert-success alert-slim submit-success" role="alert" aria-labelledby="alert-message-success" tabindex="-1">
+                        <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
+                        <div class="alert-message">
+                            <p class="copy" id="alert-message-success">
+                                Your changes have been saved.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="is-hidden alert alert-error alert-slim submit-error" role="alert" aria-labelledby="alert-message-error" tabindex="-1">
+                        <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
+                        <div class="alert-message">
+                            <p class="copy" id="alert-message-error">
+                                Error: unable to submit form.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

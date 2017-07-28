@@ -1,11 +1,12 @@
 """Reflection Assistant: Eval XBlock"""
 
-import hashlib
 import pkg_resources
 
 from xblock.core import XBlock
 from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
+
+from .utils import render_template
 
 
 class ReflectionAssistantEvalXBlock(XBlock):
@@ -22,13 +23,6 @@ class ReflectionAssistantEvalXBlock(XBlock):
         default="Reflection Assistant: Evaluation"
         , scope=Scope.settings
         , help="Display Name"
-    )
-
-    # Unique Instance ID
-    uniq = String(
-       default=""
-       , scope=Scope.settings
-       , help="Unique Instance ID"
     )
 
     # Display questions for Evaluation phase
@@ -206,8 +200,7 @@ class ReflectionAssistantEvalXBlock(XBlock):
         Get the configuration data/fields the views will need.
         """
         return {
-            "uniq" : self.uniq
-            , "learner_profile_disp": self.learner_profile_disp
+            "learner_profile_disp": self.learner_profile_disp
             , "post_q1_disp": self.post_q1_disp
             , "post_q2_disp": self.post_q2_disp
             , "post_q3_disp": self.post_q3_disp
@@ -229,11 +222,16 @@ class ReflectionAssistantEvalXBlock(XBlock):
         The primary view of the ReflectionAssistantXBlock, shown to students
         when viewing courses.
         """
-        html = self.resource_string("static/html/reflection_eval.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/reflection.css"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/reflection_eval.js"))
+        frag = Fragment()
+        frag.add_content(
+            render_template("/templates/html/reflection_eval.html", {"self": self,})
+        )
+        frag.add_css(
+            self.resource_string("static/css/reflection.css")
+        )
+        frag.add_javascript(
+            self.resource_string("static/js/src/reflection_eval.js")
+        )
         frag.initialize_js('ReflectionAssistantEvalXBlock', self.get_config())
         return frag
 
@@ -243,15 +241,16 @@ class ReflectionAssistantEvalXBlock(XBlock):
         The editor view of the ReflectionAssistantXBlock, shown to course
         authors when editing courses in edX Studio.
         """
-
-        # store the unique instance id
-        self.uniq = hashlib.md5(unicode(self.scope_ids.usage_id)).hexdigest()
-
-        html = self.resource_string("static/html/reflection_eval_edit.html")
-        frag = Fragment(html.format(self=self))
-        frag.add_css(self.resource_string("static/css/reflection.css"))
-        frag.add_javascript(self.resource_string(
-            "static/js/src/reflection_eval_edit.js"))
+        frag = Fragment()
+        frag.add_content(
+            render_template("/templates/html/reflection_eval_edit.html", {"self": self,})
+        )
+        frag.add_css(
+            self.resource_string("static/css/reflection.css")
+        )
+        frag.add_javascript(
+            self.resource_string("static/js/src/reflection_eval_edit.js")
+        )
         frag.initialize_js('ReflectionAssistantEvalXBlock', self.get_config())
         return frag
 
