@@ -1,13 +1,16 @@
-"""Reflection Assistant: Prep XBlock"""
+# -*- coding: utf-8 -*-
+"""Reflection Assistant: Preparation XBlock"""
 
 import pkg_resources
 
 from xblock.core import XBlock
 from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
+from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 from .utils import render_template
 
+@XBlock.needs('i18n')
 class ReflectionAssistantPrepXBlock(XBlock):
     """
     Prompts students before a problem-solving activity (Preparation Phase)
@@ -332,6 +335,17 @@ class ReflectionAssistantPrepXBlock(XBlock):
         editor.
         """
         return self._non_editable_metadata_fields
+
+    # Property required for edX LMS:
+    _icon_class = "problem"
+    @property
+    def icon_class(self):
+        """
+        Controls the icon that displays to learners in the unit navigation bar
+        on the LMS Course page when the XBlock is in that unit. Must be one of
+        "problem", "video", or "other".
+        """
+        return self._icon_class
 
     # Scenarios you'd like to see in the workbench while developing your XBlock
     @staticmethod

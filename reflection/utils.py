@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-#
 
 import pkg_resources
 
 from django.template import Context, Template
 
+
+# Django Templates support
 
 def load_resource(resource_path):
     """
