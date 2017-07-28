@@ -16,20 +16,21 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, "save_student_answer");
-    $form = $(element).find(".form-prompt-pre");
+    $form_pre = $(element).find(".form-prompt-pre");
 
-    $form.bind("submit", function(e) {
+    $form_pre.bind("submit", function(e) {
         e.preventDefault();
-        var serializedObj = $form.serializeArray()
+        var serializedObj = $form_pre.serializeArray()
                 .reduce(function(a, x) {
                     a[x.name] = x.value;
                     return a;
                 },
                 {}
             );
+
         var checkbox_val = {};
 
-        $form.find("input:checkbox").each(function() {
+        $form_pre.find("input:checkbox").each(function() {
             checkbox_val[this.name] = this.checked;
         });
         var submit_pre_data = JSON.stringify(jQuery.extend(serializedObj,
@@ -40,15 +41,15 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             data: submit_pre_data
         })
         .done(function() {
-            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+            $form_pre.find(".submit-success").fadeIn().delay(5000).fadeOut();
         })
         .fail(function() {
-            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+            $form_pre.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
 
     /* Tweak Constraint Validation Behavior */
-    $form.find("textarea,input").on("blur", function() {
+    $form_pre.find("textarea,input").on("blur", function() {
         $(this).addClass("interacted");
     });
 }

@@ -16,9 +16,9 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, "save_student_answer");
-    $form = $(element).find(".form-prompt-post");
+    $form_post = $(element).find(".form-prompt-post");
 
-    $form.bind("submit", function(e) {
+    $form_post.bind("submit", function(e) {
         e.preventDefault();
         var submit_post_data = JSON.stringify($(this).serializeArray()
                 .reduce(function(a, x) {
@@ -34,15 +34,15 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
             data: submit_post_data
         })
         .done(function() {
-            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+            $form_post.find(".submit-success").fadeIn().delay(5000).fadeOut();
         })
         .fail(function() {
-            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+            $form_post.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
 
     /* Tweak Constraint Validation Behavior */
-    $form.find("textarea,input").on("blur", function() {
+    $form_post.find("textarea,input").on("blur", function() {
         $(this).addClass("interacted");
     });
 
