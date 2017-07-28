@@ -16,7 +16,7 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, "save_student_answer");
-    $form_pre = $(element).find(".form-prompt-pre");
+    var $form_pre = $(element).find(".form-prompt-pre");
 
     $form_pre.bind("submit", function(e) {
         e.preventDefault();

@@ -16,12 +16,12 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
 
     /* Submit settings */
     var handlerUrl = runtime.handlerUrl(element, "set_student_view");
-    $form = $(element).find(".form-prompt-post");
+    var $form_post = $(element).find(".form-prompt-post");
 
-    $form.submit(function(e) {
+    $form_post.submit(function(e) {
         e.preventDefault();
         var submit_post_data = {};
-        $form.find("input:checkbox").each(function(){
+        $form_post.find("input:checkbox").each(function(){
             submit_post_data[this.name] = this.checked;
         });
         submit_post_data = JSON.stringify(submit_post_data);
@@ -31,10 +31,10 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
             data: submit_post_data
         })
         .done(function() {
-            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+            $form_post.find(".submit-success").fadeIn().delay(5000).fadeOut();
         })
         .fail(function() {
-            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+            $form_post.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
 
