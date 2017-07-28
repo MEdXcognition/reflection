@@ -2,16 +2,6 @@
 
 function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
-    /* Form Validation Options */
-    const parsley_options = {
-        excluded: "input:disabled,input:hidden,textarea:disabled,textarea:hidden",
-        trigger: "keyup",
-        errorClass: "has-error",
-        successClass: "has-success",
-        errorsWrapper: "<div class='field-message has-error'></div>",
-        errorTemplate: "<span class='field-message-content'></span>"
-    };
-
     /* Test if FontAwesome is already loaded by edX LMS/Studio */
     var span = document.createElement("span");
     span.className = "fa";
@@ -68,49 +58,44 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
     $form.bind("submit", function(e) {
         e.preventDefault();
 
-        /* Confirm form validation */
-        $form.parsley(parsley_options).validate();
-        if ( $(this).parsley().isValid() ) {
-
-            /* Set strategy text to default values so there would be values for
-            disabled fields */
-            var strat_text_val = {};
-            $form.find("input:text").each(function() {
-                strat_text_val[this.name] = config[this.name];
-            });
-            /* Get values from form */
-            var serializedObj = $(this).serializeArray()
-                .reduce(function(a, x) {
-                    a[x.name] = x.value;
-                    return a;
-                },
-                {}
-                );
-            /* Get checkbox states */
-            var checkbox_val = {};
-            $form.find("input:checkbox").each(function() {
-                checkbox_val[this.name] = this.checked;
-            });
-            /* Get union of strat_text_val, serializedObj and checkbox_val */
-            var submit_pre_data = JSON.stringify(
-                jQuery.extend(true,
-                    strat_text_val,
-                    serializedObj,
-                    checkbox_val
-                )
+        /* Set strategy text to default values so there would be values for
+        disabled fields */
+        var strat_text_val = {};
+        $form.find("input:text").each(function() {
+            strat_text_val[this.name] = config[this.name];
+        });
+        /* Get values from form */
+        var serializedObj = $(this).serializeArray()
+            .reduce(function(a, x) {
+                a[x.name] = x.value;
+                return a;
+            },
+            {}
             );
-            /* AJAX to Python backend */
-            $.ajax({
-                type: "POST",
-                url: handlerUrl,
-                data: submit_pre_data
-            })
-            .done(function() {
-                $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
-            })
-            .fail(function() {
-                $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
-            });
-        }
+        /* Get checkbox states */
+        var checkbox_val = {};
+        $form.find("input:checkbox").each(function() {
+            checkbox_val[this.name] = this.checked;
+        });
+        /* Get union of strat_text_val, serializedObj and checkbox_val */
+        var submit_pre_data = JSON.stringify(
+            jQuery.extend(true,
+                strat_text_val,
+                serializedObj,
+                checkbox_val
+            )
+        );
+        /* AJAX to Python backend */
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: submit_pre_data
+        })
+        .done(function() {
+            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+        });
     });
 }

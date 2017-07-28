@@ -14,7 +14,7 @@
                     <label class="field-label" for="pre_q1_ans">
                         What prior knowledge can help me with this particular task?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q1_ans" name="pre_q1_ans" data-parsley-required="true">{{self.pre_q1_ans}}</textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q1_ans" name="pre_q1_ans" required>{{self.pre_q1_ans}}</textarea>
                 </div>
                 {% endif %}
                 {% if self.pre_q2_disp %}
@@ -22,7 +22,7 @@
                     <label class="field-label" for="pre_q2_ans">
                         What do I need to know before I can successfully deal with this task?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q2_ans" name="pre_q2_ans" data-parsley-required="true">{{self.pre_q2_ans}}</textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q2_ans" name="pre_q2_ans" required>{{self.pre_q2_ans}}</textarea>
                 </div>
                 {% endif %}
                 {% if self.pre_q3_disp %}
@@ -30,7 +30,7 @@
                     <label class="field-label" for="pre_q3_ans">
                         What should I do and in which order?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q3_ans" name="pre_q3_ans" data-parsley-required="true">{{self.pre_q3_ans}}</textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q3_ans" name="pre_q3_ans" required>{{self.pre_q3_ans}}</textarea>
                 </div>
                 {% endif %}
                 {% if self.pre_q4_disp %}
@@ -38,7 +38,7 @@
                     <label class="field-label" for="pre_q4_ans">
                         How much time do I have to complete the task?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q4_ans" name="pre_q4_ans" data-parsley-required="true">{{self.pre_q4_ans}}</textarea>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="pre_q4_ans" name="pre_q4_ans" required>{{self.pre_q4_ans}}</textarea>
                 </div>
                 {% endif %}
                 {% if self.pre_q5_disp %}
@@ -48,19 +48,19 @@
                     </label>
                     <ul class="likert" id="pre_q5_ans" name="pre_q5_ans">
                         <li>
-                            <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-container="#likert-prep-q5-error" data-parsley-error-message="You must select a choice." data-parsley-class-handler="#pre_q5_ans" value="1" data-parsley-required="true" {% if self.pre_q5_ans == 1 %} checked="" {% endif %} >
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="1" required {% if self.pre_q5_ans == 1 %} checked="" {% endif %} >
                             <label>
                                 Cannot solve the problem
                             </label>
                         </li>
                         <li>
-                            <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-messages-disabled="" value="2" {% if self.pre_q5_ans == 2 %} checked="" {% endif %} >
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="2" {% if self.pre_q5_ans == 2 %} checked="" {% endif %} >
                             <label>
                                 Can partially solve the problem
                             </label>
                         </li>
                         <li>
-                            <input class="field-input" type="radio" name="pre_q5_ans" data-parsley-errors-messages-disabled="" value="3" {% if self.pre_q5_ans == 3 %} checked="" {% endif %} >
+                            <input class="field-input" type="radio" name="pre_q5_ans" value="3" {% if self.pre_q5_ans == 3 %} checked="" {% endif %} >
                             <label>
                                 Can fully solve the problem
                             </label>
@@ -84,7 +84,7 @@
                         {% if self.pre_s1_disp %}
                         <div class="field">
                             <label class="field-label" for="pre_s1_ans">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s1_ans" name="pre_s1_ans" data-parsley-multiple="strategies" data-parsley-mincheck="1" data-parsley-required="" data-parsley-errors-container="#select-prep-strat-error" data-parsley-error-message="You must select at least one strategy." data-parsley-class-handler="#select-prep-strat" data-disp="pre_s1_disp" {% if self.pre_s1_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s1_ans" name="pre_s1_ans" data-disp="pre_s1_disp" {% if self.pre_s1_ans %} checked="" {% endif %} />
                                 {{self.pre_s1_text}}
                             </label>
                         </div>
@@ -92,7 +92,7 @@
                         {% if self.pre_s2_disp %}
                         <div class="field">
                             <label class="field-label" for="pre_s2_ans">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s2_ans" name="pre_s2_ans" data-parsley-multiple="strategies" data-unchecked-value="false" data-disp="pre_s2_disp" {% if self.pre_s2_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s2_ans" name="pre_s2_ans" data-disp="pre_s2_disp" {% if self.pre_s2_ans %} checked="" {% endif %} />
                                 {{self.pre_s2_text}}
                             </label>
                         </div>
@@ -100,7 +100,7 @@
                         {% if self.pre_s3_disp %}
                         <div class="field">
                             <label class="field-label" for="pre_s3_ans">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s3_ans" name="pre_s3_ans" data-parsley-multiple="strategies" data-disp="pre_s3_disp" {% if self.pre_s3_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s3_ans" name="pre_s3_ans" data-disp="pre_s3_disp" {% if self.pre_s3_ans %} checked="" {% endif %} />
                                 {{self.pre_s3_text}}
                             </label>
                         </div>
@@ -108,7 +108,7 @@
                         {% if self.pre_s4_disp %}
                         <div class="field">
                             <label class="field-label" for="pre_s4_ans">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s4_ans" name="pre_s4_ans" data-parsley-multiple="strategies" data-disp="pre_s4_disp" {% if self.pre_s4_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s4_ans" name="pre_s4_ans" data-disp="pre_s4_disp" {% if self.pre_s4_ans %} checked="" {% endif %} />
                                 {{self.pre_s4_text}}
                             </label>
                         </div>
@@ -116,7 +116,7 @@
                         {% if self.pre_s5_disp %}
                         <div class="field">
                             <label class="field-label" id="{{self.uniq}}-checkbox-strat5-label" for="pre_s5_ans">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s5_ans" name="pre_s5_ans" data-parsley-multiple="strategies" data-disp="pre_s5_disp" {% if self.pre_s5_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s5_ans" name="pre_s5_ans" data-disp="pre_s5_disp" {% if self.pre_s5_ans %} checked="" {% endif %} />
                                 {{self.pre_s5_text}}
                             </label>
                         </div>
@@ -124,7 +124,7 @@
                         {% if self.pre_s6_disp %}
                         <div class="field">
                             <label class="field-label" id="pre_s6_ans" for="{{self.uniq}}-checkbox-strat6">
-                                <input class="field-input input-checkbox" type="checkbox" id="pre_s6_ans" name="pre_s6_ans" data-parsley-multiple="strategies" data-disp="pre_s6_disp" {% if self.pre_s6_ans %} checked="" {% endif %} />
+                                <input class="field-input input-checkbox" type="checkbox" id="pre_s6_ans" name="pre_s6_ans" data-disp="pre_s6_disp" {% if self.pre_s6_ans %} checked="" {% endif %} />
                                 {{self.pre_s6_text}}
                             </label>
                         </div>

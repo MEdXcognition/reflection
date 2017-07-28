@@ -2,16 +2,6 @@
 
 function ReflectionAssistantEvalXBlock(runtime, element, config) {
 
-    /* Form Validation Options */
-    const parsley_options = {
-        excluded: "input:disabled,input:hidden,textarea:disabled,textarea:hidden",
-        trigger: "keyup",
-        errorClass: "has-error",
-        successClass: "has-success",
-        errorsWrapper: "<div class='field-message has-error'></div>",
-        errorTemplate: "<span class='field-message-content'></span>"
-    };
-
     /* Test if FontAwesome is already loaded by edX LMS/Studio */
     var span = document.createElement("span");
     span.className = "fa";
@@ -30,30 +20,25 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
 
     $form.bind("submit", function(e) {
         e.preventDefault();
-
-        /* Confirm form validation */
-        $form.parsley(parsley_options).validate();
-        if ($form.parsley().isValid()) {
-            var submit_post_data = JSON.stringify($(this).serializeArray()
-                    .reduce(function(a, x) {
-                        a[x.name] = x.value;
-                        return a;
-                    },
-                    {}
-                )
-            );
-            $.ajax({
-                type: "POST",
-                url: handlerUrl,
-                data: submit_post_data
-            })
-            .done(function() {
-                $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
-            })
-            .fail(function() {
-                $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
-            });
-        }
+        var submit_post_data = JSON.stringify($(this).serializeArray()
+                .reduce(function(a, x) {
+                    a[x.name] = x.value;
+                    return a;
+                },
+                {}
+            )
+        );
+        $.ajax({
+            type: "POST",
+            url: handlerUrl,
+            data: submit_post_data
+        })
+        .done(function() {
+            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+        })
+        .fail(function() {
+            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+        });
     });
 
     /* Guage Display Functions */
