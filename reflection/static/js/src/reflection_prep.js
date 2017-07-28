@@ -46,4 +46,9 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
+
+    /* Tweak Constraint Validation Behavior */
+    $form.find("textarea,input").on("blur", function() {
+        $(this).addClass("interacted");
+    });
 }

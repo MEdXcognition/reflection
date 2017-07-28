@@ -176,7 +176,7 @@
     border-color:#b20610
 }
 .reflection_block .field-input.has-error .icon, .reflection_block .field-select.has-error .icon, .reflection_block .field-textarea.has-error .icon {
-    fill: fill:#b20610;
+    fill: #b20610;
 }
 .reflection_block .field-input.has-success, .reflection_block .field-select.has-success, .reflection_block .field-textarea.has-success {
     border-color: #008100;
@@ -244,6 +244,14 @@
 }
 .reflection_block .input-textarea.textarea-block {
     width: 100%;
+}
+.reflection_block .interacted:invalid, .reflection_block :-moz-ui-invalid {
+    border-color:#b20610;
+    box-shadow: none;
+}
+.reflection_block .interacted:valid, .reflection_block :-moz-ui-valid {
+    border-color: #008100;
+    box-shadow: none;
 }
 .reflection_block .is-hidden {
     display: none;

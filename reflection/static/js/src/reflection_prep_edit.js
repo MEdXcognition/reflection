@@ -98,4 +98,22 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
+
+    /* Form Validation: require at least one Stragegy checkbox */
+    $cbx_group = $form.find("input:checkbox[name^='pre_s1']");
+    $cbx_group.on("click", function() {
+        if ($cbx_group.is(":checked")) {
+            // checkboxes become unrequired as long as one is checked
+            $cbx_group.prop("required", false);
+            $cbx_group.each(function() {
+                this.setCustomValidity("");
+            });
+        } else {
+            // require checkboxes and set custom validation error message
+            $cbx_group.prop("required", true);
+            $cbx_group.each(function() {
+                this.setCustomValidity("Please select at least one checkbox.");
+            });
+        }
+    });
 }

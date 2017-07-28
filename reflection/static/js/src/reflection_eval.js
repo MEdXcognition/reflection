@@ -41,6 +41,11 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
         });
     });
 
+    /* Tweak Constraint Validation Behavior */
+    $form.find("textarea,input").on("blur", function() {
+        $(this).addClass("interacted");
+    });
+
     /* Guage Display Functions */
     function setGauge(gauge) {
         var percentage = $(gauge).data("percentage") / 100;
