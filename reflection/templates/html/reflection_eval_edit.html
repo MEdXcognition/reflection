@@ -5,8 +5,7 @@
     <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
         <div class="alert-message">
             <p class="copy">
-                <span class="icon fa fa-info" aria-hidden="true"></span>
-                Check which prompt questions you'd like the students to answer.
+                <span class="icon fa fa-info" aria-hidden="true"></span> Check which prompt questions you'd like the students to answer.
             </p>
         </div>
     </div>
@@ -17,7 +16,14 @@
                     <input class="field-input input-checkbox" type="checkbox" id="learner_profile_disp" name="learner_profile_disp" {% if self.learner_profile_disp %} checked="" {% endif %} />
                     Learner Profile
                 </h4>
-                <figure class="gauge-cont kma" data-percentage="0">
+                <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
+                    <div class="alert-message">
+                        <p class="copy">
+                            <span class="icon fa fa-info" aria-hidden="true"></span> The Learner Profile will be displayed after the student submits.
+                        </p>
+                    </div>
+                </div>
+                <figure class="gauge-cont kma" data-percentage="55">
                     <div class="gauge">
                         <div class="inner paleyellow"></div>
                         <div class="bg left-threeeighths palered"></div>
@@ -26,11 +32,11 @@
                     </div>
                     <div class="pointer"></div>
                     <div class="pointer-knob"></div>
-                    <span class="label-left">0%</span>
-                    <span class="label-right">100%</span>
+                    <span class="label-left">Low</span>
+                    <span class="label-right">High</span>
                     <figcaption>Accuracy</figcaption>
                 </figure>
-                <figure class="gauge-cont kmb" data-percentage="0">
+                <figure class="gauge-cont kmb" data-percentage="85">
                     <div class="gauge">
                         <div class="inner palegreen"></div>
                         <div class="bg left-third palered"></div>
@@ -43,24 +49,85 @@
                     <span class="label-right">Optimistic</span>
                     <figcaption>Bias</figcaption>
                 </figure>
+                <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
+                    <div class="alert-message">
+                        <p class="copy">
+                            <span class="icon fa fa-info" aria-hidden="true"></span> The following will be hidden after student submits.
+                        </p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="confidence">
+                        During preparation phase, my confidence in my ability to solve this problem was:
+                    </label>
+                    <ul class="likert" id="confidence" name="confidence">
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="1" disabled="" />
+                            <label>
+                                Cannot solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="2" disabled="" />
+                            <label>
+                                Can partially solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="3" disabled="" />
+                            <label>
+                                Can fully solve the problem
+                            </label>
+                        </li>
+                    </ul>
+                    <div id="confidence-error"></div>
+                </div>
+                <br>
+                <br>
+                <div class="field">
+                    <label class="field-label" for="confidence">
+                        My actual performance in this problem is:
+                    </label>
+                    <ul class="likert" id="performance" name="performance">
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="1" disabled="" />
+                            <label>
+                                Cannot solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="2" disabled="" />
+                            <label>
+                                Can partially solve the problem
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="3" disabled="" />
+                            <label>
+                                Can fully solve the problem
+                            </label>
+                        </li>
+                    </ul>
+                    <div id="performance-error"></div>
+                </div>
             </div>
+            <br>
+            <br>
             <div class="form-group">
                 <h4 class="hd-4">
                     Evaluation
                 </h4>
                 <div class="field">
                     <label class="field-label" for="post_q1_disp">
-                        <input class="field-input input-checkbox" type="checkbox" id="post_q1_disp" name="post_q1_disp" {% if self.post_q1_disp %} checked="" {% endif %} />
-                        Did my particular course of thinking produce more or less than I had expected?
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q1_disp" name="post_q1_disp" {% if self.post_q1_disp %} checked="" {% endif %} /> Did my particular course of thinking produce more or less than I had expected?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
                 </div>
                 <div class="field">
                     <label class="field-label" for="post_q2_disp">
-                        <input class="field-input input-checkbox" type="checkbox" id="post_q2_disp" name="post_q2_disp" {% if self.post_q2_disp %} checked="" {% endif %} />
-                        What could I have done differently?
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q2_disp" name="post_q2_disp" {% if self.post_q2_disp %} checked="" {% endif %} /> What could I have done differently?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
                 </div>
             </div>
             <div class="form-group" id="{self.uniq}-eval-assessment-section">
@@ -69,22 +136,19 @@
                 </h4>
                 <div class="field">
                     <label class="field-label" for="post_q3_disp">
-                        <input class="field-input input-checkbox" type="checkbox" id="post_q3_disp" name="post_q3_disp" {% if self.post_q3_disp %} checked="" {% endif %} />
-                        How might I apply this line of thinking to other problems?
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q3_disp" name="post_q3_disp" {% if self.post_q3_disp %} checked="" {% endif %} /> How might I apply this line of thinking to other problems?
                     </label>
-                    <textarea class="field-textarea input-textarea textarea-short textarea-block"disabled=""></textarea>
+                    <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
                 </div>
                 <div class="field">
                     <label class="field-label" for="post_q4_disp">
-                        <input class="field-input input-checkbox" type="checkbox" id="post_q4_disp" name="post_q4_disp" {% if self.post_q4_disp %} checked="" {% endif %} />
-                        Was this a good strategy to solve this problem?
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q4_disp" name="post_q4_disp" {% if self.post_q4_disp %} checked="" {% endif %} /> Was this a good strategy to solve this problem?
                     </label>
                     <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
                 </div>
                 <div class="field">
                     <label class="field-label" for="post_q5_disp">
-                        <input class="field-input input-checkbox" type="checkbox" id="post_q5_disp" name="post_q5_disp" {% if self.post_q5_disp %} checked="" {% endif %} />
-                        Would another strategy have been better suited to this problem?
+                        <input class="field-input input-checkbox" type="checkbox" id="post_q5_disp" name="post_q5_disp" {% if self.post_q5_disp %} checked="" {% endif %} /> Would another strategy have been better suited to this problem?
                     </label>
                     <textarea class="field-textarea input-textarea textarea-short textarea-block" disabled=""></textarea>
                 </div>
@@ -99,7 +163,7 @@
                     <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
                     <div class="alert-message">
                         <p class="copy" id="alert-message-success">
-                            Your changes have been saved.
+                            Your changes have been saved. Refresh to load updates.
                         </p>
                     </div>
                 </div>

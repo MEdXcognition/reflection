@@ -89,40 +89,56 @@ class ReflectionAssistantEvalXBlock(XBlock):
         , scope=Scope.settings
         , help="Display Learner Profile"
     )
-    problem_score = Integer(
+    confidence = Integer(
+        default=None
+        , scope=Scope.user_state
+        , help="Confidence level during preparation phase"
+        , values=[1, 2, 3]
+    )
+    performance = Integer(
         default=None
         , scope=Scope.user_state
         , help="How completely the student has answered the problem"
         , values=[1, 2, 3]
     )
+    profiled = Boolean(
+        default=False
+        , scope=Scope.user_state
+        , help="True if learner profile was already computed"
+    )
     kma = Float(
         default=55.0 # For display
-        , scope=Scope.preferences
+        , scope=Scope.user_state
         , help="KMA score"
     )
     kmb = Float(
         default=85.0 # For display
-        , scope=Scope.preferences
+        , scope=Scope.user_state
         , help="KMB score"
     )
-    no_bias_count = Integer(
-        scope=Scope.preferences
+    no_bias = Integer(
+        default = 0
+        , scope=Scope.preferences
         , help="No Bias count"
     )
-    partial_optimistic_bias_count = Integer(
-        scope=Scope.preferences
+    partial_optimistic = Integer(
+        default = 0
+        , scope=Scope.preferences
         , help="Partial Optimistic Bias count"
     )
-    partial_pessimistic_bias_count = Integer(
-        scope=Scope.preferences
+    partial_pessimistic = Integer(
+        default = 0
+        , scope=Scope.preferences
         , help="Partial Pessimistic Bias count"
     )
-    full_optimistic_bias_count = Integer(
-        scope=Scope.preferences
+    full_optimistic = Integer(
+        default = 0
+        , scope=Scope.preferences
         , help="Full Optimistic Bias count"
     )
-    full_pessimistic_bias_count = Integer(
-        scope=Scope.preferences
+    full_pessimistic = Integer(
+        default = 0
+        , scope=Scope.preferences
         , help="Full Pessimistic Bias count"
     )
 
@@ -130,67 +146,59 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         Set bias values from inputs
         """
-        if self.problem_score == 1:
-            if self.pre_q5_ans == 1:
-                self.no_bias_count += 1
-            elif self.pre_q5_ans == 2:
-                self.partial_optimistic_bias_count += 1
+        performance = int(self.performance)
+        confidence = int(self.confidence)
+        if performance == 1:
+            if confidence == 1:
+                self.no_bias += 1
+            elif confidence == 2:
+                self.partial_optimistic += 1
             else:
-                self.full_optimistic_bias_count += 1
-        elif self.problem_score == 2:
-            if self.pre_q5_ans == 1:
-                self.partial_pessimistic_bias_count += 1
-            elif self.pre_q5_ans == 2:
-                self.no_bias_count += 1
+                self.full_optimistic += 1
+        elif performance == 2:
+            if confidence == 1:
+                self.partial_pessimistic += 1
+            elif confidence == 2:
+                self.no_bias += 1
             else:
-                self.partial_optimistic_bias_count += 1
-        elif self.problem_score == 3:
-            if self.pre_q5_ans == 3:
-                self.full_pessimistic_bias_count += 1
-            elif self.pre_q5_ans == 2:
-                self.partial_pessimistic_bias_count += 1
+                self.partial_optimistic += 1
+        elif performance == 3:
+            if confidence == 1:
+                self.full_pessimistic += 1
+            elif confidence == 2:
+                self.partial_pessimistic += 1
             else:
-                self.no_bias_count += 1
-        else:
-            log.error('Problem score not specified')
+                self.no_bias += 1
+        #else:
+        #    log.error('Problem score not specified')
+
+    def normalize(self, value):
+        """
+        Normalize values from [-1, 1] to [0, 100]
+        """
+        return 100 * (value + 1) / 2
 
     def compute_KMA(self):
         """
         Compute for KMA
         """
-        self.kma = (
-            (
-                self.no_bias_count
-                - 0.5 * (self.partial_pessimistic_bias_count
-                    + self.partial_optimistic_bias_count)
-                - (self.full_pessimistic_bias_count
-                    + self.full_optimistic_bias_count)
-            ) / (
-                self.no_bias_count
-                + self.partial_pessimistic_bias_count
-                + self.partial_optimistic_bias_count
-                + self.full_pessimistic_bias_count
-                + self.full_optimistic_bias_count
-            )
-        )
+        partial_bias = self.partial_pessimistic + self.partial_optimistic
+        full_bias = self.full_pessimistic + self.full_optimistic
+        numerator = self.no_bias - 0.5 * partial_bias - full_bias
+        denominator = self.no_bias + partial_bias + full_bias
+        self.kma = self.normalize(numerator / denominator)
 
     def compute_KMB(self):
         """
         Compute for KMB
         """
-        self.kmb = (
-            (
-                self.full_optimistic_bias_count
-                - 0.5 * self.partial_pessimistic_bias_count
-                + 0.5 * self.partial_optimistic_bias_count
-                - self.full_pessimistic_bias_count
-            ) / (
-                self.partial_pessimistic_bias_count
-                + self.partial_optimistic_bias_count
-                + self.full_pessimistic_bias_count
-                + self.full_optimistic_bias_count
-            )
-        )
+        partial_balance =  self.partial_optimistic - self.partial_pessimistic
+        full_balance = self.full_optimistic - self.full_pessimistic
+        partial_bias = self.partial_pessimistic + self.partial_optimistic
+        full_bias = self.full_pessimistic + self.full_optimistic
+        numerator = full_balance + 0.5 * partial_balance
+        denominator = partial_bias + full_bias + self.no_bias
+        self.kmb = self.normalize(numerator / denominator)
 
     ###########################################################################
     # Config data for JavaScript
@@ -274,11 +282,13 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         Set the fields to be displayed on the student view
         """
-        #if self.learner_profile_disp:
-        #    self.problem_score = data["problem_score"]
-        #    self.set_bias()
-        #    self.compute_KMA()
-        #    self.compute_KMB()
+        if self.learner_profile_disp and not self.profiled:
+            self.confidence = data["confidence"]
+            self.performance = data["performance"]
+            self.set_bias()
+            self.compute_KMA()
+            self.compute_KMB()
+            self.profiled = True
         if self.post_q1_disp:
             self.post_q1_ans = data["post_q1_ans"]
         if self.post_q2_disp:

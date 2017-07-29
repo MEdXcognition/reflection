@@ -5,8 +5,7 @@
     <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
         <div class="alert-message">
             <p class="copy">
-                <span class="icon fa fa-info" aria-hidden="true"></span>
-                Check which prompt questions you'd like the students to answer.
+                <span class="icon fa fa-info" aria-hidden="true"></span> Check which prompt questions you'd like the students to answer.
             </p>
         </div>
     </div>
@@ -17,36 +16,31 @@
             </h4>
             <div class="field">
                 <label class="field-label" for="{self.uniq}-checkbox-prep-q1">
-                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q1" name="pre_q1_disp" {% if self.pre_q1_disp %} checked="" {% endif %} />
-                    What prior knowledge can help me with this particular task?
+                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q1" name="pre_q1_disp" {% if self.pre_q1_disp %} checked="" {% endif %} /> What prior knowledge can help me with this particular task?
                 </label>
                 <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q1" name="{self.uniq}-textarea-prep-q1" disabled=""></textarea>
             </div>
             <div class="field">
                 <label class="field-label" for="{self.uniq}-checkbox-prep-q2">
-                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q2" name="pre_q2_disp" {% if self.pre_q2_disp %} checked="" {% endif %} />
-                    What do I need to know before I can successfully deal with this task?
+                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q2" name="pre_q2_disp" {% if self.pre_q2_disp %} checked="" {% endif %} /> What do I need to know before I can successfully deal with this task?
                 </label>
                 <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q2" name="{self.uniq}-textarea-prep-q2" disabled=""></textarea>
             </div>
             <div class="field">
                 <label class="field-label" for="{self.uniq}-checkbox-prep-q3">
-                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q3" name="pre_q3_disp" {% if self.pre_q3_disp %} checked="" {% endif %} />
-                    What should I do and in which order?
+                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q3" name="pre_q3_disp" {% if self.pre_q3_disp %} checked="" {% endif %} /> What should I do and in which order?
                 </label>
                 <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q3" name="{self.uniq}-textarea-prep-q3" disabled=""></textarea>
             </div>
             <div class="field">
                 <label class="field-label" for="{self.uniq}-checkbox-prep-q4">
-                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q4" name="pre_q4_disp" {% if self.pre_q4_disp %} checked="" {% endif %} />
-                    How much time do I have to complete the task?
+                    <input class="field-input input-checkbox" type="checkbox" id="{self.uniq}-checkbox-prep-q4" name="pre_q4_disp" {% if self.pre_q4_disp %} checked="" {% endif %} /> How much time do I have to complete the task?
                 </label>
                 <textarea class="field-textarea input-textarea textarea-short textarea-block" id="{self.uniq}-textarea-prep-q4" name="{self.uniq}-textarea-prep-q4" disabled=""></textarea>
             </div>
             <div class="field">
                 <label class="field-label" for="{self.uniq}-checkbox-prep-q5">
-                    <input type="checkbox" class="field-input input-checkbox" id="{self.uniq}-checkbox-prep-q5" name="pre_q5_disp" {% if self.pre_q5_disp %} checked="" {% endif %} />
-                    My confidence in my ability to solve this problem is:
+                    <input type="checkbox" class="field-input input-checkbox" id="{self.uniq}-checkbox-prep-q5" name="pre_q5_disp" {% if self.pre_q5_disp %} checked="" {% endif %} /> My confidence in my ability to solve this problem is:
                 </label>
                 <ul class="likert" id="{self.uniq}-likert-prep-q5" name="{self.uniq}-likert-prep-q5">
                     <li>
@@ -77,33 +71,32 @@
             </h4>
             <div class="field">
                 <label class="field-label" for="pre_q6_disp">
-                    <input class="field-input input-checkbox pre_q6_disp" type="checkbox" id="pre_q6_disp" name="pre_q6_disp" {% if self.pre_q6_disp %} checked="" {% endif %} />
-                    Which strategies could I use to approach this problem?
+                    <input class="field-input input-checkbox pre_q6_disp" type="checkbox" id="pre_q6_disp" name="pre_q6_disp" {% if self.pre_q6_disp %} checked="" {% endif %} /> Which strategies could I use to approach this problem?
                 </label>
                 <div class="strategies">
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s1_disp" name="pre_s1_disp" {% if self.pre_s1_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s1_text" name="pre_s1_text" value="{{self.pre_s1_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s1_text" name="pre_s1_text" value="{{self.pre_s1_text}}" required/>
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s2_disp" name="pre_s2_disp" {% if self.pre_s2_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s2_text" name="pre_s2_text" value="{{self.pre_s2_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s2_text" name="pre_s2_text" value="{{self.pre_s2_text}}" required/>
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s3_disp" name="pre_s3_disp" {% if self.pre_s3_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s3_text" name="pre_s3_text" value="{{self.pre_s3_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s3_text" name="pre_s3_text" value="{{self.pre_s3_text}}" required/>
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s4_disp" name="pre_s4_disp" {% if self.pre_s4_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s4_text" name="pre_s4_text" value="{{self.pre_s4_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s4_text" name="pre_s4_text" value="{{self.pre_s4_text}}" required/>
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s5_disp" name="pre_s5_disp" {% if self.pre_s5_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s5_text" name="pre_s5_text" value="{{self.pre_s5_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s5_text" name="pre_s5_text" value="{{self.pre_s5_text}}" required/>
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s6_disp" name="pre_s6_disp" {% if self.pre_s6_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s6_text" name="pre_s6_text" value="{{self.pre_s6_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s6_text" name="pre_s6_text" value="{{self.pre_s6_text}}" required/>
                     </div>
                 </div>
             </div>
@@ -118,7 +111,7 @@
                 <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
                 <div class="alert-message">
                     <p class="copy" id="alert-message-success">
-                        Your changes have been saved.
+                        Your changes have been saved. Refresh to load updates.
                     </p>
                 </div>
             </div>
