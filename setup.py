@@ -33,8 +33,9 @@ setup(
     ],
     entry_points={
         'xblock.v1': [
-            'reflection = reflection:ReflectionAssistantXBlock',
+            'reflection_prep = reflection:ReflectionAssistantPrepXBlock',
+            'reflection_eval = reflection:ReflectionAssistantEvalXBlock',
         ]
     },
-    package_data=package_data("reflection", ["static", "public"]),
+    package_data=package_data("reflection", ["static", "templates"]),
 )

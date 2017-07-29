@@ -1,0 +1,186 @@
+{% load i18n %}
+
+<div class="reflection_block">
+    <h3 class="hd-3">
+        {% trans "Evaluation Phase" context "header" %}
+    </h3>
+    <form class="form form-prompt-post">
+        <div class="form">
+            {% if self.learner_profile_disp %}
+            <div data-disp="learner_profile_disp">
+                <h4 class="hd-4">
+                    {% trans "Learner Profile" context "header" %}
+                </h4>
+                {% if self.profiled %}
+                <figure class="gauge-cont kma" data-percentage={{self.kma}}>
+                    <div class="gauge">
+                        <div class="inner paleyellow"></div>
+                        <div class="bg left-threeeighths palered"></div>
+                        <div class="bg right-quarter palegreen"></div>
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="pointer"></div>
+                    <div class="pointer-knob"></div>
+                    <span class="label-left">{% trans "Low" context "gauge label" %}</span>
+                    <span class="label-right">{% trans "High" context "gauge label" %}</span>
+                    <figcaption>{% trans "Accuracy" context "gauge label" %}</figcaption>
+                </figure>
+                <figure class="gauge-cont kmb" data-percentage={{self.kmb}}>
+                    <div class="gauge">
+                        <div class="inner palegreen"></div>
+                        <div class="bg left-third palered"></div>
+                        <div class="bg right-third palered"></div>
+                        <div class="spinner"></div>
+                    </div>
+                    <div class="pointer"></div>
+                    <div class="pointer-knob"></div>
+                    <span class="label-left">{% trans "Pessimistic" context "gauge label" %}</span>
+                    <span class="label-right">{% trans "Optimistic" context "gauge label" %}</span>
+                    <figcaption>{% trans "Bias" context "gauge label" %}</figcaption>
+                </figure>
+                {% else %}
+                <div class="alert alert-information alert-slim" role="alert" aria-label="Usage" tabindex="-1">
+                    <div class="alert-message">
+                        <p class="copy">
+                            <span class="icon fa fa-info" aria-hidden="true"></span> {% trans "Your updated Learning Profile will be displayed after submission." %}
+                        </p>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="field-label" for="confidence">
+                        {% trans "During preparation phase, my confidence in my ability to solve this problem was:" %}
+                    </label>
+                    <ul class="likert" id="confidence" name="confidence">
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="1" required>
+                            <label>
+                                {% trans "Cannot solve the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="2">
+                            <label>
+                                {% trans "Can partially solve the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="confidence" value="3">
+                            <label>
+                                {% trans "Can fully solve the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                    </ul>
+                    <div id="confidence-error"></div>
+                </div>
+                <br>
+                <br>
+                <div class="field">
+                    <label class="field-label" for="confidence">
+                        {% trans "My actual performance on this problem was:" %}
+                    </label>
+                    <ul class="likert" id="performance" name="performance">
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="1" required>
+                            <label>
+                                {% trans "Could not solve the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="2">
+                            <label>
+                                {% trans "Partially solved the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                        <li>
+                            <input class="field-input" type="radio" name="performance" value="3">
+                            <label>
+                                {% trans "Fully solved the problem" context "confidence level" %}
+                            </label>
+                        </li>
+                    </ul>
+                    <div id="performance-error"></div>
+                </div>
+                {% endif %}
+            {% endif %}
+            </div>
+            <br>
+            <br>
+            {% if self.post_q1_disp or self.post_q2_disp %}
+            <div class="form-group">
+                <h4 class="hd-4">
+                    {% trans "Evaluation" context "header" %}
+                </h4>
+                {% if self.post_q1_disp %}
+                <div class="field">
+                    <label class="field-label" for="post_q1_ans">
+                        {% trans "Did my particular course of thinking produce more or less than I had expected?" %}
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="post_q1_ans" name="post_q1_ans" required>{{self.post_q1_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.post_q2_disp %}
+                <div class="field">
+                    <label class="field-label" for="post_q2_ans">
+                        {% trans "What could I have done differently?" %}
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="post_q2_ans" name="post_q2_ans" required>{{self.post_q2_ans}}</textarea>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% if self.post_q3_disp or self.post_q4_disp or self.post_q5_disp %}
+            <div class="form-group">
+                <h4 class="hd-4">
+                    {% trans "Self-Assessment" context "header" %}
+                </h4> {% if self.post_q3_disp %}
+                <div class="field">
+                    <label class="field-label" for="post_q3_ans">
+                        {% trans "How might I apply this line of thinking to other problems?" %}
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="post_q3_ans" name="post_q3_ans" required>{{self.post_q3_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.post_q4_disp %}
+                <div class="field">
+                    <label class="field-label" for="post_q4_ans">
+                        {% trans "Was this a good strategy to solve this problem?" %}
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="post_q4_ans" name="post_q4_ans" required>{{self.post_q4_ans}}</textarea>
+                </div>
+                {% endif %}
+                {% if self.post_q5_disp %}
+                <div class="field">
+                    <label class="field-label" for="post_q5_ans">
+                        {% trans "Would another strategy have been better suited to this problem?" %}
+                    </label>
+                    <textarea class="field-textarea input-textarea textarea-medium textarea-block" id="post_q5_ans" name="post_q5_ans" required>{{self.post_q5_ans}}</textarea>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            <div class="form-actions submit-attempt-container">
+                <button type="submit" class="submit btn-brand btn-base" data-submitting="Submitting" data-value="Submit" data-should-enable-submit-button="True">
+                    <span class="submit-label" aria-hidden="true">
+                        {% trans "Submit" context "form submit button" %}
+                    </span>
+                </button>
+                <div class="is-hidden alert alert-success alert-slim submit-success" role="alert" aria-labelledby="alert-message-success" tabindex="-1">
+                    <span class="icon alert-icon fa fa-check" aria-hidden="true"></span>
+                    <div class="alert-message">
+                        <p class="copy" id="alert-message-success">
+                            {% trans "Your changes have been saved." %}
+                        </p>
+                    </div>
+                </div>
+                <div class="is-hidden alert alert-error alert-slim submit-error" role="alert" aria-labelledby="alert-message-error" tabindex="-1">
+                    <span class="icon alert-icon fa fa-warning" aria-hidden="true"></span>
+                    <div class="alert-message">
+                        <p class="copy" id="alert-message-error">
+                            {% trans "Error: unable to submit form." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,285 @@
+# Reflection Assistant XBlock.
+# Copyright (C) 2017 Georgia Tech MEdXcognition Team
+# This file is distributed under the same license as the Reflection Assistant XBlock package.
+# Eric W. Wallace <e@ewall.org>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-29 16:15-0400\n"
+"PO-Revision-Date: 2017-07-29 16:22-0400\n"
+"Last-Translator: Eric W. Wallace <e@ewall.org>\n"
+"Language-Team: Google Translate <http://translate.google.com>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 2.0.3\n"
+
+#: templates/html/reflection_eval.html:5
+#: templates/html/reflection_eval_edit.html:5
+msgctxt "header"
+msgid "Evaluation Phase"
+msgstr "Phase d'évaluation"
+
+#: templates/html/reflection_eval.html:12
+#: templates/html/reflection_eval_edit.html:19
+msgctxt "header"
+msgid "Learner Profile"
+msgstr "Profil de l'étudiant"
+
+#: templates/html/reflection_eval.html:24
+#: templates/html/reflection_eval_edit.html:37
+msgctxt "gauge label"
+msgid "Low"
+msgstr "Faible"
+
+#: templates/html/reflection_eval.html:25
+#: templates/html/reflection_eval_edit.html:38
+msgctxt "gauge label"
+msgid "High"
+msgstr "Élevée"
+
+#: templates/html/reflection_eval.html:26
+#: templates/html/reflection_eval_edit.html:39
+msgctxt "gauge label"
+msgid "Accuracy"
+msgstr "Précision"
+
+#: templates/html/reflection_eval.html:37
+#: templates/html/reflection_eval_edit.html:50
+msgctxt "gauge label"
+msgid "Pessimistic"
+msgstr "Pessimiste"
+
+#: templates/html/reflection_eval.html:38
+#: templates/html/reflection_eval_edit.html:51
+msgctxt "gauge label"
+msgid "Optimistic"
+msgstr "Optimiste"
+
+#: templates/html/reflection_eval.html:39
+#: templates/html/reflection_eval_edit.html:52
+msgctxt "gauge label"
+msgid "Bias"
+msgstr "Partialité"
+
+#: templates/html/reflection_eval.html:45
+msgid "Your updated Learning Profile will be displayed after submission."
+msgstr ""
+"Votre profil d’apprentissage mis à jour s’affichera après la soumission."
+
+#: templates/html/reflection_eval.html:51
+#: templates/html/reflection_eval_edit.html:63
+msgid ""
+"During preparation phase, my confidence in my ability to solve this problem "
+"was:"
+msgstr "Ma confiance dans ma capacité à résoudre ce problème est:"
+
+#: templates/html/reflection_eval.html:57
+#: templates/html/reflection_eval_edit.html:69
+#: templates/html/reflection_prep.html:55
+#: templates/html/reflection_prep_edit.html:51
+msgctxt "confidence level"
+msgid "Cannot solve the problem"
+msgstr "Ne peut pas résoudre le problème"
+
+#: templates/html/reflection_eval.html:63
+#: templates/html/reflection_eval_edit.html:75
+#: templates/html/reflection_prep.html:61
+#: templates/html/reflection_prep_edit.html:57
+msgctxt "confidence level"
+msgid "Can partially solve the problem"
+msgstr "Peut résoudre en partie le problème"
+
+#: templates/html/reflection_eval.html:69
+#: templates/html/reflection_eval_edit.html:81
+#: templates/html/reflection_prep.html:67
+#: templates/html/reflection_prep_edit.html:63
+msgctxt "confidence level"
+msgid "Can fully solve the problem"
+msgstr "Peut résoudre complètement le problème"
+
+#: templates/html/reflection_eval.html:79
+#: templates/html/reflection_eval_edit.html:91
+msgid "My actual performance on this problem was:"
+msgstr "Mon rendement réel sur ce problème a été:"
+
+#: templates/html/reflection_eval.html:85
+#: templates/html/reflection_eval_edit.html:97
+msgctxt "confidence level"
+msgid "Could not solve the problem"
+msgstr "Ne peut pas résoudre le problème"
+
+#: templates/html/reflection_eval.html:91
+#: templates/html/reflection_eval_edit.html:103
+msgctxt "confidence level"
+msgid "Partially solved the problem"
+msgstr "Peut résoudre en partie le problème"
+
+#: templates/html/reflection_eval.html:97
+#: templates/html/reflection_eval_edit.html:109
+msgctxt "confidence level"
+msgid "Fully solved the problem"
+msgstr "Peut résoudre complètement le problème"
+
+#: templates/html/reflection_eval.html:111
+#: templates/html/reflection_eval_edit.html:120
+msgctxt "header"
+msgid "Evaluation"
+msgstr "Évaluation"
+
+#: templates/html/reflection_eval.html:116
+#: templates/html/reflection_eval_edit.html:124
+msgid ""
+"Did my particular course of thinking produce more or less than I had "
+"expected?"
+msgstr ""
+"N’a plus ou moins mon cours particulier du produit de la pensée que je m’y "
+"attendais ?"
+
+#: templates/html/reflection_eval.html:124
+#: templates/html/reflection_eval_edit.html:130
+msgid "What could I have done differently?"
+msgstr "Qu'aurais-je pu faire différemment?"
+
+#: templates/html/reflection_eval.html:134
+#: templates/html/reflection_eval_edit.html:137
+msgctxt "header"
+msgid "Self-Assessment"
+msgstr "Auto-évaluation"
+
+#: templates/html/reflection_eval.html:138
+#: templates/html/reflection_eval_edit.html:141
+msgid "How might I apply this line of thinking to other problems?"
+msgstr "Comment puis-je appliquer cette ligne de pensée à d'autres problèmes?"
+
+#: templates/html/reflection_eval.html:146
+#: templates/html/reflection_eval_edit.html:147
+msgid "Was this a good strategy to solve this problem?"
+msgstr "Était-ce une bonne stratégie pour résoudre ce problème?"
+
+#: templates/html/reflection_eval.html:154
+#: templates/html/reflection_eval_edit.html:153
+msgid "Would another strategy have been better suited to this problem?"
+msgstr "Serait une autre stratégie ont été mieux adaptée à ce problème ?"
+
+#: templates/html/reflection_eval.html:164
+#: templates/html/reflection_eval_edit.html:161
+#: templates/html/reflection_prep.html:143
+#: templates/html/reflection_prep_edit.html:109
+msgctxt "form submit button"
+msgid "Submit"
+msgstr "Soumettre"
+
+#: templates/html/reflection_eval.html:171
+#: templates/html/reflection_prep.html:150
+msgid "Your changes have been saved."
+msgstr "Vos modifications ont été enregistrées."
+
+#: templates/html/reflection_eval.html:179
+#: templates/html/reflection_eval_edit.html:176
+#: templates/html/reflection_prep.html:158
+#: templates/html/reflection_prep_edit.html:124
+msgid "Error: unable to submit form."
+msgstr "Erreur: impossible d'envoyer les données."
+
+#: templates/html/reflection_eval_edit.html:10
+#: templates/html/reflection_prep_edit.html:10
+msgid ""
+"Check which prompt questions you'd like the students to answer. Click Submit "
+"to save changes."
+msgstr ""
+"Cochez la case pour chaque question que vous souhaitez que les élèves "
+"répondent."
+
+#: templates/html/reflection_eval_edit.html:24
+msgid "The Learner Profile will be displayed after the student submits."
+msgstr "Le profil de l’apprenant s’affichera après que l’étudiant a envoyé."
+
+#: templates/html/reflection_eval_edit.html:57
+msgid "The following will be hidden after student submits."
+msgstr "La section suivante sera cachée après l’envoi des étudiants."
+
+#: templates/html/reflection_eval_edit.html:168
+#: templates/html/reflection_prep_edit.html:116
+msgid "Your changes have been saved. Refresh to load updates."
+msgstr ""
+"Vos modifications ont été enregistrées. Actualisez la page pour voir les "
+"mises à jour."
+
+#: templates/html/reflection_prep.html:5
+#: templates/html/reflection_prep_edit.html:5
+msgctxt "header"
+msgid "Preparation Phase"
+msgstr "Phase de préparation"
+
+#: templates/html/reflection_prep.html:12
+#: templates/html/reflection_prep_edit.html:17
+msgctxt "header"
+msgid "Knowledge Assessment"
+msgstr "Évaluation des connaissances"
+
+#: templates/html/reflection_prep.html:17
+#: templates/html/reflection_prep_edit.html:21
+msgid "What prior knowledge can help me with this particular task?"
+msgstr ""
+"Quelles connaissances antérieures peuvent m'aider dans cette tâche "
+"particulière?"
+
+#: templates/html/reflection_prep.html:25
+#: templates/html/reflection_prep_edit.html:27
+msgid "What do I need to know before I can successfully deal with this task?"
+msgstr "Que dois-je savoir avant de pouvoir traiter avec succès cette tâche?"
+
+#: templates/html/reflection_prep.html:33
+#: templates/html/reflection_prep_edit.html:33
+msgid "What should I do and in which order?"
+msgstr "Que dois-je faire et dans quel ordre?"
+
+#: templates/html/reflection_prep.html:41
+#: templates/html/reflection_prep_edit.html:39
+msgid "How much time do I have to complete the task?"
+msgstr "Combien de temps dois-je pour terminer la tâche?"
+
+#: templates/html/reflection_prep.html:49
+#: templates/html/reflection_prep_edit.html:45
+msgid "My confidence in my ability to solve this problem is:"
+msgstr "Ma confiance dans ma capacité à résoudre ce problème est:"
+
+#: templates/html/reflection_prep.html:79
+#: templates/html/reflection_prep_edit.html:72
+msgctxt "header"
+msgid "Strategy Selection"
+msgstr "Sélection de stratégie"
+
+#: templates/html/reflection_prep.html:83
+#: templates/html/reflection_prep_edit.html:76
+msgid "Which strategies could I use to approach this problem?"
+msgstr "Quelles stratégies pourrais-je utiliser pour aborder ce problème?"
+
+#: templates/html/reflection_prep.html:90
+#: templates/html/reflection_prep_edit.html:81
+msgctxt "metacognitive strategies"
+msgid "Monitor understanding"
+msgstr "Surveiller le compréhension"
+
+#: templates/html/reflection_prep.html:98
+#: templates/html/reflection_prep_edit.html:85
+msgctxt "metacognitive strategies"
+msgid "Monitor progress and control errors"
+msgstr "Surveiller les progrès et le contrôle des erreurs"
+
+#: templates/html/reflection_prep.html:106
+#: templates/html/reflection_prep_edit.html:89
+msgctxt "metacognitive strategies"
+msgid "Revise solution paths"
+msgstr "Réviser les chemins de la solution"
+
+#~ msgid "0%%"
+#~ msgstr "0%%"
+
+#~ msgid "100%%"
+#~ msgstr "100%%"

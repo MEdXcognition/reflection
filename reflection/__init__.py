@@ -1,1 +1,2 @@
-from .reflection import ReflectionAssistantXBlock
+from .reflection_prep import ReflectionAssistantPrepXBlock
+from .reflection_eval import ReflectionAssistantEvalXBlock
