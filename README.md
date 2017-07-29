@@ -64,6 +64,7 @@ pip install /path/to/cloned/block
 ```
 "reflection_prep", "reflection_eval"
 ```
+
     ![Advanced Module List](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Install_AdvancedModuleList.png)
 
 3. In some cases, you may need to add the new XBlocks to the list of `ADVANCED_COMPONENT_TYPES` in `edx-platform/cms/djangoapps/contentstore/views/component.py`, as described [here](https://edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock).
