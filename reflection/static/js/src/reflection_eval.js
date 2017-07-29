@@ -35,6 +35,7 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
         })
         .done(function() {
             $form_post.find(".submit-success").fadeIn().delay(5000).fadeOut();
+            setTimeout('location.reload()', 800)
         })
         .fail(function() {
             $form_post.find(".submit-error").fadeIn().delay(5000).fadeOut();
