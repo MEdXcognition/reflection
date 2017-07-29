@@ -5,27 +5,57 @@ Instruction of metacognitive practices and guidance in students' use of their me
 
 # Install XBlock on an OpenEdX Instance
 
-For installation instructions, please consult the latest OpenEdX documentation. These can be found [here](edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock). These instructions are summarized below.
+Contributed by William (Brandon) King
+Last revised 07/21/2017
 
-## Install XBlock in virtualenv out of which the platform runs
+For full installation instructions, please consult the latest OpenEdX documentation. These can be found [here](edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock). These instructions are summarized below.
+
+## Run the following commands
 
 1. Retrieve the XBlock code:
+```sudo su edxapp -s /bin/bash```
+```cd /edx/app/edxapp/```
 ```git clone https://github.com/MEdXcognition/reflection.git```
-2. Install the XBlock:
-```sudo -u edxapp /edx/bin/pip.edxapp install /path/to/cloned/block```
-3. Add the block to the advanced settings of the desired course in Studio:
-* `sudo su edxapp`
-* `paver devstack lms`
-* `paver devstack studio`
+2. Install the XBlock (while still running as edxapp):
+```/edx/bin/pip.edxapp install reflection/```
+```exit```
+3a. GT-Specific Instructions - Restart edX environment:
+```sudo /gt/manage.py restart edxapp```
+```sudo /gt/manage.py restart edxapp-workers```
+3b. Non GT-Specific Instructions - Restart edX environment
+```exit```
+```sudo /edx/bin/supervisorctl restart edxapp:lms```
+```sudo /edx/bin/supervisorctl restart edxapp:cms```
+4. Update necessary assets
+```sudo -H -u edxapp bash```
+```source /edx/app/edxapp/edxapp_env```
+```cd /edx/app/edxapp/edx-platform```
+```paver update_assets lms -settings=aws```
+```paver update_assets cms -setting=aws```
+```exit```
+5a. GT-Specific Instructions - Restart edX again:
+```sudo /gt/manage.py restart edxapp```
+```sudo /gt/manage.py restart edxapp-workers```
+5b. Non GT-Specific Instructions - Restart edX again:
+```sudo /edx/bin/supervisorctl restart edxapp:lms```
+```sudo /edx/bin/supervisorctl restart edxapp:cms``` 
+
+## To add the XBlock to your Open edX unit as an instructor:
+1. Set up the XBlock in your environment:
 * In the studio instance, open the desired course
 * Settings -> Advanced Settings
 * Change the value for the key "advanced_modules" to ["reflection"]
-4. Add the block into the desired course
+2. Add the block into the desired course
 * Edit a unit
 * Select desired assessment
 
-## Deploy XBlock
-1. Add to the list of `ADVANCED_COMPONENT_TYPES` in `edx-platform/cms/djangoapps/contentstore/views/component.py`.
+## Credit:
+1. These instructions are based off of the install script William King wrote for the OfficeMix block, which is based off of the instructions from the Beacloud Genius people. See <https://github.com/beacloudgenius/xblock-officemix.git>
+2. Additionally, some instructions were also provided by the MEdXcognition team
+
+## Future TODO
+Last revised: 07/21/17
+Turn these instructions into a shell script to easily install in case of a full reinstall of the Open edX instance. 
 
 ---
 
