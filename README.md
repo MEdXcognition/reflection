@@ -13,32 +13,32 @@ For full installation instructions, please consult the latest OpenEdX documentat
 ## Run the following commands
 
 1. Retrieve the XBlock code:
-```sudo su edxapp -s /bin/bash```
-```cd /edx/app/edxapp/```
-```git clone https://github.com/MEdXcognition/reflection.git```
+* ```sudo su edxapp -s /bin/bash```
+* ```cd /edx/app/edxapp/```
+* ```git clone https://github.com/MEdXcognition/reflection.git```
 2. Install the XBlock (while still running as edxapp):
-```/edx/bin/pip.edxapp install reflection/```
-```exit```
+* ```/edx/bin/pip.edxapp install reflection/```
+* ```exit```
 3a. GT-Specific Instructions - Restart edX environment:
-```sudo /gt/manage.py restart edxapp```
-```sudo /gt/manage.py restart edxapp-workers```
+* ```sudo /gt/manage.py restart edxapp```
+* ```sudo /gt/manage.py restart edxapp-workers```
 3b. Non GT-Specific Instructions - Restart edX environment
-```exit```
-```sudo /edx/bin/supervisorctl restart edxapp:lms```
-```sudo /edx/bin/supervisorctl restart edxapp:cms```
+* ```exit```
+* ```sudo /edx/bin/supervisorctl restart edxapp:lms```
+* ```sudo /edx/bin/supervisorctl restart edxapp:cms```
 4. Update necessary assets
-```sudo -H -u edxapp bash```
-```source /edx/app/edxapp/edxapp_env```
-```cd /edx/app/edxapp/edx-platform```
-```paver update_assets lms -settings=aws```
-```paver update_assets cms -setting=aws```
-```exit```
+* ```sudo -H -u edxapp bash```
+* ```source /edx/app/edxapp/edxapp_env```
+* ```cd /edx/app/edxapp/edx-platform```
+* ```paver update_assets lms -settings=aws```
+* ```paver update_assets cms -setting=aws```
+* ```exit```
 5a. GT-Specific Instructions - Restart edX again:
-```sudo /gt/manage.py restart edxapp```
-```sudo /gt/manage.py restart edxapp-workers```
+* ```sudo /gt/manage.py restart edxapp```
+* ```sudo /gt/manage.py restart edxapp-workers```
 5b. Non GT-Specific Instructions - Restart edX again:
-```sudo /edx/bin/supervisorctl restart edxapp:lms```
-```sudo /edx/bin/supervisorctl restart edxapp:cms``` 
+* ```sudo /edx/bin/supervisorctl restart edxapp:lms```
+* ```sudo /edx/bin/supervisorctl restart edxapp:cms``` 
 
 ## To add the XBlock to your Open edX unit as an instructor:
 1. Set up the XBlock in your environment:
