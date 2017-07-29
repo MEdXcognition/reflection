@@ -174,7 +174,7 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         Normalize values from [-1, 1] to [0, 100]
         """
-        return 100 * (value + 1) / 2
+        return int(100 * (value + 1) / 2)
 
     def compute_KMA(self):
         """
