@@ -16,7 +16,7 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Submit answers */
     var handlerUrl = runtime.handlerUrl(element, "save_student_answer");
-    $form_pre = $(element).find(".form-prompt-pre");
+    var $form_pre = $(element).find(".form-prompt-pre");
 
     $form_pre.bind("submit", function(e) {
         e.preventDefault();
@@ -51,5 +51,31 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
     /* Tweak Constraint Validation Behavior */
     $form_pre.find("textarea,input").on("blur", function() {
         $(this).addClass("interacted");
+    });
+
+    /* Form Validation: require at least one Strategy checkbox */
+    var $cbx_group = $form_pre.find("input:checkbox[name^='pre_s']");
+    // check initial state
+    if (!$cbx_group.is(":checked")) {
+        $cbx_group.prop("required", true);
+        $cbx_group.each(function() {
+            this.setCustomValidity("Please select at least one checkbox.");
+        });
+    }
+    // re-check on click
+    $cbx_group.on("click", function() {
+        if ($cbx_group.is(":checked")) {
+            // checkboxes become unrequired as long as one is checked
+            $cbx_group.prop("required", false);
+            $cbx_group.each(function() {
+                this.setCustomValidity("");
+            });
+        } else {
+            // require checkboxes and set custom validation error message
+            $cbx_group.prop("required", true);
+            $cbx_group.each(function() {
+                this.setCustomValidity("Please select at least one checkbox.");
+            });
+        }
     });
 }

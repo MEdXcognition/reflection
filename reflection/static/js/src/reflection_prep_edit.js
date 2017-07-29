@@ -15,7 +15,7 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
     document.body.removeChild(span);
 
     /* Strategy Selection click handler to enable/disable entire section */
-    $pre_q6_disp = $(element).find(".pre_q6_disp");
+    var $pre_q6_disp = $(element).find(".pre_q6_disp");
     $pre_q6_disp.click(function() {
         if (this.checked) {
             // re-enable checkboxes, triggers change event as side effect
@@ -53,15 +53,15 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
 
     /* Submit settings */
     var handlerUrl = runtime.handlerUrl(element, "set_student_view");
-    $form = $(element).find(".form-prompt-pre");
+    var $form_pre = $(element).find(".form-prompt-pre");
 
-    $form.bind("submit", function(e) {
+    $form_pre.bind("submit", function(e) {
         e.preventDefault();
 
         /* Set strategy text to default values so there would be values for
         disabled fields */
         var strat_text_val = {};
-        $form.find("input:text").each(function() {
+        $form_pre.find("input:text").each(function() {
             strat_text_val[this.name] = config[this.name];
         });
         /* Get values from form */
@@ -74,7 +74,7 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             );
         /* Get checkbox states */
         var checkbox_val = {};
-        $form.find("input:checkbox").each(function() {
+        $form_pre.find("input:checkbox").each(function() {
             checkbox_val[this.name] = this.checked;
         });
         /* Get union of strat_text_val, serializedObj and checkbox_val */
@@ -92,15 +92,15 @@ function ReflectionAssistantPrepXBlock(runtime, element, config) {
             data: submit_pre_data
         })
         .done(function() {
-            $form.find(".submit-success").fadeIn().delay(5000).fadeOut();
+            $form_pre.find(".submit-success").fadeIn().delay(5000).fadeOut();
         })
         .fail(function() {
-            $form.find(".submit-error").fadeIn().delay(5000).fadeOut();
+            $form_pre.find(".submit-error").fadeIn().delay(5000).fadeOut();
         });
     });
 
-    /* Form Validation: require at least one Stragegy checkbox */
-    $cbx_group = $form.find("input:checkbox[name^='pre_s1']");
+    /* Form Validation: require at least one Strategy checkbox */
+    var $cbx_group = $form_pre.find("input:checkbox[name^='pre_s']");
     $cbx_group.on("click", function() {
         if ($cbx_group.is(":checked")) {
             // checkboxes become unrequired as long as one is checked
