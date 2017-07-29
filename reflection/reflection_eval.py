@@ -6,7 +6,6 @@ import pkg_resources
 from xblock.core import XBlock
 from xblock.fields import Boolean, Float, Integer, Scope, String
 from xblock.fragment import Fragment
-from xblockutils.studio_editable import StudioEditableXBlockMixin
 
 from .utils import render_template
 
