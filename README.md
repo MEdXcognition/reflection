@@ -19,13 +19,15 @@ For full installation instructions, please consult the latest OpenEdX documentat
 2. Install the XBlock (while still running as edxapp):
 * ```/edx/bin/pip.edxapp install reflection/```
 * ```exit```
-3a. GT-Specific Instructions - Restart edX environment:
-* ```sudo /gt/manage.py restart edxapp```
-* ```sudo /gt/manage.py restart edxapp-workers```
-3b. Non GT-Specific Instructions - Restart edX environment
-* ```exit```
-* ```sudo /edx/bin/supervisorctl restart edxapp:lms```
-* ```sudo /edx/bin/supervisorctl restart edxapp:cms```
+
+3. Restart edX environment:
+* GT-Specific Instructions:
+ * ```sudo /gt/manage.py restart edxapp```
+ * ```sudo /gt/manage.py restart edxapp-workers```
+* Non GT-Specific Instructions
+ * ```exit```
+ * ```sudo /edx/bin/supervisorctl restart edxapp:lms```
+ * ```sudo /edx/bin/supervisorctl restart edxapp:cms```
 4. Update necessary assets
 * ```sudo -H -u edxapp bash```
 * ```source /edx/app/edxapp/edxapp_env```
@@ -33,12 +35,14 @@ For full installation instructions, please consult the latest OpenEdX documentat
 * ```paver update_assets lms -settings=aws```
 * ```paver update_assets cms -setting=aws```
 * ```exit```
-5a. GT-Specific Instructions - Restart edX again:
-* ```sudo /gt/manage.py restart edxapp```
-* ```sudo /gt/manage.py restart edxapp-workers```
-5b. Non GT-Specific Instructions - Restart edX again:
-* ```sudo /edx/bin/supervisorctl restart edxapp:lms```
-* ```sudo /edx/bin/supervisorctl restart edxapp:cms``` 
+
+5. Restart edX again:
+* GT-Specific Instructions:
+ * ```sudo /gt/manage.py restart edxapp```
+ * ```sudo /gt/manage.py restart edxapp-workers```
+* Non GT-Specific Instructions:
+ * ```sudo /edx/bin/supervisorctl restart edxapp:lms```
+ * ```sudo /edx/bin/supervisorctl restart edxapp:cms``` 
 
 ## To add the XBlock to your Open edX unit as an instructor:
 1. Set up the XBlock in your environment:
