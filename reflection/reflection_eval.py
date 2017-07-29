@@ -1,4 +1,5 @@
-"""Reflection Assistant: Eval XBlock"""
+# -*- coding: utf-8 -*-
+"""Reflection Assistant: Evaluation XBlock"""
 
 import pkg_resources
 
@@ -9,6 +10,7 @@ from xblock.fragment import Fragment
 from .utils import render_template
 
 
+@XBlock.needs('i18n')
 class ReflectionAssistantEvalXBlock(XBlock):
     """
     Prompts students after a problem-solving activity (Evaluation Phase)
@@ -305,7 +307,6 @@ class ReflectionAssistantEvalXBlock(XBlock):
 
     # Required for studio_view:
     _non_editable_metadata_fields = []
-
     @property
     def non_editable_metadata_fields(self):
         """
@@ -313,6 +314,17 @@ class ReflectionAssistantEvalXBlock(XBlock):
         editor.
         """
         return self._non_editable_metadata_fields
+
+    # Property required for edX LMS:
+    _icon_class = "problem"
+    @property
+    def icon_class(self):
+        """
+        Controls the icon that displays to learners in the unit navigation bar
+        on the LMS Course page when the XBlock is in that unit. Must be one of
+        "problem", "video", or "other".
+        """
+        return self._icon_class
 
     # Scenarios you'd like to see in the workbench while developing your XBlock
     @staticmethod
