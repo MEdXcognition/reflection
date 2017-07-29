@@ -93,17 +93,17 @@ class ReflectionAssistantPrepXBlock(XBlock):
 
     # Metacognitive strategies strings
     pre_s1_text = String(
-        default="Monitor understanding"
+        default=""
         , scope=Scope.settings
         , help="Metacognitive Strategy 1"
     )
     pre_s2_text = String(
-        default="Monitor progress and control errors"
+        default=""
         , scope=Scope.settings
         , help="Metacognitive Strategy 2"
     )
     pre_s3_text = String(
-        default="Revise solution paths"
+        default=""
         , scope=Scope.settings
         , help="Metacognitive Strategy 3"
     )

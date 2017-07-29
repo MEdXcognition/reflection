@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-28 21:36-0400\n"
-"PO-Revision-Date: 2017-07-28 21:52-0400\n"
+"POT-Creation-Date: 2017-07-28 22:43-0400\n"
+"PO-Revision-Date: 2017-07-28 22:45-0400\n"
 "Last-Translator: Eric W. Wallace <e@ewall.org>\n"
 "Language-Team: Google Translate <http://translate.google.com>\n"
 "Language: fr\n"
@@ -186,3 +186,18 @@ msgstr "Quelles stratégies pourrais-je utiliser pour aborder ce problème?"
 #: templates/html/reflection_prep_edit.html:78
 msgid "Strategy Selection"
 msgstr "Sélection de stratégie"
+
+#: templates/html/reflection_prep_edit.html:88
+msgctxt "metacognitive strategies"
+msgid "Monitor understanding"
+msgstr "Surveiller le compréhension"
+
+#: templates/html/reflection_prep_edit.html:92
+msgctxt "metacognitive strategies"
+msgid "Monitor progress and control errors"
+msgstr "Surveiller les progrès et le contrôle des erreurs"
+
+#: templates/html/reflection_prep_edit.html:96
+msgctxt "metacognitive strategies"
+msgid "Revise solution paths"
+msgstr "Réviser les chemins de la solution"

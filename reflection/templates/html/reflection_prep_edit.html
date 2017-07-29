@@ -85,15 +85,15 @@
                 <div class="strategies">
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s1_disp" name="pre_s1_disp" {% if self.pre_s1_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s1_text" name="pre_s1_text" value="{{self.pre_s1_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s1_text" name="pre_s1_text" value="{% if self.pre_s1_text %}{{self.pre_s1_text}}{% else %}{% trans "Monitor understanding" context "metacognitive strategies" %}{% endif %}" />
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s2_disp" name="pre_s2_disp" {% if self.pre_s2_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s2_text" name="pre_s2_text" value="{{self.pre_s2_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s2_text" name="pre_s2_text" value="{% if self.pre_s2_text %}{{self.pre_s2_text}}{% else %}{% trans "Monitor progress and control errors" context "metacognitive strategies" %}{% endif %}" />
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s3_disp" name="pre_s3_disp" {% if self.pre_s3_disp %} checked="" {% endif %} />
-                        <input class="field-input input-text" type="text" id="pre_s3_text" name="pre_s3_text" value="{{self.pre_s3_text}}" />
+                        <input class="field-input input-text" type="text" id="pre_s3_text" name="pre_s3_text" value="{% if self.pre_s3_text %}{{self.pre_s3_text}}{% else %}{% trans "Revise solution paths" context "metacognitive strategies" %}{% endif %}" />
                     </div>
                     <div class="field keep-together">
                         <input class="field-input input-checkbox" type="checkbox" id="pre_s4_disp" name="pre_s4_disp" {% if self.pre_s4_disp %} checked="" {% endif %} />
