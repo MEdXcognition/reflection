@@ -8,6 +8,7 @@ from xblock.fragment import Fragment
 
 from .utils import render_template
 
+
 class ReflectionAssistantPrepXBlock(XBlock):
     """
     Prompts students before a problem-solving activity (Preparation Phase)
@@ -234,7 +235,8 @@ class ReflectionAssistantPrepXBlock(XBlock):
         """
         frag = Fragment()
         frag.add_content(
-            render_template("/templates/html/reflection_prep.html", {"self": self,})
+            render_template(
+                "/templates/html/reflection_prep.html", {"self": self, })
         )
         frag.add_css(
             self.resource_string("static/css/reflection.css")
@@ -253,7 +255,8 @@ class ReflectionAssistantPrepXBlock(XBlock):
         """
         frag = Fragment()
         frag.add_content(
-            render_template("/templates/html/reflection_prep_edit.html", {"self": self,})
+            render_template(
+                "/templates/html/reflection_prep_edit.html", {"self": self, })
         )
         frag.add_css(
             self.resource_string("static/css/reflection.css")
@@ -325,6 +328,7 @@ class ReflectionAssistantPrepXBlock(XBlock):
 
     # Property required for studio_view:
     _non_editable_metadata_fields = []
+
     @property
     def non_editable_metadata_fields(self):
         """

@@ -107,37 +107,37 @@ class ReflectionAssistantEvalXBlock(XBlock):
         , help="True if learner profile was already computed"
     )
     kma = Float(
-        default=55.0 # For display
+        default=55.0  # For display
         , scope=Scope.user_state
         , help="KMA score"
     )
     kmb = Float(
-        default=85.0 # For display
+        default=85.0  # For display
         , scope=Scope.user_state
         , help="KMB score"
     )
     no_bias = Integer(
-        default = 0
+        default=0
         , scope=Scope.preferences
         , help="No Bias count"
     )
     partial_optimistic = Integer(
-        default = 0
+        default=0
         , scope=Scope.preferences
         , help="Partial Optimistic Bias count"
     )
     partial_pessimistic = Integer(
-        default = 0
+        default=0
         , scope=Scope.preferences
         , help="Partial Pessimistic Bias count"
     )
     full_optimistic = Integer(
-        default = 0
+        default=0
         , scope=Scope.preferences
         , help="Full Optimistic Bias count"
     )
     full_pessimistic = Integer(
-        default = 0
+        default=0
         , scope=Scope.preferences
         , help="Full Pessimistic Bias count"
     )
@@ -169,8 +169,6 @@ class ReflectionAssistantEvalXBlock(XBlock):
                 self.partial_pessimistic += 1
             else:
                 self.no_bias += 1
-        #else:
-        #    log.error('Problem score not specified')
 
     def normalize(self, value):
         """
@@ -192,7 +190,7 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         Compute for KMB
         """
-        partial_balance =  self.partial_optimistic - self.partial_pessimistic
+        partial_balance = self.partial_optimistic - self.partial_pessimistic
         full_balance = self.full_optimistic - self.full_pessimistic
         partial_bias = self.partial_pessimistic + self.partial_optimistic
         full_bias = self.full_pessimistic + self.full_optimistic
@@ -232,7 +230,8 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         frag = Fragment()
         frag.add_content(
-            render_template("/templates/html/reflection_eval.html", {"self": self,})
+            render_template(
+                "/templates/html/reflection_eval.html", {"self": self, })
         )
         frag.add_css(
             self.resource_string("static/css/reflection.css")
@@ -251,7 +250,8 @@ class ReflectionAssistantEvalXBlock(XBlock):
         """
         frag = Fragment()
         frag.add_content(
-            render_template("/templates/html/reflection_eval_edit.html", {"self": self,})
+            render_template(
+                "/templates/html/reflection_eval_edit.html", {"self": self, })
         )
         frag.add_css(
             self.resource_string("static/css/reflection.css")
@@ -305,6 +305,7 @@ class ReflectionAssistantEvalXBlock(XBlock):
 
     # Required for studio_view:
     _non_editable_metadata_fields = []
+
     @property
     def non_editable_metadata_fields(self):
         """
