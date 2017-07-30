@@ -47,7 +47,7 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
         $(this).addClass("interacted");
     });
 
-    /* Guage Display Functions */
+    /* Gauge Display Functions */
     function setGauge(gauge) {
         var percentage = $(gauge).data("percentage") / 100;
         var colorSet = $(gauge).data("colorset");
@@ -81,7 +81,7 @@ function ReflectionAssistantEvalXBlock(runtime, element, config) {
     if (config.learner_profile_disp) {
         setGauge($(element).find(".kma"));
         setGauge($(element).find(".kmb"));
-        // clicking guages re-animates them
+        // clicking gauges re-animates them
         $(".gauge-cont").click(function() {
             resetGauge(this);
             setTimeout(setGauge, 800, this);
