@@ -46,7 +46,6 @@ coverage.xml
 .hypothesis/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
@@ -103,3 +102,5 @@ ENV/
 *.js~
 
 *.py~
+
+reflection/locale/
