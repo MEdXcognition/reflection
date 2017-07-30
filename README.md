@@ -6,15 +6,21 @@ Instruction of metacognitive practices and guidance in students' use of their me
 ## Features
 
 * Pre-built prompts to help your students practice their knowledge management.
+
     ![Knowledge Management Prompts](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Features_Prompts.png)
 
 * Prompts which can be customized by the teacher or course author, such as this list of Metacognitive Strategies:
+
     ![Customizing Strategy List](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Features_StrategySelection.png)
 
 * The Learner Profile helps the student visualize how their self-assessment lines up with their results.
+
     * First they answer some questions about how they thought they'd do on the problem, and how they actually did.
+
     ![Learner Profile initial questions](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Features_LearnerProfileBefore.png)
+
     * Then the page shows guages showing their knowledge managment accuracy (KMA) and bias (KMB).
+
     ![Learner Profile KMA and KMB](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Features_LearnerProfileAfter.png)
 
 ## Installation
@@ -65,7 +71,7 @@ pip install /path/to/cloned/block
 "reflection_prep", "reflection_eval"
 ```
 
-    ![Advanced Module List](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Install_AdvancedModuleList.png)
+![Advanced Module List](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Install_AdvancedModuleList.png)
 
 3. In some cases, you may need to add the new XBlocks to the list of `ADVANCED_COMPONENT_TYPES` in `edx-platform/cms/djangoapps/contentstore/views/component.py`, as described [here](https://edx.readthedocs.io/projects/edx-developer-guide/en/latest/extending_platform/xblocks.html#deploying-your-xblock).
 
@@ -89,7 +95,7 @@ pip install /path/to/cloned/block
     ![Save Your Changes](https://raw.githubusercontent.com/MEdXcognition/reflection/dc88c3d6bc872ca7ee43b18233aa09cf626d5b1e/doc/img/Usage_StudioSaveChanges.png)
 
 Credit:
-Assistance with install instructions by William King: "These instructions are based off of the instsall script I wrote for the OfficeMix block, which is based off of the instructions from the Beacloud Genius people. See <https://github.com/beacloudgenius/xblock-officemix.git> " 
+Assistance with install instructions by William King: "These instructions are based off of the instsall script I wrote for the OfficeMix block, which is based off of the instructions from the Beacloud Genius people. See <https://github.com/beacloudgenius/xblock-officemix.git> "
 
 ---
 
