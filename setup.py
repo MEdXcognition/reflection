@@ -22,7 +22,7 @@ def package_data(pkg, roots):
 
 setup(
     name='reflection-xblock',
-    version='0.1',
+    version='1.0',
     description='Reflection Assistant XBlock',
     license='Apache 2.0',
     packages=[
