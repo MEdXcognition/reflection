@@ -85,6 +85,7 @@ class ReflectionAssistantEvalXBlock(XBlock):
 
     ###########################################################################
     # Learner Profile
+    # TODO: Address Bogdan's feedback?
 
     learner_profile_disp = Boolean(
         default=True
